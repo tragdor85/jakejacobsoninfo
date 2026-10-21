@@ -1,0 +1,3 @@
+# Cloudflare Pages supported redirect file
+# www → apex, permanent
+https://www.jakejacobson.info/* https://jakejacobson.info/:splat 301
