@@ -22,5 +22,11 @@ npm run build    # static output in ./out
 npx wrangler pages deploy out --project-name jakejacobsoninfo
 ```
 
+**wrangler 4.151+ gotcha**: the new `pages project create`/`deploy` delegates
+to the Workers-based Pages and auto-detects Next.js → tries an OpenNext build.
+This repo pins `pages_build_output_dir` in `wrangler.jsonc`; the project was
+created with `--force` (classic Pages). Do not remove `--force` from that
+create command if the project is ever recreated.
+
 Custom domain: apex `A 76.76.21.21` and `www CNAME jakejacobsoninfo.pages.dev`
 in Google Cloud DNS; both domains attached to the Pages project in Cloudflare.
