@@ -4,7 +4,7 @@ import { ContentPage } from "@/components/content-page";
 import { getContent, getContentTitle } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Home Lab",
+  title: "The House",
   description:
     "One Raspberry Pi doing two jobs — 3D-printer server and home-automation hub — plus the 5.1.2 Sonos theater it lives next to.",
 };

@@ -60,7 +60,7 @@ contact info), zero job-hunting/salary/compensation content.
 | `/local-ai` | Depth: the M1 Max 32 GB local AI stack — Splash M1/M2 port, splash-serve + watchdog, pi as the agent hub, custom extensions, model list, "clone m1max32gaiconfig and have my setup" — plus a **"local AI manages my Google Sheets"** section (gog CLI + OAuth setup + agent workflow + gotchas, fully generic) |
 | `/printer` | Depth: the Anet A8 custom config — full hardware table, profile-recovered-from-G-code archaeology, Klipper-on-Pi, camera + Fluidd, Cura reconstruction, defect analysis |
 | `/keyboards` | Depth: the input stack — the desk layout (Vortex 40% sandwiched between the QMK-modded ZSA Moonlander halves, A5 cutting mat for print cleanup, Ploopy Nano 2 under the right-side thumb cluster) + the pointer story (Apple trackpad for everything, Ploopy for drawing, no mouse) |
-| `/lab` | Depth: the home lab — three sections: **The Pi** (klipperpi: one box, two jobs, managed by AI over SSH), **Home Assistant** (docker stack, Ecobee/sensors/attic fan, HVAC data analysis), **Sonos** (5.1.2 theater, the cloud-vs-local-API discovery) |
+| `/lab` | Depth: the home lab — H1: “The House”: the dual-role Pi (printer server + automation hub, agents over SSH), what the automation actually does (climate, radio devices, cameras), the Sonos 5.1.2 theater (the cloud-vs-local-API discovery) |
 | `/_404` | Personality page |
 
 No contact route. Footer: privacy line + GitHub + LinkedIn (pending decision 3).

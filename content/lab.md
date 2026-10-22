@@ -1,10 +1,10 @@
-# 27B on 32GB
+# The House
 
 Not a rack. Not a server closet. It's a Raspberry Pi, a network of Sonos speakers, and a house full of sensors — plus the agents that keep an eye on all of it.
 
 ## One box, two jobs
 
-The hub of the lab is a Raspberry Pi — `klipperpi` on the network, `ssh klipperpi.local` from anywhere in the house — that does two jobs at once:
+The hub of the house is a Raspberry Pi — `klipperpi` on the network, `ssh klipperpi.local` from anywhere in the house — that does two jobs at once:
 
 1. **3D-printer server.** Klipper, Moonraker, and Fluidd for the [Anet A8](/printer).
 2. **Home-automation hub.** [Home Assistant](https://github.com/home-assistant/core), plus the stack around it: [InfluxDB](https://github.com/influxdata/influxdb) for history, [Mosquitto](https://github.com/eclipse/mosquitto) for MQTT, [Zigbee2MQTT](https://github.com/Koenkk/zigbee2mqtt) for the radio devices, [Prometheus](https://github.com/prometheus/prometheus) for metrics, and a camera streamer.
@@ -17,7 +17,7 @@ It's administered the same way I administer everything else: **agents over SSH**
 - **Radio devices.** Zigbee2MQTT handles the zigbee sensors — the boring, unglamorous kind of automation that just works and never phones you.
 - **Cameras.** A few, including the one on the printer. The local model can look.
 
-The rule for this corner of the lab: **if it needs the cloud, it doesn't live here.** Home Assistant and local services do the thinking; the cloud gets a status message at best.
+The rule for this corner of the house: **if it needs the cloud, it doesn't live here.** Home Assistant and local services do the thinking; the cloud gets a status message at best.
 
 ## The Sonos theater
 

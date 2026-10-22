@@ -147,6 +147,9 @@ describe("printer", () => {
 describe("lab", () => {
   it("renders the pi and the 5.1.2 theater", () => {
     render(<Lab />);
+    expect(screen.getByText("The House")).toBeTruthy();
+    // The H1 used to be a copy of the local-ai page's — keep it out of this page.
+    expect(screen.queryByText("27B on 32GB")).toBeNull();
     expect(screen.getAllByText(/klipperpi/).length).toBeGreaterThan(0);
     expect(screen.getAllByText("5.1.2").length).toBeGreaterThan(0);
     expect(screen.queryAllByText("7.1.2").length).toBe(0);
