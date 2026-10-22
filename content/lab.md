@@ -7,13 +7,13 @@ Not a rack. Not a server closet. It's a Raspberry Pi, a network of Sonos speaker
 The hub of the lab is a Raspberry Pi — `klipperpi` on the network, `ssh klipperpi.local` from anywhere in the house — that does two jobs at once:
 
 1. **3D-printer server.** Klipper, Moonraker, and Fluidd for the [Anet A8](/printer).
-2. **Home-automation hub.** Home Assistant, plus the stack around it: InfluxDB for history, Mosquitto for MQTT, Zigbee2MQTT for the radio devices, Prometheus for metrics, and a camera streamer.
+2. **Home-automation hub.** [Home Assistant](https://github.com/home-assistant/core), plus the stack around it: [InfluxDB](https://github.com/influxdata/influxdb) for history, [Mosquitto](https://github.com/eclipse/mosquitto) for MQTT, [Zigbee2MQTT](https://github.com/Koenkk/zigbee2mqtt) for the radio devices, [Prometheus](https://github.com/prometheus/prometheus) for metrics, and a camera streamer.
 
 It's administered the same way I administer everything else: **agents over SSH**. tmux sessions, changes made in small reviewed chunks, and a standing habit of reading the logs before touching anything. No one logs into a Pi with a web browser at 2 a.m. — the agents do, and they leave a paper trail.
 
 ## What the automation actually does
 
-- **Climate.** An Ecobee thermostat, room temperature and humidity sensors, and an attic fan, all in Home Assistant. When the furnace started acting up, an agent paged through months of InfluxDB history and wrote a plain-English summary. I handed the repair tech that instead of "it's weird sometimes."
+- **Climate.** An Ecobee thermostat, room temperature and humidity sensors, and an attic fan, all in [Home Assistant](https://github.com/home-assistant/core). When the furnace started acting up, an agent paged through months of [InfluxDB](https://github.com/influxdata/influxdb) history and wrote a plain-English summary. I handed the repair tech that instead of "it's weird sometimes."
 - **Radio devices.** Zigbee2MQTT handles the zigbee sensors — the boring, unglamorous kind of automation that just works and never phones you.
 - **Cameras.** A few, including the one on the printer. The local model can look.
 
