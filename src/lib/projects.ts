@@ -14,27 +14,28 @@ export const projects: Project[] = [
   {
     slug: "m1max32gaiconfig",
     category: "agents",
-    title: "M1 Max 32G → local AI workbench",
+    title: "M1 Max 32GB → local AI workbench",
     blurb:
-      "A 32GB Mac that runs 7B–14B agents, OpenCode/CodeBuddy/ZCode, and a home-lab remote. The config that makes it all fit.",
+      "A 32GB Mac running a 27B local model and the full agent stack that drives it. The config that makes it all fit.",
     tags: ["local-llm", "mac", "agents"],
     href: "/local-ai",
   },
   {
     slug: "splash",
     category: "agents",
-    title: "Splash (M1/M2 port)",
+    title: "Splash (M1/M2 fork)",
     blurb:
-      "The open-source browser for AI agents, ported to Apple Silicon.",
-    tags: ["ai-browser", "apple-silicon"],
+      "Inco's local inference engine for Apple silicon — running on an M1 Max via a community Metal-kernel fork.",
+    tags: ["local-llm", "apple-silicon", "inference"],
     href: "/projects",
   },
   {
     slug: "splash-serve",
     category: "agents",
     title: "Splash Serve",
-    blurb: "Serving companion for Splash.",
-    tags: ["ai-browser"],
+    blurb:
+      "Custom launcher (27B / 35B / bonsai) plus the launchd watchdog that keeps the model server alive.",
+    tags: ["local-llm", "watchdog"],
     href: "/projects",
   },
   {
@@ -87,15 +88,6 @@ export const projects: Project[] = [
       "gog-based Google Suite CLI that my local agents use to read and write sheets — no cloud brain required.",
     tags: ["google-sheets", "cli", "local-ai"],
     href: "/local-ai",
-  },
-  {
-    slug: "ai-news-scraper",
-    category: "agents",
-    title: "AI News Scraper",
-    blurb:
-      "\"AI for Humanity\" — a scraper that reads the AI news so I don't have to.",
-    tags: ["scraper", "news"],
-    href: "/projects",
   },
   // Maker & Hardware ----------------------------------------------------------
   {
@@ -153,11 +145,11 @@ export const projects: Project[] = [
     href: "/lab",
   },
   {
-    slug: "sonos-712",
+    slug: "sonos",
     category: "lab",
-    title: "Sonos 7.1.2 Theater",
+    title: "Sonos 5.1.2 Theater",
     blurb:
-      "A full Dolby setup out of Sonos, mapped, named, and automatable.",
+      "Six Sonos devices, one home theater — the cloud says one player, the local API tells the truth.",
     tags: ["sonos", "home-theater"],
     href: "/lab",
   },

@@ -2,13 +2,13 @@ import { describe, it, expect } from "vitest";
 import { projects } from "@/lib/projects";
 
 describe("projects data", () => {
-  it("has the 17 public cards from the plan", () => {
-    expect(projects).toHaveLength(17);
+  it("has the 16 public cards from the plan", () => {
+    expect(projects).toHaveLength(16);
     const byCategory = projects.reduce<Record<string, number>>((acc, p) => {
       acc[p.category] = (acc[p.category] ?? 0) + 1;
       return acc;
     }, {});
-    expect(byCategory.agents).toBe(10);
+    expect(byCategory.agents).toBe(9);
     expect(byCategory.maker).toBe(4);
     expect(byCategory.lab).toBe(3);
   });
@@ -21,6 +21,8 @@ describe("projects data", () => {
       "sonotester",
       "aigroup",
       "health-mcp",
+      "ai for humanity",
+      "ai-news-scraper",
     ]) {
       expect(blob).not.toContain(banned);
     }

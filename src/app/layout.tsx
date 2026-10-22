@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AppShell } from "@/components/app-shell";
 import { siteConfig } from "@/lib/site";
 
 const geistSans = Geist({
@@ -20,6 +19,21 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.tagline,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title: siteConfig.name,
+    description: siteConfig.tagline,
+    type: "website",
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.tagline,
+    images: ["/og.png"],
+  },
 };
 
 export const viewport: Viewport = {
@@ -29,15 +43,15 @@ export const viewport: Viewport = {
   ],
 };
 
+// Each route renders its own <AppShell current="..."> so the nav highlight
+// is static (no client JS) — the layout can't know which page it wraps.
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-bg text-fg">
-        <AppShell>{children}</AppShell>
-      </body>
+      <body className="flex min-h-full flex-col bg-bg text-fg">{children}</body>
     </html>
   );
 }
