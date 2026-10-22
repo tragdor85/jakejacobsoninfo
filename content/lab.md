@@ -21,7 +21,7 @@ The rule for this corner of the house: **if it needs the cloud, it doesn't live 
 
 ## The Sonos theater
 
-The fun part. Six devices, one **5.1.2** home theater:
+Six devices, one **5.1.2** theater:
 
 | Device | Role |
 |---|---|
