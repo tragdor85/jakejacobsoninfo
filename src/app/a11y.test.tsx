@@ -16,6 +16,7 @@ import Home from "./page";
 import Lab from "./lab/page";
 import LocalAI from "./local-ai/page";
 import NotFound from "./not-found";
+import Keyboards from "./keyboards/page";
 import Printer from "./printer/page";
 import Projects from "./projects/page";
 
@@ -25,6 +26,7 @@ const pages: Record<string, () => ReactElement> = {
   career: () => <Career />,
   projects: () => <Projects />,
   "local-ai": () => <LocalAI />,
+  "keyboards": () => <Keyboards />,
   printer: () => <Printer />,
   lab: () => <Lab />,
   "404": () => <NotFound />,

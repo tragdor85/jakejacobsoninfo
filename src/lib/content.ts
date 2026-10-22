@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export const contentSlugs = ["local-ai", "printer", "lab"] as const;
+export const contentSlugs = ["local-ai", "printer", "keyboards", "lab"] as const;
 export type ContentSlug = (typeof contentSlugs)[number];
 
 /**

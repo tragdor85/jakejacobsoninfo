@@ -24,6 +24,13 @@ const doors = [
     blurb:
       "The klipperpi is both the 3D-printer server and the home-automation hub — administered over SSH by agents I drive from my phone.",
   },
+  {
+    href: "/keyboards",
+    label: "keyboards",
+    title: "Two 40%s, a split, and a trackball",
+    blurb:
+      "A Vortex 40% sandwiched between the Moonlander halves, a Ploopy under the thumb, an Apple trackpad for everything else — and no mouse.",
+  },
 ];
 
 const glance = [
@@ -37,7 +44,7 @@ const glance = [
     href: "/projects",
     label: "projects",
     title: "Everything else",
-    text: "Sixteen real projects — nine AI agents, four maker builds, three lab machines, and a local Google Sheets CLI.",
+    text: "Nineteen real projects — nine AI agents, two printer builds, five keyboard & mouse setups, and three lab machines.",
   },
   {
     href: "/about",
@@ -110,8 +117,8 @@ export default function Home() {
         </div>
       </section>
 
-      <Section kicker="pick a rabbit hole" title="Three doors">
-        <div className="grid gap-4 sm:grid-cols-3">
+      <Section kicker="pick a rabbit hole" title="Four doors">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {doors.map((door) => (
             <DoorCard key={door.href} {...door} />
           ))}

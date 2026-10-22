@@ -9,10 +9,10 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Sixteen real projects: local AI agents, maker builds, and the home lab. No vaporware, no 'coming soon'.",
+    "Nineteen real projects: local AI agents, maker builds, the input stack, and the home lab. No vaporware, no 'coming soon'.",
 };
 
-const groups: { category: Category; label: string; blurb: string }[] = [
+const groups: { category: Category; label: string; blurb: string; pageHref?: string; pageLabel?: string }[] = [
   {
     category: "agents",
     label: "AI agents & local inference",
@@ -24,6 +24,16 @@ const groups: { category: Category; label: string; blurb: string }[] = [
     label: "Maker & hardware",
     blurb:
       "Things with motors and no cloud dependency.",
+    pageHref: "/printer",
+    pageLabel: "printer",
+  },
+  {
+    category: "keyboards",
+    label: "Keyboards & Mice",
+    blurb:
+      "The input stack: two 40%s, a split, a trackpad, and a single-button trackball — laid out so the Ploopy sits under the thumb.",
+    pageHref: "/keyboards",
+    pageLabel: "keyboards",
   },
   {
     category: "lab",
@@ -46,7 +56,21 @@ export default function Projects() {
 
       {groups.map((group) => (
         <Section key={group.category} kicker={group.category} title={group.label}>
-          <p className="text-muted">{group.blurb}</p>
+          <p className="text-muted">
+            {group.blurb}
+            {group.pageHref && group.pageLabel && (
+              <> The full story is on the{" "}
+                <Link
+                  href={group.pageHref}
+                  prefetch={false}
+                  className="text-accent underline underline-offset-2"
+                >
+                  {group.pageLabel} page →
+                </Link>
+                .
+              </>
+            )}
+          </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {projects
               .filter((project) => project.category === group.category)

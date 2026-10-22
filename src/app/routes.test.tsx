@@ -7,6 +7,7 @@ import Career from "./career/page";
 import Projects from "./projects/page";
 import LocalAI from "./local-ai/page";
 import Printer from "./printer/page";
+import Keyboards from "./keyboards/page";
 import Lab from "./lab/page";
 import NotFound from "./not-found";
 
@@ -37,13 +38,15 @@ const htmlOf = (page: React.ReactElement) => {
 };
 
 describe("home", () => {
-  it("renders the three doors and the glance rows", () => {
+  it("renders the four doors and the glance rows", () => {
     render(<Home />);
     expect(screen.getByText("pick a rabbit hole")).toBeTruthy();
     expect(screen.getByText("A 27B brain in a 32GB Mac")).toBeTruthy();
     expect(screen.getByText("An Anet A8 with a camera and opinions")).toBeTruthy();
     expect(screen.getByText("One Pi, two jobs")).toBeTruthy();
+    expect(screen.getByText("Two 40%s, a split, and a trackball")).toBeTruthy();
     expect(screen.getByText("See what I’ve built").textContent).toBeTruthy();
+    expect(screen.getAllByText(/nineteen real projects/i).length).toBeGreaterThan(0);
   });
 
   it("passes sanitization rules", () => {
@@ -91,10 +94,16 @@ describe("career", () => {
 });
 
 describe("projects", () => {
-  it("renders all sixteen cards grouped by category", () => {
+  it("renders all nineteen cards grouped by category", () => {
     const { container } = render(<Projects />);
     const articles = container.querySelectorAll("article");
-    expect(articles).toHaveLength(16);
+    expect(articles).toHaveLength(19);
+  });
+
+  it("leads the keyboards section to the depth page", () => {
+    render(<Projects />);
+    expect(screen.getAllByText(/keyboards page →/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/printer page →/).length).toBeGreaterThan(0);
   });
 
   it("passes sanitization rules", () => {
@@ -145,6 +154,21 @@ describe("lab", () => {
 
   it("passes sanitization rules", () => {
     assertClean(htmlOf(<Lab />), "lab");
+  });
+});
+
+describe("keyboards", () => {
+  it("renders the input stack: the sandwich, the mat, the pointer story", () => {
+    render(<Keyboards />);
+    expect(screen.getAllByText(/Vortex/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Moonlander/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/thumb cluster/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/cutting mat/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/trackpad/i).length).toBeGreaterThan(0);
+  });
+
+  it("passes sanitization rules", () => {
+    assertClean(htmlOf(<Keyboards />), "keyboards");
   });
 });
 
