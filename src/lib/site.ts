@@ -10,6 +10,7 @@ export const siteConfig = {
     { label: "Career", href: "/career" },
     { label: "Local AI", href: "/local-ai" },
     { label: "Printer", href: "/printer" },
+    { label: "Keyboards & Mice", href: "/keyboards" },
     { label: "Lab", href: "/lab" },
   ],
   socials: {

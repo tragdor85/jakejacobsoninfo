@@ -2,14 +2,15 @@ import { describe, it, expect } from "vitest";
 import { projects } from "@/lib/projects";
 
 describe("projects data", () => {
-  it("has the 16 public cards from the plan", () => {
-    expect(projects).toHaveLength(16);
+  it("has the 19 public cards from the plan", () => {
+    expect(projects).toHaveLength(19);
     const byCategory = projects.reduce<Record<string, number>>((acc, p) => {
       acc[p.category] = (acc[p.category] ?? 0) + 1;
       return acc;
     }, {});
     expect(byCategory.agents).toBe(9);
-    expect(byCategory.maker).toBe(4);
+    expect(byCategory.maker).toBe(2);
+    expect(byCategory.keyboards).toBe(5);
     expect(byCategory.lab).toBe(3);
   });
 
@@ -35,7 +36,7 @@ describe("projects data", () => {
     for (const href of hrefs) {
       if (!href) continue;
       if (href.startsWith("http")) continue;
-      expect(["/projects", "/local-ai", "/printer", "/lab"]).toContain(href);
+      expect(["/projects", "/local-ai", "/printer", "/lab", "/keyboards"]).toContain(href);
     }
   });
 
@@ -63,11 +64,45 @@ describe("projects data", () => {
     const ploopyCards = projects.filter((p) => ["qmk-ploopy", "nano-2-trackball"].includes(p.slug));
     expect(ploopyCards).toHaveLength(2);
     for (const card of ploopyCards) {
+      // The Ploopy lives in the Keyboards & Mice section, not maker.
+      expect(card.category, `${card.slug} category`).toBe("keyboards");
       expect(card.tags, `${card.slug} tags`).not.toContain("keyboard");
       expect(card.tags, `${card.slug} tags`).toContain("trackball");
       expect(card.blurb, `${card.slug} blurb`).not.toContain("draw-while-you-type");
       expect(card.title + " " + card.blurb, `${card.slug}`).toContain("Ploopy Nano 2");
     }
+  });
+
+  it("the input-stack cards link to the keyboards depth page", () => {
+    const inputCards = projects.filter((p) => p.category === "keyboards");
+    const slugs = inputCards.map((p) => p.slug).sort();
+    expect(slugs).toEqual(
+      ["apple-trackpad", "moonlander", "nano-2-trackball", "qmk-ploopy", "vortex-core40"].sort(),
+    );
+    for (const card of inputCards) {
+      expect(
+        card.href,
+        `${card.slug} href must be the depth page or a repo URL`,
+      ).toMatch(/^\/keyboards|^https:\/\/github\.com\//);
+    }
+    for (const card of inputCards.filter((p) => ["vortex-core40", "moonlander", "apple-trackpad"].includes(p.slug))) {
+      expect(card.href, `${card.slug} href`).toBe("/keyboards");
+    }
+  });
+
+  it("the three desk devices carry the setup facts", () => {
+    const vortex = projects.find((p) => p.slug === "vortex-core40")!;
+    expect(vortex.title).toContain("Vortex");
+    expect(vortex.title).toContain("40%");
+    expect(vortex.tags).toContain("keyboard");
+
+    const moonlander = projects.find((p) => p.slug === "moonlander")!;
+    expect(moonlander.title).toContain("Moonlander");
+    expect(moonlander.blurb).toContain("QMK");
+
+    const trackpad = projects.find((p) => p.slug === "apple-trackpad")!;
+    expect(trackpad.title).toContain("Trackpad");
+    expect(trackpad.blurb.toLowerCase()).toContain("trackpad");
   });
 
   it("points the pi-imessage card at its public repo", () => {

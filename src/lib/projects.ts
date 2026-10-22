@@ -1,4 +1,4 @@
-export type Category = "agents" | "maker" | "lab";
+export type Category = "agents" | "maker" | "keyboards" | "lab";
 
 export interface Project {
   slug: string;
@@ -95,10 +95,37 @@ export const projects: Project[] = [
     tags: ["google-sheets", "cli", "local-ai"],
     href: "/local-ai",
   },
-  // Maker & Hardware ----------------------------------------------------------
+  // Keyboards & Mice (the input stack) --------------------------------------
+  {
+    slug: "vortex-core40",
+    category: "keyboards",
+    title: "Vortex 40%",
+    blurb:
+      "Two of them; the desk one is sandwiched between the Moonlander’s halves, over an A5 cutting mat for print cleanup.",
+    tags: ["keyboard"],
+    href: "/keyboards",
+  },
+  {
+    slug: "moonlander",
+    category: "keyboards",
+    title: "ZSA Moonlander",
+    blurb:
+      "QMK-modded, and split — its two halves frame the Vortex, with the Ploopy tucked under the right side near the thumb cluster.",
+    tags: ["keyboard", "qmk", "split"],
+    href: "/keyboards",
+  },
+  {
+    slug: "apple-trackpad",
+    category: "keyboards",
+    title: "Apple Trackpad",
+    blurb:
+      "The daily pointer — no mouse. Everything except drawing goes through the trackpad.",
+    tags: ["pointer"],
+    href: "/keyboards",
+  },
   {
     slug: "qmk-ploopy",
-    category: "maker",
+    category: "keyboards",
     title: "QMK: Ploopy Nano 2 fork",
     blurb:
       "QMK, trimmed to build the Ploopy Nano 2: keyboard firmware running a trackball, plus the fixes.",
@@ -107,13 +134,14 @@ export const projects: Project[] = [
   },
   {
     slug: "nano-2-trackball",
-    category: "maker",
+    category: "keyboards",
     title: "Ploopy Nano 2 Trackball",
     blurb:
       "The Ploopy Nano 2, end to end: a minimalist, single-button, 3D-printable trackball that runs QMK — pointer, not keyboard.",
     tags: ["trackball", "qmk", "hardware"],
     href: "https://github.com/ploopyco/nano-2-trackball",
   },
+  // Maker & Hardware ----------------------------------------------------------
   {
     slug: "anet-a8",
     category: "maker",

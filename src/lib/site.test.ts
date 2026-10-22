@@ -17,6 +17,7 @@ describe("siteConfig", () => {
       "/career",
       "/local-ai",
       "/printer",
+      "/keyboards",
       "/lab",
     ]) {
       expect(paths).toContain(expected);
