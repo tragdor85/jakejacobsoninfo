@@ -33,7 +33,3 @@ The fun part. Six devices, one **5.1.2** home theater:
 All on current firmware, all wireless. And here's the story I didn't expect: ask the Sonos **cloud** API (via its MCP server) what's in the household, and it answers with *one player* — the Beam. The other five are subordinated to the theater and invisible to the cloud view. The local HTTP API on each device tells the truth: all five report "I'm part of a home theater, my primary is the Beam."
 
 So the agent mapped the system the way a network engineer would — cloud view for the system, local API for the details — and produced a map of all six devices, their roles, their firmware levels, and why the "missing" speakers were never missing. Music is Apple Music everywhere, with the Beam anchoring the theater mix.
-
-## How it's driven
-
-Same pattern as the laptop: agents in tmux, driven from iMessage, lid closed. The Pi runs long tmux sessions; a text message is a keyboard. If the house misbehaves, the first responder is usually a well-prompted 27B that has SSH, a habit of reading logs, and no ego about being wrong.
