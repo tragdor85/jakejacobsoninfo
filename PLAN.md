@@ -1,7 +1,10 @@
-# jakejacobson.info — Personal Site Plan (v3)
+# jakejacobson.info — Personal Site Plan (v4)
 
-> Plan only — no code yet. v3 adds the **local-AI-manages-Google-Sheets** section
+> Plan only — no code yet. v3 added the **local-AI-manages-Google-Sheets** section
 > (verified against `~/code/googlesheets` AGENTS.md + session history).
+> **v4 decisions:** "AI for Humanity" (website + news scraper) is **excluded
+> entirely** from the site per Jake — no card, no references; Sonos theater is
+> **5.1.2** (six devices) per the verified system map, not 7.1.2; card count 16.
 > v2 decisions still stand: Cloudflare Pages hosting, no contact info on the site,
 > no test projects (budget, dancemanager, SonoTester, aigroup), no health-mcp,
 > plus the asks: a 3D-printer custom-config section, a local-AI-setup section, a
@@ -27,18 +30,20 @@ contact info), zero job-hunting/salary/compensation content.
 
 ## 2. Decisions (settled)
 
-1. **Stack**: Next.js 15 (App Router) + TypeScript + Tailwind, `output: 'export'`
-   (static). Reuses the toolchain of his `website` repo (type-aware ESLint, Prettier,
-   Vitest). Zero trackers — the footer says so.
+1. **Stack**: Next.js 16 (App Router, actual: 16.4.2) + TypeScript + Tailwind v4, `output: 'export'`
+   (static). Vitest + Testing Library. Zero trackers — the footer says so.
 2. **Hosting**: **Cloudflare Pages** (confirmed). Public GitHub repo
-   `tragdor85/jakejacobsoninfo` as the source. Apex A record + www CNAME in Google
-   Cloud DNS. Auto-SSL. The open-source site repo is itself a talking point.
+   `tragdor85/jakejacobsoninfo` as the source. Domain moving from Google Cloud DNS to
+   Cloudflare (Squarespace NS fields; DNSSEC off); the Pages project owns the custom
+   domain once attached; `public/_redirects` handles www→apex and .com→.info. Auto-SSL.
+   The open-source site repo is itself a talking point.
 3. **No contact info** (confirmed): no email, no phone, no contact page.
    **Assumption to confirm:** footer keeps *profile* links — GitHub + LinkedIn —
    since the site is meant to be shared from LinkedIn; these are public profile
    links, not contact details. Say the word and they come out too.
 4. **Excluded from the site entirely**: budget, dancemanager, SonoTester, aigroup
-   (test projects), health-mcp, jobradar, govutah, personalprofile, and all
+   (test projects), **"AI for Humanity"** (website + ai-news-scraper — no card, no
+   references), health-mcp, jobradar, govutah, personalprofile, and all
    compensation/salary/offer/ISO/career-plan content. Career reads as *what I do
    and what I'm deep in* — never *what I want*.
 5. **Content source**: `~/code/personalprofile/PROFILE.md` for identity/career/prose
@@ -50,19 +55,19 @@ contact info), zero job-hunting/salary/compensation content.
 |---|---|
 | `/` | Hero ("I build things. Mostly locally."), at-a-glance (5 lines), 3–4 highlight cards, "explore" links to the depth pages. No contact CTA — the CTA is "see what I've built" |
 | `/about` | The human: Woods Cross/SLC, dad of four, hobbies (music — full Taylor Swift catalog, running/VO2max, 3D printing, drones, home theater), how he works with AI (local-first, verify in logs, drives agents from iMessage/ish) |
-| `/career` | The 14-year MasterControl arc (automation wins, FedRAMP discipline, multi-account AWS — no comp) + six expertise cards: Cloud & DevOps · Local LLM engineering · Agent orchestration · Full-stack shipping · Embedded/maker · Home lab |
+| `/career` | The real arc (verified in PROFILE.md — **no Paramount, no Groove, never worked there**): 2009–2012 UK2 tech-support supervisor → 2012–present MasterControl SWE → senior L3 (14 years: automation wins, onboarding 8–12 hr → <1 hr, multi-account AWS, Jenkins). BS MIS Utah State. “Deep in, lately” list. Explicit no-job-hunting line. |
 | `/projects` | The grid. Data-driven cards from `src/lib/projects.ts`, grouped: **Agents & Local AI** · **Maker & Hardware** · **Home Lab**. Each card: name, one-liner, stack, status badge (shipped/active/exploring/local), link (public repos) or "→ read more" (depth pages) |
 | `/local-ai` | Depth: the M1 Max 32 GB local AI stack — Splash M1/M2 port, splash-serve + watchdog, pi as the agent hub, custom extensions, model list, "clone m1max32gaiconfig and have my setup" — plus a **"local AI manages my Google Sheets"** section (gog CLI + OAuth setup + agent workflow + gotchas, fully generic) |
 | `/printer` | Depth: the Anet A8 custom config — full hardware table, profile-recovered-from-G-code archaeology, Klipper-on-Pi, camera + Fluidd, Cura reconstruction, defect analysis |
-| `/lab` | Depth: the home lab — three sections: **The Pi** (klipperpi: one box, two jobs, managed by AI over SSH), **Home Assistant** (docker stack, Ecobee/sensors/attic fan, HVAC data analysis), **Sonos** (7.1.2 theater, the S3-API discovery) |
+| `/lab` | Depth: the home lab — three sections: **The Pi** (klipperpi: one box, two jobs, managed by AI over SSH), **Home Assistant** (docker stack, Ecobee/sensors/attic fan, HVAC data analysis), **Sonos** (5.1.2 theater, the cloud-vs-local-API discovery) |
 | `/_404` | Personality page |
 
 No contact route. Footer: privacy line + GitHub + LinkedIn (pending decision 3).
 
-**Project cards (final list, 17):**
-- *Agents & Local AI (10):* m1max32gaiconfig →`/local-ai` (public) · splash M1/M2 port (public) · splash-serve (public) · pi-imessage (public) · pi-todo/global-todo (public) · pi-tree-manager (local) · pi-memory-manager (local) · mtplx-extensions (local) · googlesheets (local, →`/local-ai` section) · "AI for Humanity" + news scraper (building, local)
+**Project cards (final list, 16):**
+- *Agents & Local AI (9):* m1max32gaiconfig →`/local-ai` (public) · splash M1/M2 port (public) · splash-serve (public) · pi-imessage (public) · pi-todo/global-todo (public) · pi-tree-manager (local) · pi-memory-manager (local) · mtplx-extensions (local) · googlesheets (local, →`/local-ai` section)
 - *Maker & Hardware (4):* qmk_ploopy Ploopy Nano 2 fork (public, star card) · nano-2-trackball (local) · Anet A8 Klipper mod →`/printer` · OpenSCAD printer parts (local)
-- *Home Lab (3):* klipperpi (the dual-role Pi) →`/lab` · Home Assistant stack →`/lab` · Sonos 7.1.2 theater →`/lab`
+- *Home Lab (3):* klipperpi (the dual-role Pi) →`/lab` · Home Assistant stack →`/lab` · Sonos 5.1.2 theater →`/lab`
 
 Upstream clones (qmk_firmware, qmk_zsa) are folded into the ploopy card, not separate cards.
 
@@ -125,9 +130,10 @@ Verified concrete "actually done" items:
   InfluxDB 1.8, Prometheus, camera streamer. Ecobee + room/garage/attic sensors,
   attic fan, weather/sunrise integration; HVAC history exported and analyzed for
   anomalies; room-temperature questions answered via the agent; HA MCP wired up.
-- **Sonos** — 7.1.2 theater (Beam Gen 2 anchor, 2× Ones, 2× Era 300s, Sub Gen 3),
-  Apple Music, room distribution. Good-discovery hook: the Sonos S3 cloud API
-  "hides" the satellites (system collapses to the Beam), so the whole system was
+- **Sonos** — 5.1.2 theater (Beam Gen 2 anchor, 2× Ones, 2× Era 300s, Sub Gen 3 —
+  six devices per the verified system map),
+  Apple Music, room distribution. Good-discovery hook: the Sonos cloud API
+  (system collapses to the Beam), so the whole system was
   mapped via each device's local API + mDNS + LAN scan → a full system map.
   (SonoTester app is *not* mentioned — excluded.)
 
@@ -156,9 +162,17 @@ never imply it).
 
 ## 6. Tasks (each ~3–5 agent turns, TDD)
 
-1. **T1 — Scaffold + hosting + DNS.** git init repo; Next.js 15 static scaffold
+**Status:** T1 ✅ (live on pages.dev; custom domain pending Squarespace NS change
+→ Cloudflare Pages custom-domain attach, then remove manual DNS) · T2 ✅ ·
+T3 ✅ · T4 ✅ (home + about, incl. Dr Pepper / FIZ joke) · T5 ✅ (16-card grid)
+· T6 ✅ (UK2 → MasterControl arc, no Paramount/Groove, no job-hunt) ·
+T7 ✅ (three depth routes render sanitized markdown) · T8 in progress
+(404 ✅; remaining: a11y audit, live grep gate, mobile pass, deploy).
+33 Vitest tests green, static build clean (8 routes).
+
+1. **T1 — Scaffold + hosting + DNS.** git init repo; Next.js static scaffold
    (Tailwind/Vitest/ESLint from `website`'s configs); Cloudflare Pages wiring;
-   Google Cloud DNS apex A + www CNAME; verify https end-to-end.
+   verify https end-to-end.
    *Accept: `https://jakejacobson.info` serves the scaffold, valid SSL, www redirects.*
 2. **T2 — Design system + layout shell.** Theme tokens (dark/light), container,
    nav with active states + depth-page links, footer (privacy line, GitHub, LinkedIn),
@@ -173,9 +187,9 @@ never imply it).
 4. **T4 — Home + About.** Copy from PROFILE.md in voice (fun + professional),
    at-a-glance, highlight cards, OG images; no contact info anywhere.
    *Accept: reads as a person; OG preview verified in a share test.*
-5. **T5 — Projects grid + data model.** Typed `projects.ts` (14 cards, §3 list),
-   grouping, status badges, links/depth-page anchors. *Accept: cards render from
-   data; adding a project = one object; tests cover rendering + the grep gate.*
+5. **T5 — Projects grid + data model.** Typed `projects.ts` (16 cards, §3 list),
+   grouping, links/depth-page anchors. *Accept: cards render from data; adding a
+   project = one object; tests cover rendering + the grep gate.*
 6. **T6 — Career / expertise.** MasterControl arc, six expertise cards, "currently
    deep in". *Accept: grep gate passes on the rendered page.*
 7. **T7 — Depth pages** (`/local-ai`, `/printer`, `/lab`) built from T3 drafts,
@@ -193,6 +207,6 @@ MX/email if he later wants it published.
 ## 7. Open questions (minimal now)
 
 1. Footer: keep GitHub + LinkedIn profile links, or no links at all?
-2. "AI for Humanity" (website + news scraper) stays as a card, or also excluded?
+2. ~~"AI for Humanity" stays as a card?~~ — **Resolved (v4): excluded entirely.**
 3. `/about` photo: is there a headshot, or keep it text/monogram?
 4. Anything in PROFILE.md §2 (MasterControl scope) to trim before it goes public?
