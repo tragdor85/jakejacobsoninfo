@@ -6,7 +6,15 @@ export interface Project {
   title: string;
   blurb: string;
   tags: string[];
-  href: string;
+  /**
+   * Where the card's title links to: a site depth page, or the project's
+   * GitHub repo when there is no page. Omitted for projects that stay
+   * local on purpose — those cards have no link.
+   */
+  href?: string;
+  /** Secondary GitHub link (the "github ↗" chip) when the card's title
+   *  links to a page instead. */
+  repo?: string;
 }
 
 export const projects: Project[] = [
@@ -18,7 +26,8 @@ export const projects: Project[] = [
     blurb:
       "A 32GB Mac running a 27B local model and the full agent stack that drives it. The config that makes it all fit.",
     tags: ["local-llm", "mac", "agents"],
-    href: "https://github.com/tragdor85/m1max32gaiconfig",
+    href: "/local-ai",
+    repo: "https://github.com/tragdor85/m1max32gaiconfig",
   },
   {
     slug: "splash",
@@ -27,7 +36,7 @@ export const projects: Project[] = [
     blurb:
       "Inco's local inference engine for Apple silicon — running on an M1 Max via a community Metal-kernel fork.",
     tags: ["local-llm", "apple-silicon", "inference"],
-    href: "/projects",
+    href: "https://github.com/paperniuk/splash",
   },
   {
     slug: "splash-serve",
@@ -36,7 +45,7 @@ export const projects: Project[] = [
     blurb:
       "Custom launcher (27B / 35B / bonsai) plus the launchd watchdog that keeps the model server alive.",
     tags: ["local-llm", "watchdog"],
-    href: "/projects",
+    href: "https://github.com/tragdor85/splash-serve",
   },
   {
     slug: "pi-imessage",
@@ -45,7 +54,7 @@ export const projects: Project[] = [
     blurb:
       "An iMessage channel for my pi coding agents — the way most of this site gets built.",
     tags: ["pi", "imessage", "automation"],
-    href: "/projects",
+    href: "https://github.com/tragdor85/pi-imessage",
   },
   {
     slug: "pi-todo",
@@ -54,7 +63,7 @@ export const projects: Project[] = [
     blurb:
       "A global todo queue the agents work from, driven by iMessage. Tasks get picked up when the local model is free.",
     tags: ["pi", "automation"],
-    href: "/projects",
+    href: "https://github.com/tragdor85/pi-todo",
   },
   {
     slug: "pi-tree-manager",
@@ -62,7 +71,6 @@ export const projects: Project[] = [
     title: "pi-tree-manager",
     blurb: "Keep agent session trees tidy, on purpose.",
     tags: ["pi"],
-    href: "/projects",
   },
   {
     slug: "pi-memory-manager",
@@ -70,7 +78,6 @@ export const projects: Project[] = [
     title: "pi-memory-manager",
     blurb: "Memory management for long-running agent sessions.",
     tags: ["pi", "memory"],
-    href: "/projects",
   },
   {
     slug: "mtplx-extensions",
@@ -78,7 +85,6 @@ export const projects: Project[] = [
     title: "mtplx Extensions",
     blurb: "Extension pack for the mtplx toolkit.",
     tags: ["tooling"],
-    href: "/projects",
   },
   {
     slug: "googlesheets",
@@ -97,7 +103,7 @@ export const projects: Project[] = [
     blurb:
       "Community fork of the Ploopy draw-while-you-type keyboard firmware, plus fixes.",
     tags: ["keyboard", "qmk", "hardware"],
-    href: "/projects",
+    href: "https://github.com/tragdor85/qmk_ploopy_nano_2",
   },
   {
     slug: "nano-2-trackball",
@@ -106,7 +112,7 @@ export const projects: Project[] = [
     blurb:
       "A trackball mod for the Ploopy Nano 2 — pointer without a mouse.",
     tags: ["keyboard", "hardware", "cad"],
-    href: "/projects",
+    href: "https://github.com/ploopyco/nano-2-trackball",
   },
   {
     slug: "anet-a8",
@@ -123,7 +129,6 @@ export const projects: Project[] = [
     title: "OpenSCAD Printer Parts",
     blurb: "Parametric parts for the A8, generated instead of searched for.",
     tags: ["3d-printing", "cad"],
-    href: "/projects",
   },
   // Home Lab -------------------------------------------------------------------
   {

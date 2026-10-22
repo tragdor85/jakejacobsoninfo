@@ -31,10 +31,37 @@ describe("projects data", () => {
   it("has unique slugs and resolvable hrefs", () => {
     const slugs = projects.map((p) => p.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
-    const hrefs = new Set(projects.map((p) => p.href));
+    const hrefs = new Set(projects.flatMap((p) => [p.href, p.repo]));
     for (const href of hrefs) {
+      if (!href) continue;
       if (href.startsWith("http")) continue;
       expect(["/projects", "/local-ai", "/printer", "/lab"]).toContain(href);
     }
+  });
+
+  it("no card self-links to the projects page (the old broken-link bug)", () => {
+    for (const p of projects) {
+      expect(p.href, `"${p.slug}" self-links to /projects`).not.toBe("/projects");
+    }
+  });
+
+  it("every public GitHub link points at a repo URL", () => {
+    const repoUrls = projects.flatMap((p) => [p.href, p.repo]).filter((u) => u?.startsWith("http"));
+    expect(repoUrls.length).toBeGreaterThan(0);
+    for (const url of repoUrls) {
+      expect(url, url).toMatch(/^https:\/\/github\.com\/[^\/\s]+\/[^\/\s]+$/);
+    }
+  });
+
+  it("links the m1 max config to both the local-ai page and GitHub", () => {
+    const m1 = projects.find((p) => p.slug === "m1max32gaiconfig");
+    expect(m1?.href).toBe("/local-ai");
+    expect(m1?.repo).toBe("https://github.com/tragdor85/m1max32gaiconfig");
+  });
+
+  it("points the pi-imessage card at its public repo", () => {
+    expect(projects.find((p) => p.slug === "pi-imessage")?.href).toBe(
+      "https://github.com/tragdor85/pi-imessage",
+    );
   });
 });
