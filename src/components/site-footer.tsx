@@ -8,10 +8,10 @@ export function SiteFooter() {
         <p>{siteConfig.privacyLine}</p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link
-            href={siteConfig.socials.github}
+            href={`${siteConfig.socials.github}/jakejacobsoninfo`}
             className="hover:text-accent"
           >
-            github.com/tragdor85
+            github.com/tragdor85/jakejacobsoninfo
           </Link>
           <Link href={siteConfig.socials.linkedin} className="hover:text-accent">
             linkedin.com/in/jakebjacobson
