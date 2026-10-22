@@ -56,18 +56,22 @@ contact info), zero job-hunting/salary/compensation content.
 | `/` | Hero ("I build things. Mostly locally."), at-a-glance (5 lines), 3–4 highlight cards, "explore" links to the depth pages. No contact CTA — the CTA is "see what I've built" |
 | `/about` | The human: Woods Cross/SLC, dad of four, hobbies (music — full Taylor Swift catalog, running/VO2max, 3D printing, drones, home theater), how he works with AI (local-first, verify in logs, drives agents from iMessage/ish) |
 | `/career` | The real arc (verified in PROFILE.md — **no Paramount, no Groove, never worked there**): 2009–2012 UK2 tech-support supervisor → 2012–present MasterControl SWE → senior L3 (14 years: automation wins, onboarding 8–12 hr → <1 hr, multi-account AWS, Jenkins). BS MIS Utah State. “Deep in, lately” list. Explicit no-job-hunting line. |
-| `/projects` | The grid. Data-driven cards from `src/lib/projects.ts`, grouped: **Agents & Local AI** · **Maker & Hardware** · **Home Lab**. Each card: name, one-liner, stack, status badge (shipped/active/exploring/local), link (public repos) or "→ read more" (depth pages) |
+| `/projects` | The grid. Data-driven cards from `src/lib/projects.ts`, grouped: **Agents & Local AI** · **Maker & Hardware** · **Keyboards & Mice** · **Home Lab**. Each card: name, one-liner, stack, status badge (shipped/active/exploring/local), link (public repos) or "→ read more" (depth pages) |
 | `/local-ai` | Depth: the M1 Max 32 GB local AI stack — Splash M1/M2 port, splash-serve + watchdog, pi as the agent hub, custom extensions, model list, "clone m1max32gaiconfig and have my setup" — plus a **"local AI manages my Google Sheets"** section (gog CLI + OAuth setup + agent workflow + gotchas, fully generic) |
 | `/printer` | Depth: the Anet A8 custom config — full hardware table, profile-recovered-from-G-code archaeology, Klipper-on-Pi, camera + Fluidd, Cura reconstruction, defect analysis |
+| `/keyboards` | Depth: the input stack — the desk layout (Vortex 40% sandwiched between the QMK-modded ZSA Moonlander halves, A5 cutting mat for print cleanup, Ploopy Nano 2 under the right-side thumb cluster) + the pointer story (Apple trackpad for everything, Ploopy for drawing, no mouse) |
 | `/lab` | Depth: the home lab — three sections: **The Pi** (klipperpi: one box, two jobs, managed by AI over SSH), **Home Assistant** (docker stack, Ecobee/sensors/attic fan, HVAC data analysis), **Sonos** (5.1.2 theater, the cloud-vs-local-API discovery) |
 | `/_404` | Personality page |
 
 No contact route. Footer: privacy line + GitHub + LinkedIn (pending decision 3).
 
-**Project cards (final list, 16):**
+**Project cards (final list, 19):**
 - *Agents & Local AI (9):* m1max32gaiconfig →`/local-ai` (public) · splash M1/M2 port (public) · splash-serve (public) · pi-imessage (public) · pi-todo/global-todo (public) · pi-tree-manager (local) · pi-memory-manager (local) · mtplx-extensions (local) · googlesheets (local, →`/local-ai` section)
-- *Maker & Hardware (4):* qmk_ploopy Ploopy Nano 2 fork (public, star card) · nano-2-trackball (local) · Anet A8 Klipper mod →`/printer` · OpenSCAD printer parts (local)
+- *Maker & Hardware (2):* Anet A8 Klipper mod →`/printer` · OpenSCAD printer parts (local)
+- *Keyboards & Mice (5):* Vortex 40% (×2) →`/keyboards` · ZSA Moonlander (QMK-modded, split) →`/keyboards` · Apple trackpad (the daily pointer) →`/keyboards` · qmk_ploopy Ploopy Nano 2 fork (public, star card) →`/keyboards` · nano-2-trackball (local) →`/keyboards`
 - *Home Lab (3):* klipperpi (the dual-role Pi) →`/lab` · Home Assistant stack →`/lab` · Sonos 5.1.2 theater →`/lab`
+
+The two Ploopy cards are the *same device* (the fork builds the trackball) — both link to their respective repos; the desk-layout story lives on `/keyboards`.
 
 Upstream clones (qmk_firmware, qmk_zsa) are folded into the ploopy card, not separate cards.
 
