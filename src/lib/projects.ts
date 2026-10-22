@@ -101,17 +101,17 @@ export const projects: Project[] = [
     category: "maker",
     title: "QMK: Ploopy Nano 2 fork",
     blurb:
-      "Community fork of the Ploopy draw-while-you-type keyboard firmware, plus fixes.",
-    tags: ["keyboard", "qmk", "hardware"],
+      "QMK, trimmed to build the Ploopy Nano 2: keyboard firmware running a trackball, plus the fixes.",
+    tags: ["trackball", "qmk", "hardware"],
     href: "https://github.com/tragdor85/qmk_ploopy_nano_2",
   },
   {
     slug: "nano-2-trackball",
     category: "maker",
-    title: "Nano 2 Trackball",
+    title: "Ploopy Nano 2 Trackball",
     blurb:
-      "A trackball mod for the Ploopy Nano 2 — pointer without a mouse.",
-    tags: ["keyboard", "hardware", "cad"],
+      "The Ploopy Nano 2, end to end: a minimalist, single-button, 3D-printable trackball that runs QMK — pointer, not keyboard.",
+    tags: ["trackball", "qmk", "hardware"],
     href: "https://github.com/ploopyco/nano-2-trackball",
   },
   {

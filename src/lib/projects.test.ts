@@ -59,6 +59,17 @@ describe("projects data", () => {
     expect(m1?.repo).toBe("https://github.com/tragdor85/m1max32gaiconfig");
   });
 
+  it("describes the Ploopy Nano 2 as a trackball, not a keyboard", () => {
+    const ploopyCards = projects.filter((p) => ["qmk-ploopy", "nano-2-trackball"].includes(p.slug));
+    expect(ploopyCards).toHaveLength(2);
+    for (const card of ploopyCards) {
+      expect(card.tags, `${card.slug} tags`).not.toContain("keyboard");
+      expect(card.tags, `${card.slug} tags`).toContain("trackball");
+      expect(card.blurb, `${card.slug} blurb`).not.toContain("draw-while-you-type");
+      expect(card.title + " " + card.blurb, `${card.slug}`).toContain("Ploopy Nano 2");
+    }
+  });
+
   it("points the pi-imessage card at its public repo", () => {
     expect(projects.find((p) => p.slug === "pi-imessage")?.href).toBe(
       "https://github.com/tragdor85/pi-imessage",
