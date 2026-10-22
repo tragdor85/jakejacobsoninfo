@@ -63,7 +63,7 @@ export default function Projects() {
           and a few that stay local on purpose — private data stays private, always.
           If a project looks like it should be here but isn’t, that’s either a
           curation choice or a privacy one. The footer has the handles.{" "}
-          <Link href="/" className="text-accent underline underline-offset-2">
+          <Link href="/" prefetch={false} className="text-accent underline underline-offset-2">
             Back to the top
           </Link>
         </p>

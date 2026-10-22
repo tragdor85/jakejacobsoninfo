@@ -51,6 +51,7 @@ function DoorCard({ href, label, title, blurb }: (typeof doors)[number]) {
   return (
     <Link
       href={href}
+      prefetch={false}
       className="group block rounded-lg border border-line bg-card p-5 transition-colors hover:border-accent"
     >
       <p className="font-mono text-xs text-muted group-hover:text-accent">
@@ -64,7 +65,7 @@ function DoorCard({ href, label, title, blurb }: (typeof doors)[number]) {
 
 function GlanceRow({ href, label, title, text }: (typeof glance)[number]) {
   return (
-    <Link href={href} className="group flex gap-4 border-b border-line py-4 last:border-0">
+    <Link href={href} prefetch={false} className="group flex gap-4 border-b border-line py-4 last:border-0">
       <span className="w-24 shrink-0 font-mono text-xs uppercase tracking-wider text-muted group-hover:text-accent">
         {label}
       </span>
@@ -94,12 +95,14 @@ export default function Home() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/projects"
+            prefetch={false}
             className="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-bg hover:opacity-90"
           >
             See what I’ve built
           </Link>
           <Link
             href="/about"
+            prefetch={false}
             className="rounded-md border border-line px-5 py-2.5 text-sm hover:border-accent"
           >
             Who is this guy

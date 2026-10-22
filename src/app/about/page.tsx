@@ -36,7 +36,7 @@ export default function About() {
         <p className="text-muted">
           The rest of the evening résumé, briefly: music (I own the complete Taylor
           Swift catalog), running, drones, and the home theater — the theater has a{" "}
-          <Link href="/lab#the-sonos-theater" className="text-accent underline underline-offset-2">
+          <Link href="/lab#the-sonos-theater" prefetch={false} className="text-accent underline underline-offset-2">
             lab page
           </Link>{" "}
           of its own.
@@ -45,7 +45,7 @@ export default function About() {
           How I actually work: <strong className="text-fg">local-first</strong>. If a
           capability can run on the machine in front of me, it should. The cloud
           earns its keep in exactly one app (the{" "}
-          <Link href="/local-ai#letting-it-manage-google-sheets" className="text-accent underline underline-offset-2">
+          <Link href="/local-ai#letting-it-manage-google-sheets" prefetch={false} className="text-accent underline underline-offset-2">
             Google Sheets
           </Link>{" "}
           section), and even there the <em>thinking</em> stays local. Agents do the

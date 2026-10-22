@@ -7,6 +7,7 @@ export function SiteHeader({ current }: { current?: string }) {
       <div className="mx-auto flex max-w-5xl flex-wrap items-baseline gap-x-8 gap-y-2 px-6 py-5">
         <Link
           href="/"
+          prefetch={false}
           className="font-mono text-sm text-fg hover:text-accent"
           aria-current={current === "/" ? "page" : undefined}
         >
@@ -20,6 +21,7 @@ export function SiteHeader({ current }: { current?: string }) {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               aria-current={current === item.href ? "page" : undefined}
               className={
                 current === item.href

@@ -166,9 +166,19 @@ never imply it).
 → Cloudflare Pages custom-domain attach, then remove manual DNS) · T2 ✅ ·
 T3 ✅ · T4 ✅ (home + about, incl. Dr Pepper / FIZ joke) · T5 ✅ (16-card grid)
 · T6 ✅ (UK2 → MasterControl arc, no Paramount/Groove, no job-hunt) ·
-T7 ✅ (three depth routes render sanitized markdown) · T8 in progress
-(404 ✅; remaining: a11y audit, live grep gate, mobile pass, deploy).
-33 Vitest tests green, static build clean (8 routes).
+T7 ✅ (three depth routes render sanitized markdown) ·
+T8 ✅ pre-deploy: 8 routes + 404 render; deep links fixed via heading `id`
+slugs (marked ≥ 5 stopped emitting them); axe-core audit clean on all 8
+routes (jsdom; color-contrast re-validated in Lighthouse's real browser);
+built-output grep gate + internal link/anchor checker over `out/`;
+source gate requiring `prefetch={false}` on internal `<Link>`s (kills RSC
+payload prefetch; local mobile LCP 4.3s → 2.0s over HTTP/2+gzip — the
+HTTP/1.1 6-connection cap in local test servers was the dominant factor,
+and Cloudflare serves h2); Lighthouse mobile: perf 95–99, a11y 95–96,
+best-practices 100, SEO 100, FCP ~0.8s, LCP 2.0–2.3s (green band); OG
+images; `_redirects` for www/.com.
+Final step: deploy + verify gates on the live site.
+74 Vitest tests green, static build clean (8 routes).
 
 1. **T1 — Scaffold + hosting + DNS.** git init repo; Next.js static scaffold
    (Tailwind/Vitest/ESLint from `website`'s configs); Cloudflare Pages wiring;
