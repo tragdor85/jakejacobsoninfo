@@ -1,6 +1,6 @@
 # 27B on 32GB
 
-Everything on this page runs on one laptop: a MacBook Pro with an M1 Max chip and 32 GB of unified memory. No cloud APIs, no subscriptions, no "your prompts make the model better." The whole trick is making a 27-billion-parameter model useful inside a 32 GB laptop — and then letting it do actual work.
+Everything on this page runs on one laptop: a MacBook Pro with an M1 Max chip and 32 GB of unified memory. No cloud APIs, no subscriptions, no "your prompts make the model better." The whole trick is making a 27-billion-parameter model useful inside a 32 GB laptop — and then letting it do actual work. (The full setup config is on [GitHub](https://github.com/tragdor85/m1max32gaiconfig).)
 
 ## The constraint that shapes everything
 

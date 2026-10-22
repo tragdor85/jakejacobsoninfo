@@ -33,6 +33,7 @@ describe("projects data", () => {
     expect(new Set(slugs).size).toBe(slugs.length);
     const hrefs = new Set(projects.map((p) => p.href));
     for (const href of hrefs) {
+      if (href.startsWith("http")) continue;
       expect(["/projects", "/local-ai", "/printer", "/lab"]).toContain(href);
     }
   });

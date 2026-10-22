@@ -18,7 +18,7 @@ export const projects: Project[] = [
     blurb:
       "A 32GB Mac running a 27B local model and the full agent stack that drives it. The config that makes it all fit.",
     tags: ["local-llm", "mac", "agents"],
-    href: "/local-ai",
+    href: "https://github.com/tragdor85/m1max32gaiconfig",
   },
   {
     slug: "splash",
