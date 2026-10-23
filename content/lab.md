@@ -13,7 +13,7 @@ It's administered the same way I administer everything else: **agents over SSH**
 
 ## What the automation actually does
 
-- **Climate.** An Ecobee thermostat, room temperature and humidity sensors, and an attic fan, all in [Home Assistant](https://github.com/home-assistant/core). When the furnace started acting up, an agent paged through months of [InfluxDB](https://github.com/influxdata/influxdb) history and wrote a plain-English summary. I handed the repair tech that instead of "it's weird sometimes."
+- **Climate.** An Ecobee thermostat, room temperature and humidity sensors, and an attic fan, all in [Home Assistant](https://github.com/home-assistant/core). The sensors earned their keep this summer: I watched how the AC actually cooled each room, and the map pointed at the house, not the thermostat. Some places needed weather stripping, and the bathroom fans that vent into the attic were letting hot air leak back in. I sealed both problems, and the AC works better.
 - **Radio devices.** Zigbee2MQTT handles the zigbee sensors — the boring, unglamorous kind of automation that just works and never phones you.
 - **Cameras.** A few, including the one on the printer. The local model can look.
 
