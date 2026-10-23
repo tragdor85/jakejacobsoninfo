@@ -18,6 +18,6 @@ Two more pieces fall out of that arrangement:
 
 ## The pointer
 
-Daily pointer work goes through the **Apple trackpad** — clicking, scrolling, dragging, the usual. The **Ploopy Nano 2** is the drawing tool: a minimalist, single-button, 3D-printable trackball. The work behind it — the [QMK fork](/projects#qmk-ploopy) and the [nano-2 trackball](/projects#nano-2-trackball) — is on the projects page.
+Daily pointer work goes through the **Apple trackpad** — clicking, scrolling, dragging, the usual. The **Ploopy Nano 2** is the closer pointer: a minimalist, single-button, 3D-printable trackball, nearer than the trackpad, so programming doesn't mean reaching for it. The work behind it — the [QMK fork](/projects#qmk-ploopy) and the [nano-2 trackball](/projects#nano-2-trackball) — is on the projects page.
 
-No mouse anywhere in the picture. Trackpad for the computer, trackball for the drawing.
+No mouse anywhere in the picture. Trackpad for daily pointer work, trackball for staying at the keyboard.

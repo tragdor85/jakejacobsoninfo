@@ -29,7 +29,7 @@ const doors = [
     label: "keyboards",
     title: "Two 40%s, a split, and a trackball",
     blurb:
-      "A Vortex 40% sandwiched between the Moonlander halves, a Ploopy under the thumb, an Apple trackpad for everything else — and no mouse.",
+      "A Vortex 40% sandwiched between the Moonlander halves, a Ploopy under the thumb, an Apple trackpad for daily pointing — and no mouse.",
   },
 ];
 

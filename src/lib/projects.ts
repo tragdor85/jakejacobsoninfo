@@ -119,7 +119,7 @@ export const projects: Project[] = [
     category: "keyboards",
     title: "Apple Trackpad",
     blurb:
-      "The daily pointer — no mouse. Everything except drawing goes through the trackpad.",
+      "The daily pointer — no mouse. The trackpad gets everything except the work I want done without leaving the keyboard.",
     tags: ["pointer"],
     href: "/keyboards",
   },
