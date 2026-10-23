@@ -182,7 +182,7 @@ export const projects: Project[] = [
     category: "lab",
     title: "Sonos 5.1.2 Theater",
     blurb:
-      "Six Sonos devices, one home theater — the cloud says one player, the local API tells the truth.",
+      "Six Sonos devices, one home theater — agents start the right music and work the network when it misbehaves.",
     tags: ["sonos", "home-theater"],
     href: "/lab",
   },

@@ -30,6 +30,6 @@ Six devices, one **5.1.2** theater:
 | Era 300 ×2 | Rear surrounds, in a true-stereo pair |
 | One SL ×2 | Front left / right satellites |
 
-All on current firmware, all wireless. And here's the story I didn't expect: ask the Sonos **cloud** API (via its MCP server) what's in the household, and it answers with *one player* — the Beam. The other five are subordinated to the theater and invisible to the cloud view. The local HTTP API on each device tells the truth: all five report "I'm part of a home theater, my primary is the Beam."
+All on current firmware, all wireless. One practical detail: the Sonos **cloud** API (via its MCP server) reports the theater as *one player* — the Beam — because the other five are subordinated to it. Each device's local HTTP API reports the details; the five subordinates all answer "I'm part of a home theater, my primary is the Beam."
 
-So the agent mapped the system the way a network engineer would — cloud view for the system, local API for the details — and produced a map of all six devices, their roles, their firmware levels, and why the "missing" speakers were never missing. Music is Apple Music everywhere, with the Beam anchoring the theater mix.
+The agents use both views. A first pass mapped all six devices, their roles, and their firmware. Day to day, they can trigger the right music for a situation, and if the theater misbehaves they can analyze the network between the speakers. Music is Apple Music everywhere, with the Beam anchoring the mix.
