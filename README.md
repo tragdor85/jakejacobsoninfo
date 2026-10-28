@@ -6,6 +6,11 @@ home lab runs off a laptop, a phone, and a Raspberry Pi.
 - **Stack**: Next.js (App Router, static export) · TypeScript · Tailwind CSS
 - **Hosting**: Cloudflare Pages, deployed from this repo
 - **Privacy**: no analytics, no cookies, no contact info — the footer says so
+- **Water dashboards**: `/water` — interactive what-if models of real water
+  bodies (Great Salt Lake first), built from committed USGS data, running
+  entirely in the browser. Adding a lake = four JSON files under
+  `src/data/water/<slug>/` + one entry in `src/lib/water/registry.ts`.
+  See [PLAN.md](./PLAN.md) §3 for the platform layout.
 - **Plan**: [PLAN.md](./PLAN.md) (information architecture, content sources, launch checklist)
 
 ## Develop
