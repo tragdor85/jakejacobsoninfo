@@ -9,6 +9,7 @@ import LocalAI from "./local-ai/page";
 import Printer from "./printer/page";
 import Keyboards from "./keyboards/page";
 import Lab from "./lab/page";
+import GSL from "./gsl/page";
 import NotFound from "./not-found";
 
 // Banned strings — PLAN.md sanitization rules, checked against the rendered
@@ -157,6 +158,17 @@ describe("lab", () => {
 
   it("passes sanitization rules", () => {
     assertClean(htmlOf(<Lab />), "lab");
+  });
+});
+
+describe("gsl", () => {
+  it("renders the Great Salt Lake dashboard page", () => {
+    render(<GSL />);
+    expect(screen.getByText("Great Salt Lake What-If Dashboard")).toBeTruthy();
+  });
+
+  it("passes sanitization rules", () => {
+    assertClean(htmlOf(<GSL />), "gsl");
   });
 });
 

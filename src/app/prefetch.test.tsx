@@ -17,6 +17,7 @@ const FILES = [
   "src/app/printer/page.tsx",
   "src/app/keyboards/page.tsx",
   "src/app/lab/page.tsx",
+  "src/app/gsl/page.tsx",
   "src/app/not-found.tsx",
   "src/components/site-header.tsx",
   "src/components/site-footer.tsx",
