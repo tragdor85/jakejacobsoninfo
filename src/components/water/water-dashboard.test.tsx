@@ -67,11 +67,12 @@ describe("WaterDashboard", () => {
   });
 
   it("a partial year clears the projection and shows a note", () => {
-    render(<WaterDashboard lake={lake} />);
+    const { container } = render(<WaterDashboard lake={lake} />);
     fireEvent.change(screen.getByLabelText(/water year/i), { target: { value: "2026" } });
     const projYear = screen.getByLabelText(/start year/i);
     expect(projYear).toHaveValue("");
-    expect(screen.getByText(/partial year/i)).toBeTruthy();
+    // The partial-year note (unique to the projection card) is shown.
+    expect(container.textContent ?? "").toContain("pick a complete start year");
   });
 
   it("renders the main chart and the what-if chart", () => {
@@ -87,5 +88,44 @@ describe("WaterDashboard", () => {
     const text = container.textContent ?? "";
     expect(text).toContain("4,200");
     expect(text).toContain("4188.5");
+  });
+});
+
+describe("WaterDashboard — How this works + About the data", () => {
+  it("renders the How this works section (terminal lake + the model equation)", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("terminal lake");
+    expect(text).toContain("Δh = I ÷ A − e");
+    // The observed record range and the magic level are stated.
+    expect(text).toContain("1847–2026");
+    expect(text).toContain("4,200 ft");
+  });
+
+  it("renders the Limitations section with the calibrated-residual and fit-quality facts", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("calibrated residual");
+    expect(text).toContain("upstream of diversions");
+    expect(text).toContain("1957–1962"); // Bear River gauge gap
+    expect(text).toContain("RMSE");
+    expect(text).toContain("0.18"); // 0.183 ft RMSE → "0.18"
+  });
+
+  it("fills the About-the-data Levels and Inflows lines from the source metadata", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    // Levels line: the lake-level gauge station.
+    expect(text).toContain("USGS-10010000");
+    // Inflows line: the river gauges.
+    expect(text).toContain("Bear River (USGS 10126000)");
+    expect(text).toContain("Weber River (USGS 10141000)");
+  });
+
+  it("shows the real data-as-of date (not NaN) in About the data", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).not.toContain("NaN");
+    expect(text).toContain("2026-10-25");
   });
 });

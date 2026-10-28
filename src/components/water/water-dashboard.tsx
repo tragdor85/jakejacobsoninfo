@@ -33,6 +33,7 @@ import {
   yearNote,
 } from "@/lib/water";
 import type { LakeConfig } from "@/lib/water";
+import { HowThisWorks } from "./how-this-works";
 import { LevelChart } from "./level-chart";
 import { WhatIfChart } from "./whatif-chart";
 import { YearPicker } from "./year-picker";
@@ -269,6 +270,8 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
         />
       </Card>
 
+      <HowThisWorks lake={lake} />
+
       <Provenance lake={lake} />
     </div>
   );
@@ -278,17 +281,34 @@ function Provenance({ lake }: { lake: LakeConfig }) {
   const cal = lake.data.calibration;
   const levelsMeta = lake.data.levels.meta;
   const inflowMeta = lake.data.inflows.meta;
+
+  // Levels: the actual source site from the data file's meta block.
+  const levelsSource = levelsMeta.site ?? "see source files";
+
+  // Inflows: the per-river gauges from the registry (station IDs are the source of truth).
+  const inflowSources = lake.rivers.map((r) => `${r.label} (${r.note})`).join(", ");
+
+  // Data as of: the most recent per-river date in the inflow meta block.
+  const asOf =
+    typeof inflowMeta.data_as_of === "object" && inflowMeta.data_as_of !== null
+      ? Object.values(inflowMeta.data_as_of as Record<string, string>)
+      : typeof inflowMeta.data_as_of === "string"
+        ? [inflowMeta.data_as_of]
+        : [];
+  // ISO dates sort lexicographically, so a string max gives the most recent.
+  const dataAsOf = asOf.length ? asOf.reduce((a, b) => (a > b ? a : b)) : "see source files";
+
   return (
     <section className="rounded-lg border border-line bg-card p-5">
       <p className="font-mono text-xs uppercase tracking-widest text-accent">About the data</p>
       <dl className="mt-4 space-y-2 text-sm text-muted">
         <div>
           <dt className="inline font-medium text-fg">Levels: </dt>
-          <dd className="inline">{levelsMeta.sources as string}</dd>
+          <dd className="inline">{levelsSource}</dd>
         </div>
         <div>
           <dt className="inline font-medium text-fg">Inflows: </dt>
-          <dd className="inline">{inflowMeta.sources as string}</dd>
+          <dd className="inline">{inflowSources}</dd>
         </div>
         <div>
           <dt className="inline font-medium text-fg">Model:</dt>{" "}
@@ -302,8 +322,7 @@ function Provenance({ lake }: { lake: LakeConfig }) {
         <div>
           <dt className="inline font-medium text-fg">Data as of:</dt>{" "}
           <dd className="inline">
-            {typeof inflowMeta.data_as_of === "string" ? inflowMeta.data_as_of : "see source files"} · generated{" "}
-            {inflowMeta.generated_utc?.slice(0, 10)}
+            {dataAsOf} · generated {inflowMeta.generated_utc?.slice(0, 10)}
           </dd>
         </div>
       </dl>
