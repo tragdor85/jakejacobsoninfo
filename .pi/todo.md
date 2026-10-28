@@ -108,7 +108,7 @@ src/
 
 ## Tasks
 
-### T1 — Data + model layer
+### T1 — Data + model layer ✅ committed 249e3fd
 - Copy the 4 JSON files from `utahwater/dashboard/data` → `src/data/water/gsl/`
 - Port `model.js` → `src/lib/water/model.ts` (typed, generic, + optional
   outflow hook) and `elev_area.js` → `src/lib/water/elev-area.ts` (PCHIP)
@@ -117,7 +117,7 @@ src/
 - **Accept**: model + curve typed and generic; all 19 ported tests green;
   calibration validation block (RMSE 0.183 ft etc.) preserved in the data.
 
-### T2 — Chart components
+### T2 — Chart components ✅ committed 5e4a3a4
 - `level-chart.tsx` + `whatif-chart.tsx`: port the SVG drawing logic
   (drawMainChart / drawWhatIfChart) to declarative React SVG; series config;
   magic line; 2022 low marker; responsive; site palette via CSS vars
@@ -127,7 +127,7 @@ src/
 - **Accept**: both charts render every series in the site palette, light +
   dark; tests green.
 
-### T3 — Controls + dashboard composition
+### T3 — Controls + dashboard composition ✅ committed 578bf53
 - `year-picker`, `inflow-controls` (per-river sliders + % + totals),
   `evap-control`, `horizon-select`, `readouts`; `water-dashboard.tsx`
   composite porting the app.js state machine (runWhatIf / runProjection /
@@ -139,12 +139,15 @@ src/
 
 ### T4 — Routes, registry, site integration
 - `registry.ts` (GSL entry: name, rivers, year range, data imports, magic
-  level, low marker, description)
+  level 4200 ft, 2022 record low, description) ✅ done in T3/T4
 - `/water` index (lake door cards) + `/water/[slug]` (generateStaticParams,
-  metadata, intro prose from `content/gsl.md` + WaterDashboard)
-- Nav: "Great Salt Lake" → "Water"; home 5th door → Water door; fix the
-  hardcoded "Four doors" heading (now 5 doors)
-- `/gsl` → 301 → `/water/gsl` via `redirects()` in next.config
+  metadata, intro prose + WaterDashboard) — the [slug] page is an async
+  wrapper (Next 16 Promise params) around sync `WaterLakeView` so jsdom
+  tests can render the body
+- Nav: "Great Salt Lake" → "Water"; home 5th door → Water door; "Four doors"
+  heading made dynamic (`${doors.length} doors`)
+- `/gsl` → 301 → `/water/gsl` via `public/_redirects` (the hand-maintained
+  file wins over next.config redirects() when present)
 - Route tests: `/water` + `/water/gsl` render, banned strings, redirect,
   registry-driven generation
 - **Accept**: `/water` and `/water/gsl` build and render in the site design;
@@ -162,6 +165,12 @@ src/
 - **Accept**: all green, deployed, live-verified, Pages project deleted.
 
 ## Baseline facts (verified 2026-10-28)
+
+- **Data refresh**: the dashboard data was regenerated 2026-10-27 (levels
+  shifted ~18 ft vs the older snapshot: 2022 low 4189.0, 2025 4191.0→4189.7,
+  2026 partial with end 4189.8). Magic level is 4200 (historic average),
+  record low 4188.5 (2022-11-07 daily). The site's committed snapshots were
+  copied from the current dashboard data and match it byte-for-byte.
 
 - Live site: jakejacobson.info (Cloudflare Pages, `jakejacobsoninfo` project,
   local deploy via `wrangler pages deploy out --project-name jakejacobsoninfo`)

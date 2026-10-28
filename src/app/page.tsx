@@ -32,11 +32,11 @@ const doors = [
       "A Vortex 40% sandwiched between the Moonlander halves, a Ploopy under the thumb, an Apple trackpad for daily pointing — and no mouse.",
   },
   {
-    href: "/gsl",
-    label: "gsl",
-    title: "Great Salt Lake what-if dashboard",
+    href: "/water",
+    label: "water",
+    title: "A lake that models itself",
     blurb:
-      "Model Great Salt Lake water levels under different inflow and evaporation scenarios — a standalone data app embedded from its own repo.",
+      "What-if water dashboards — drag the rivers, watch the level respond. Great Salt Lake first, more basins to come.",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section kicker="pick a rabbit hole" title="Four doors">
+      <Section kicker="pick a rabbit hole" title={`${doors.length} doors`}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {doors.map((door) => (
             <DoorCard key={door.href} {...door} />

@@ -12,7 +12,7 @@ export const siteConfig = {
     { label: "Printer", href: "/printer" },
     { label: "Keyboards & Mice", href: "/keyboards" },
     { label: "Lab", href: "/lab" },
-    { label: "Great Salt Lake", href: "/gsl" },
+    { label: "Water", href: "/water" },
   ],
   socials: {
     github: "https://github.com/tragdor85",

@@ -4,3 +4,6 @@ https://www.jakejacobson.info/: https://jakejacobson.info/: 301
 # .com is parked at the registrar; never served content
 https://jakejacobson.com/: https://jakejacobson.info/: 301
 https://www.jakejacobson.com/: https://jakejacobson.info/: 301
+
+# The /gsl page from the iframe era now lives at /water/gsl
+/gsl /water/gsl 301

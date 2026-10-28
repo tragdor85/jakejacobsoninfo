@@ -9,7 +9,10 @@ import LocalAI from "./local-ai/page";
 import Printer from "./printer/page";
 import Keyboards from "./keyboards/page";
 import Lab from "./lab/page";
-import GSL from "./gsl/page";
+import Water from "./water/page";
+import { generateMetadata as waterLakeMetadata, generateStaticParams as waterLakeParams } from "./water/[slug]/page";
+import { WaterLakeView } from "@/components/water/water-lake-view";
+import { getLake } from "@/lib/water";
 import NotFound from "./not-found";
 
 // Banned strings — PLAN.md sanitization rules, checked against the rendered
@@ -161,14 +164,36 @@ describe("lab", () => {
   });
 });
 
-describe("gsl", () => {
-  it("renders the Great Salt Lake dashboard page", () => {
-    render(<GSL />);
-    expect(screen.getByText("Great Salt Lake What-If Dashboard")).toBeTruthy();
+describe("water", () => {
+  const gsl = getLake("gsl")!;
+
+  it("lists the registered lakes", () => {
+    render(<Water />);
+    expect(screen.getByText("What-if water dashboards")).toBeTruthy();
+    expect(screen.getByText("Great Salt Lake")).toBeTruthy();
+  });
+
+  it("generates static params for every registered lake", () => {
+    expect(waterLakeParams()).toEqual([{ slug: "gsl" }]);
+  });
+
+  it("generates metadata from the lake config", async () => {
+    const md = await waterLakeMetadata({ params: Promise.resolve({ slug: "gsl" }) });
+    expect(md.title).toContain("Great Salt Lake");
+  });
+
+  it("renders the Great Salt Lake dashboard for /water/gsl", () => {
+    render(<WaterLakeView lake={gsl} />);
+    expect(screen.getByText("Great Salt Lake")).toBeTruthy();
+    expect(screen.getByText(/what if 2025/i)).toBeTruthy();
   });
 
   it("passes sanitization rules", () => {
-    assertClean(htmlOf(<GSL />), "gsl");
+    assertClean(htmlOf(<Water />), "water");
+  });
+
+  it("passes sanitization rules (lake page)", () => {
+    assertClean(htmlOf(<WaterLakeView lake={gsl} />), "water/gsl");
   });
 });
 
