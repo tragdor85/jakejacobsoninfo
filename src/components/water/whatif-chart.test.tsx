@@ -8,10 +8,18 @@ describe("WhatIfChart", () => {
     expect(container.querySelector("svg")?.getAttribute("aria-label")).toBe("Lake level 2025: actual vs what-if");
   });
 
-  it("renders the Oct 1 and Sep 30 axis labels", () => {
+  it("labels the axis with the water-year start and end years", () => {
     const { container } = render(<WhatIfChart year={2025} startFt={4195} actualEndFt={4196} whatIfEndFt={4197} />);
-    expect(container.textContent).toContain("Oct 1");
-    expect(container.textContent).toContain("Sep 30");
+    expect(container.textContent).toContain("Oct 1 2025");
+    expect(container.textContent).toContain("Sep 30 2026");
+  });
+
+  it("colors the actual legend label to match the actual line", () => {
+    const { container } = render(<WhatIfChart year={2025} startFt={4195} actualEndFt={4196} whatIfEndFt={4197} />);
+    const actualLabel = Array.from(container.querySelectorAll("text")).find(
+      (t) => (t.textContent ?? "").includes("actual"),
+    );
+    expect(actualLabel?.getAttribute("fill")).toBe("var(--chart-obs)");
   });
 
   it("renders three gridlines, the actual line, the what-if line, and an endpoint dot", () => {
