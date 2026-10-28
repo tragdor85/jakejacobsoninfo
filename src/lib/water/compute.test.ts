@@ -8,6 +8,7 @@ import {
   evapForYear,
   findInflowRow,
   initialValues,
+  inflowSeries,
   lowMarker,
   observedSeries,
   projectionYears,
@@ -225,6 +226,22 @@ describe("compute: chart series", () => {
     expect(pts[0][0]).toBe(1847);
     // 180 rows, no nulls → 360 boundary points.
     expect(pts.length).toBe(360);
+  });
+
+  it("inflowSeries yields per-year MAF totals, flagging the estimated years", () => {
+    const s = inflowSeries(lake);
+    // One point per water year with a total, ascending (1949–2026).
+    expect(s[0].year).toBe(1949);
+    expect(s[s.length - 1].year).toBe(2026);
+    expect(s).toHaveLength(78);
+    // MAF conversion: 1983 is the wettest year (~5.74 MAF).
+    expect(s.find((p) => p.year === 1983)!.maf).toBeCloseTo(5.739, 3);
+    // Estimated years: the Bear River gauge gap (1957–1962) + the partial 2026.
+    expect(s.filter((p) => p.estimated).map((p) => p.year)).toEqual([
+      1957, 1958, 1959, 1960, 1961, 1962, 2026,
+    ]);
+    // A complete, full water year is not estimated.
+    expect(s.find((p) => p.year === 2025)!.estimated).toBe(false);
   });
 
   it("lowMarker falls back to the lowest observed boundary point", () => {

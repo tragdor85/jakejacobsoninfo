@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { LevelChart } from "./level-chart";
+import type { InflowPoint } from "@/lib/water/types";
 
 // Small synthetic series shaped like the GSL record (keeps the tests fast;
 // the data itself is covered by the lib tests).
@@ -129,5 +130,54 @@ describe("LevelChart", () => {
     const { container } = render(<LevelChart observed={[]} ariaLabel="empty" />);
     expect(container.querySelector("svg")).not.toBeNull();
     expect(container.querySelectorAll("polyline").length).toBe(0);
+  });
+
+  // A small inflow series: one estimated year (1982) bracketed by solid ones.
+  const inflow: InflowPoint[] = [
+    { year: 1980, maf: 1, estimated: false },
+    { year: 1981, maf: 2, estimated: false },
+    { year: 1982, maf: 1.5, estimated: true },
+    { year: 1983, maf: 3, estimated: false },
+  ];
+
+  it("renders the inflow line (one segment per consecutive year) on a right axis", () => {
+    const { container } = render(<LevelChart observed={observed} inflow={inflow} ariaLabel="inflow" />);
+    // Non-horizontal lines in the inflow color are the data segments (the legend
+    // swatch is horizontal and excluded).
+    const segments = Array.from(container.querySelectorAll("line")).filter(
+      (l) => l.getAttribute("stroke") === "var(--chart-inflow)" && l.getAttribute("y1") !== l.getAttribute("y2"),
+    );
+    expect(segments).toHaveLength(3); // 4 points → 3 segments
+    // The right-axis tick labels are drawn in the inflow color.
+    const ticks = Array.from(container.querySelectorAll("text")).filter(
+      (t) => t.getAttribute("fill") === "var(--chart-inflow)",
+    );
+    expect(ticks.length).toBeGreaterThan(0);
+  });
+
+  it("draws inflow segments touching an estimated year dotted", () => {
+    const { container } = render(<LevelChart observed={observed} inflow={inflow} ariaLabel="inflow-dash" />);
+    const dotted = Array.from(container.querySelectorAll("line")).filter(
+      (l) =>
+        l.getAttribute("stroke") === "var(--chart-inflow)" &&
+        l.getAttribute("stroke-dasharray") === "4 3" &&
+        l.getAttribute("y1") !== l.getAttribute("y2"),
+    );
+    // 1981→1982 and 1982→1983 touch the estimated 1982; 1980→1981 is solid.
+    expect(dotted).toHaveLength(2);
+  });
+
+  it("adds inflow legend items, including the estimated variant", () => {
+    const { container } = render(<LevelChart observed={observed} inflow={inflow} ariaLabel="inflow-legend" />);
+    expect(container.textContent).toContain("Inflow");
+    expect(container.textContent).toContain("Inflow, est.");
+  });
+
+  it("omits the inflow line and right axis when inflow is not provided", () => {
+    const { container } = render(<LevelChart observed={observed} ariaLabel="no-inflow" />);
+    const inflowLines = Array.from(container.querySelectorAll("line")).filter(
+      (l) => l.getAttribute("stroke") === "var(--chart-inflow)",
+    );
+    expect(inflowLines.length).toBe(0);
   });
 });

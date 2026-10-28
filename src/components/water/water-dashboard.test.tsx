@@ -89,6 +89,22 @@ describe("WaterDashboard", () => {
     expect(text).toContain("4,200");
     expect(text).toContain("4188.5");
   });
+
+  it("renders the annual inflow line on the main chart with a right axis", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const mainSvg = Array.from(container.querySelectorAll("svg")).find(
+      (s) => s.getAttribute("aria-label") === "Great Salt Lake water level chart",
+    )!;
+    expect(mainSvg).not.toBeNull();
+    // The inflow line (blue) is drawn on the right axis.
+    const inflowLines = Array.from(mainSvg.querySelectorAll("line")).filter(
+      (l) => l.getAttribute("stroke") === "var(--chart-inflow)",
+    );
+    expect(inflowLines.length).toBeGreaterThan(0);
+    // The right axis is labeled in MAF, and the estimated variant is in the legend.
+    expect(mainSvg.textContent).toContain("MAF");
+    expect(mainSvg.textContent).toContain("Inflow, est.");
+  });
 });
 
 describe("WaterDashboard — How this works + About the data", () => {

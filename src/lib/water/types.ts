@@ -110,6 +110,20 @@ export interface LakeData {
   calibration: CalibrationData;
 }
 
+/**
+ * One year of total source inflow for the main chart, with a data-quality flag.
+ * `estimated` is true when the year's total is not a full, complete measurement
+ * (a source gauge is missing for the year, or the year is partial); those years
+ * are drawn dotted so the reader can see where the inflow is an estimate.
+ */
+export interface InflowPoint {
+  year: number;
+  /** Total annual inflow in million acre-ft (MAF). */
+  maf: number;
+  /** True when the year's total is an estimate (see above) — drawn dotted. */
+  estimated: boolean;
+}
+
 /** A point marked on the chart (e.g. a record low). */
 export interface ChartMarker {
   /** Fractional year for x placement (e.g. 2022.85). */

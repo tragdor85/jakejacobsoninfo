@@ -9,12 +9,14 @@
   --line: #e7e5e4;
   /* Chart series: hue + line style distinguish the series (dark mode follows
      the base tokens above). Observed = fg solid, what-if = accent solid,
-     projected = muted solid, BAU = muted dashed, magic level = accent hairline. */
+     projected = muted solid, BAU = muted dashed, magic level = accent hairline,
+     inflow = blue (right axis). */
   --chart-obs: var(--fg);
   --chart-whatif: var(--accent);
   --chart-proj: var(--muted);
   --chart-bau: var(--muted);
   --chart-magic: var(--accent);
+  --chart-inflow: #2563eb;
   --chart-grid: var(--line);
   --chart-text: var(--muted);
 }
@@ -27,6 +29,7 @@
     --accent: #fbbf24;
     --card: #1c1917;
     --line: #292524;
+    --chart-inflow: #60a5fa;
   }
 }
 

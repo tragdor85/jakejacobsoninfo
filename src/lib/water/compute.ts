@@ -6,7 +6,8 @@
 // Port of the app-level logic in utahwater/dashboard/app.js.
 
 import { WaterModel, DEFAULT_E_FT_YR } from "./model";
-import type { ChartMarker, InflowRow, LakeConfig, LevelRow } from "./types";
+import { MAF } from "./format";
+import type { ChartMarker, InflowPoint, InflowRow, LakeConfig, LevelRow } from "./types";
 
 export function findLevelRow(lake: LakeConfig, year: number): LevelRow | null {
   return lake.data.levels.data.find((r) => r.year === year) ?? null;
@@ -206,6 +207,23 @@ export function observedSeries(lake: LakeConfig): [number, number][] {
     if (r.end_ft != null) pts.push([r.year + 1, r.end_ft]);
   }
   return pts.sort((a, b) => a[0] - b[0]);
+}
+
+/**
+ * Total source inflow per water year (MAF) for the main chart's right axis, with
+ * a flag marking years whose total is not a full, complete measurement — a source
+ * gauge is missing for the year, or the year is partial. Those years are drawn
+ * dotted. Years with no total at all are omitted.
+ */
+export function inflowSeries(lake: LakeConfig): InflowPoint[] {
+  return lake.data.inflows.data
+    .filter((r) => r.total != null)
+    .map((r) => ({
+      year: r.year,
+      maf: (r.total ?? 0) / MAF,
+      estimated: !r.complete || r.partial,
+    }))
+    .sort((a, b) => a.year - b.year);
 }
 
 /**

@@ -26,6 +26,7 @@ import {
   fmtDeltaFt,
   fmtFt,
   initialValues,
+  inflowSeries,
   lowMarker,
   observedSeries,
   projectionYears,
@@ -71,6 +72,7 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
   const years = useMemo(() => allYears(lake), [lake]);
   const projYears = useMemo(() => projectionYears(lake), [lake]);
   const observed = useMemo(() => observedSeries(lake), [lake]);
+  const inflow = useMemo(() => inflowSeries(lake), [lake]);
   const low = useMemo(() => lowMarker(lake), [lake]);
 
   const [year, setYear] = useState(() => defaultYear(lake));
@@ -267,8 +269,13 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
           magicLevel={lake.magicLevel}
           magicLabel={lake.magicLevel != null ? `${lake.magicLevel.toLocaleString()} ft — historic average` : undefined}
           lowMarker={low ?? undefined}
+          inflow={inflow}
           ariaLabel={`${lake.name} water level chart`}
         />
+        <p className="mt-2 text-xs text-muted">
+          Inflow (right axis, M acre-ft) is the annual sum of the four river gauges. Dotted where the
+          total is an estimate — a source gauge is missing for that year, or the water year is partial.
+        </p>
       </Card>
 
       <HowThisWorks lake={lake} />

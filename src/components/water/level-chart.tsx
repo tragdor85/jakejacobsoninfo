@@ -7,7 +7,7 @@
 // (viewBox, margins, tick steps, legend widths) matches the dashboard.
 
 import type { ReactElement } from "react";
-import type { ChartMarker } from "@/lib/water/types";
+import type { ChartMarker, InflowPoint } from "@/lib/water/types";
 
 export interface LevelChartProps {
   /** [year, ft] pairs — the observed record (water-year boundary points). */
@@ -24,13 +24,15 @@ export interface LevelChartProps {
   magicLabel?: string;
   /** Record-low marker (vertical guide + dot + label). */
   lowMarker?: ChartMarker;
+  /** Per-year total inflow (MAF) for the right axis; dotted where estimated. */
+  inflow?: InflowPoint[];
   ariaLabel: string;
 }
 
 const W = 840;
 const H = 300;
 const ML = 50;
-const MR = 16;
+const MR = 44;
 const MT = 30;
 const MB = 28;
 
@@ -38,14 +40,14 @@ const MB = 28;
 const NICE_STEPS = [0.5, 1, 2, 5, 10, 20];
 
 // Legend item text widths (px), matching the dashboard.
-const LEGEND_WIDTHS = [62, 48, 62, 112];
+const LEGEND_WIDTHS = [62, 48, 62, 112, 40, 70];
 
 function pointsAttr(points: [number, number][], x: (t: number) => number, y: (h: number) => number): string {
   return points.map(([t, h]) => `${x(t).toFixed(1)},${y(h).toFixed(1)}`).join(" ");
 }
 
 export function LevelChart(props: LevelChartProps): ReactElement {
-  const { observed, whatIf, projected, bau, magicLevel, magicLabel, lowMarker, ariaLabel } = props;
+  const { observed, whatIf, projected, bau, magicLevel, magicLabel, lowMarker, inflow, ariaLabel } = props;
 
   let xMin = Infinity;
   let xMax = -Infinity;
@@ -73,6 +75,12 @@ export function LevelChart(props: LevelChartProps): ReactElement {
     yMin = Math.min(yMin, magicLevel);
     yMax = Math.max(yMax, magicLevel);
   }
+  if (inflow) {
+    for (const p of inflow) {
+      xMin = Math.min(xMin, p.year);
+      xMax = Math.max(xMax, p.year);
+    }
+  }
   if (!isFinite(yMin) || !isFinite(yMax)) {
     return <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={ariaLabel} className="h-auto w-full" />;
   }
@@ -81,6 +89,26 @@ export function LevelChart(props: LevelChartProps): ReactElement {
 
   const x = (t: number) => ML + ((t - xMin) / (xMax - xMin)) * (W - ML - MR);
   const y = (h: number) => MT + ((yMax - h) / (yMax - yMin)) * (H - MT - MB);
+
+  // Inflow: a second, independent right axis (MAF), 0-based so the line's
+  // height reads as a magnitude.
+  const inflowVals = inflow ? inflow.map((p) => p.maf) : [];
+  const hasInflow = inflowVals.length > 0;
+  const inflowMaxRaw = hasInflow ? Math.max(...inflowVals) : 0;
+  let inflowStep = 1;
+  for (const n of NICE_STEPS) {
+    if (n >= inflowMaxRaw / 6) {
+      inflowStep = n;
+      break;
+    }
+  }
+  const inflowMax = hasInflow ? Math.max(inflowStep, Math.ceil(inflowMaxRaw / inflowStep) * inflowStep) : 0;
+  const yInflow = (v: number) => MT + ((inflowMax - v) / inflowMax) * (H - MT - MB);
+  const inflowTicks: number[] = [];
+  if (hasInflow) {
+    for (let g = 0; g <= inflowMax + 1e-9; g += inflowStep) inflowTicks.push(g);
+  }
+  const hasEstimated = hasInflow && inflow!.some((p) => p.estimated);
 
   // y gridlines at a nice step.
   let step = (yMax - yMin) / 8;
@@ -104,6 +132,8 @@ export function LevelChart(props: LevelChartProps): ReactElement {
   if (whatIf) items.push({ label: "What-if", color: "var(--chart-whatif)", w: 2.5, dash: null });
   if (projected) items.push({ label: "Projected", color: "var(--chart-proj)", w: 2.5, dash: null });
   if (bau) items.push({ label: "BAU (mean inflow)", color: "var(--chart-bau)", w: 2, dash: "6 4" });
+  if (hasInflow) items.push({ label: "Inflow", color: "var(--chart-inflow)", w: 1.5, dash: null });
+  if (hasEstimated) items.push({ label: "Inflow, est.", color: "var(--chart-inflow)", w: 1.5, dash: "4 3" });
   let totalW = 0;
   for (let i = 0; i < items.length; i++) totalW += 22 + LEGEND_WIDTHS[i] + (i < items.length - 1 ? 14 : 0);
   let lx = W - MR - totalW;
@@ -127,6 +157,43 @@ export function LevelChart(props: LevelChartProps): ReactElement {
           </text>
         </g>
       ))}
+      {hasInflow &&
+        inflow!.map((p, i) => {
+          if (i === 0) return null;
+          const prev = inflow![i - 1];
+          // Dotted when either endpoint's total is an estimate.
+          const dashed = p.estimated || prev.estimated;
+          return (
+            <line
+              key={`inflow-${p.year}`}
+              x1={x(prev.year)}
+              y1={yInflow(prev.maf)}
+              x2={x(p.year)}
+              y2={yInflow(p.maf)}
+              stroke="var(--chart-inflow)"
+              strokeWidth={1.5}
+              strokeDasharray={dashed ? "4 3" : undefined}
+            />
+          );
+        })}
+      {hasInflow &&
+        inflowTicks.map((g) => (
+          <text
+            key={`inflowy${g}`}
+            x={W - MR + 6}
+            y={yInflow(g) + 3}
+            textAnchor="start"
+            fontSize={10}
+            fill="var(--chart-inflow)"
+          >
+            {g % 1 === 0 ? g.toFixed(0) : g.toFixed(1)}
+          </text>
+        ))}
+      {hasInflow && (
+        <text x={W - MR + 6} y={MT - 8} textAnchor="start" fontSize={10} fill="var(--chart-inflow)">
+          MAF
+        </text>
+      )}
       {magicLevel != null && (
         <g>
           <line
