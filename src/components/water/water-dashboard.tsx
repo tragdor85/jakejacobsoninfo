@@ -34,6 +34,7 @@ import {
 } from "@/lib/water";
 import type { LakeConfig } from "@/lib/water";
 import { HowThisWorks } from "./how-this-works";
+import { DataSources } from "./data-sources";
 import { LevelChart } from "./level-chart";
 import { WhatIfChart } from "./whatif-chart";
 import { YearPicker } from "./year-picker";
@@ -273,6 +274,8 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
       <HowThisWorks lake={lake} />
 
       <Provenance lake={lake} />
+
+      <DataSources lake={lake} />
     </div>
   );
 }

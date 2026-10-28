@@ -129,3 +129,47 @@ describe("WaterDashboard — How this works + About the data", () => {
     expect(text).toContain("2026-10-25");
   });
 });
+
+describe("WaterDashboard — Data sources + processing", () => {
+  it("renders both the data-sources and the processing sections", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("Where the data comes from");
+    expect(text).toContain("How the data is processed");
+  });
+
+  it("links each gauge to its USGS monitoring-location page", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const hrefs = Array.from(
+      container.querySelectorAll("a[href^='https://waterdata.usgs.gov/monitoring-location/']"),
+    ).map((a) => a.getAttribute("href"));
+    // Lake level + the four river gauges.
+    expect(hrefs).toContain("https://waterdata.usgs.gov/monitoring-location/10010000");
+    expect(hrefs).toContain("https://waterdata.usgs.gov/monitoring-location/10126000");
+    expect(hrefs).toContain("https://waterdata.usgs.gov/monitoring-location/10219000");
+    expect(hrefs).toContain("https://waterdata.usgs.gov/monitoring-location/10171000");
+    expect(hrefs).toContain("https://waterdata.usgs.gov/monitoring-location/10141000");
+  });
+
+  it("links the elevation-area curve to the Utah DWR page and the daily data to the USGS API", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const hrefs = Array.from(container.querySelectorAll("a[href]"))
+      .map((a) => a.getAttribute("href"))
+      .filter((h): h is string => Boolean(h));
+    expect(hrefs).toContain("https://water.utah.gov/great-salt-lake/");
+    expect(hrefs).toContain("https://api.waterdata.usgs.gov/ogcapi/v1/collections/daily/items");
+  });
+
+  it("explains each processing step and why it is acceptable", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("Cubic feet per second → acre-feet");
+    expect(text).toContain("Gap-filling");
+    expect(text).toContain("PCHIP");
+    expect(text).toContain("Calibrated residual evaporation");
+    expect(text).toContain("Rounding");
+    // The "why acceptable" framing is present for the two most consequential steps.
+    expect(text).toContain("no data is added or removed");
+    expect(text).toContain("not a change to the observed data");
+  });
+});

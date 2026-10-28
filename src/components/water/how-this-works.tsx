@@ -11,7 +11,7 @@ import type { ReactNode } from "react";
 import type { LakeConfig } from "@/lib/water";
 import { fmtFt } from "@/lib/water";
 
-function Section({ kicker, title, children }: { kicker: string; title: string; children: ReactNode }) {
+export function Section({ kicker, title, children }: { kicker: string; title: string; children: ReactNode }) {
   return (
     <section className="rounded-lg border border-line bg-card p-5">
       <p className="font-mono text-xs uppercase tracking-widest text-accent">{kicker}</p>
