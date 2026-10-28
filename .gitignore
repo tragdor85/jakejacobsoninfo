@@ -51,3 +51,6 @@ next-env.d.ts
 !.env.example
 next.config.compiled.js
 .open-next
+
+# pi agent internals
+.pi-tasks/
