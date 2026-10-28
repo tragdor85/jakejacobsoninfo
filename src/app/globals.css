@@ -7,6 +7,16 @@
   --accent: #b45309;
   --card: #ffffff;
   --line: #e7e5e4;
+  /* Chart series: hue + line style distinguish the series (dark mode follows
+     the base tokens above). Observed = fg solid, what-if = accent solid,
+     projected = muted solid, BAU = muted dashed, magic level = accent hairline. */
+  --chart-obs: var(--fg);
+  --chart-whatif: var(--accent);
+  --chart-proj: var(--muted);
+  --chart-bau: var(--muted);
+  --chart-magic: var(--accent);
+  --chart-grid: var(--line);
+  --chart-text: var(--muted);
 }
 
 @media (prefers-color-scheme: dark) {
