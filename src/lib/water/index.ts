@@ -7,3 +7,5 @@ export * from "./types";
 export * from "./model";
 export * from "./elev-area";
 export * from "./format";
+export * from "./compute";
+export * from "./registry";

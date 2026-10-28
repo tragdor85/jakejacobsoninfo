@@ -1,0 +1,91 @@
+import { describe, expect, it } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { WaterDashboard } from "./water-dashboard";
+import {
+  WaterModel,
+  ElevAreaCurve,
+  MAF,
+  computeLongTermMeans,
+  computeWhatIf,
+  computeProjection,
+  initialValues,
+  fmtFt,
+  getLake,
+} from "@/lib/water";
+
+const lake = getLake("gsl")!;
+const model = new WaterModel(new ElevAreaCurve(lake.data.elevArea).area);
+
+describe("WaterDashboard", () => {
+  it("renders the most recent complete year with its actuals on the sliders", () => {
+    render(<WaterDashboard lake={lake} />);
+    expect(screen.getByLabelText(/water year/i)).toHaveValue("2025");
+    // Bear River actual for 2025: 580,494 acft → 0.58 MAF on the slider.
+    const bear = screen.getByLabelText("Bear River") as HTMLInputElement;
+    expect(parseFloat(String(bear.value))).toBeCloseTo(0.58, 2);
+  });
+
+  it("selecting a year loads that year's actuals and recomputes the what-if", () => {
+    render(<WaterDashboard lake={lake} />);
+    fireEvent.change(screen.getByLabelText(/water year/i), { target: { value: "2024" } });
+    const bear = screen.getByLabelText("Bear River") as HTMLInputElement;
+    // 2024 Bear actual: 659,829 acft.
+    expect(parseFloat(String(bear.value))).toBeCloseTo(0.66, 2);
+    // The what-if readout matches an independent compute run at actuals.
+    const vals = initialValues(lake, 2024);
+    const wi = computeWhatIf(lake, model, 2024, vals)!;
+    expect(screen.getAllByText(`${fmtFt(wi.end)} ft`)).not.toHaveLength(0);
+  });
+
+  it("moving a slider updates the what-if delta", () => {
+    render(<WaterDashboard lake={lake} />);
+    const bear = screen.getByLabelText("Bear River") as HTMLInputElement;
+    const before = screen.getByText(/Δ vs actual/i).closest("div")!.textContent ?? "";
+    fireEvent.change(bear, { target: { value: String(2 * MAF / MAF) } }); // 2 MAF Bear
+    const after = screen.getByText(/Δ vs actual/i).closest("div")!.textContent ?? "";
+    expect(after).not.toBe(before);
+  });
+
+  it("changing the horizon re-runs the projection and updates the heading", () => {
+    render(<WaterDashboard lake={lake} />);
+    expect(screen.getByText("5-year projection")).toBeTruthy();
+    fireEvent.change(screen.getByLabelText(/horizon/i), { target: { value: "10" } });
+    expect(screen.getByText("10-year projection")).toBeTruthy();
+    // 2025 + 10 − 1 = 2034.
+    expect(screen.getByText(/Sep 30 2034/)).toBeTruthy();
+  });
+
+  it("the BAU button puts the scenario on the long-term means (Δ vs BAU = 0)", () => {
+    render(<WaterDashboard lake={lake} />);
+    const means = computeLongTermMeans(lake);
+    const p = computeProjection(lake, model, 2025, 5, means)!;
+    expect(p.delta).toBeCloseTo(0, 6);
+    fireEvent.click(screen.getByRole("button", { name: /use bau inflows/i }));
+    // After the click the scenario equals BAU, so the delta reads +0.00 ft.
+    const delta = screen.getByText(/Δ vs BAU/i).closest("div")!.textContent ?? "";
+    expect(delta).toContain("+0.00 ft");
+  });
+
+  it("a partial year clears the projection and shows a note", () => {
+    render(<WaterDashboard lake={lake} />);
+    fireEvent.change(screen.getByLabelText(/water year/i), { target: { value: "2026" } });
+    const projYear = screen.getByLabelText(/start year/i);
+    expect(projYear).toHaveValue("");
+    expect(screen.getByText(/partial year/i)).toBeTruthy();
+  });
+
+  it("renders the main chart and the what-if chart", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const svgs = container.querySelectorAll("svg");
+    // Main chart + what-if chart.
+    expect(svgs.length).toBe(2);
+    expect(container.querySelector("svg[role='img']")).toBeTruthy();
+  });
+
+  it("shows the magic level and record low on the main chart", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("4,200");
+    expect(text).toContain("4188.5");
+  });
+});

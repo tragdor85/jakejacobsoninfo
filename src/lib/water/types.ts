@@ -131,6 +131,8 @@ export interface LakeConfig {
   yearRange: [number, number];
   /** "Magic level" (historic average, ft) drawn on the chart, if any. */
   magicLevel?: number;
+  /** Projection horizons offered by the dashboard (years). Default 5/10/15/20. */
+  horizonOptions?: number[];
   /** Record-low marker drawn on the chart, if any. */
   lowMarker?: ChartMarker;
   data: LakeData;

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     "Model Great Salt Lake water levels under different inflow and evaporation scenarios — adjust the start year, projection horizon, and what-if conditions.",
 };
 
-// The dashboard is a standalone app served from its own repo; embedded via iframe.
-// Local development URL. For production, point this at the dashboard's public host.
-const DASHBOARD_URL = "http://jakesmacbookpro.local:8000";
+// The dashboard is a standalone static app in the utahwater repo, hosted on
+// Cloudflare Pages (gsl-dashboard project); embedded via iframe.
+const DASHBOARD_URL = "https://gsl-dashboard.pages.dev";
 
 export default function GSL() {
   const title = getContentTitle("gsl");
