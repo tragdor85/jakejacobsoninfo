@@ -1,0 +1,749 @@
+{
+  "meta": {
+    "title": "GSL model calibration: evaporation depth e (Task 5)",
+    "units": "ft/yr (e), acre-ft (inflow), acres (area)",
+    "water_year": "Oct 1 - Sep 30",
+    "generated_utc": "2026-10-27T19:58:31+00:00",
+    "method": "e(y) = I(y)/A_avg(y) - (h_end - h_start) per water year (mass balance); the model uses the per-year e; the scalar e_ft_per_yr is the mean over complete years and is the fallback for projection years without a calibrated value",
+    "sources": {
+      "inflows": "dashboard/data/inflows.json (USGS gauges, Task 2)",
+      "levels": "dashboard/data/levels.json (USGS-10010000, Task 2)",
+      "elev_area": "dashboard/data/elev_area.json (Task 1)",
+      "observed_extremes": "dashboard/data/raw/lake.json (daily)"
+    },
+    "note": "e(y) is a calibrated residual: it absorbs that year's evaporation plus groundwater, diversions, and unmeasured direct streams; in 1957-1962 (no Bear gauge data) it also absorbs the missing Bear flow (bear_missing flag). It can be negative in very wet years where unmeasured inflow dominates."
+  },
+  "e_ft_per_yr": 1.8602,
+  "e_stats": {
+    "n_complete": 71,
+    "n_bear_missing": 6,
+    "e_mean": 1.8602,
+    "e_median": 2.0198,
+    "e_stdev": 0.8503,
+    "e_min": -0.3786,
+    "e_max": 3.5599
+  },
+  "e_per_year": [
+    {
+      "year": 1949,
+      "e": 2.236,
+      "inflow_acft": 2791583,
+      "area_avg_ac": 901673.1,
+      "h_start": 4196.7,
+      "h_end": 4197.56,
+      "bear_missing": false
+    },
+    {
+      "year": 1950,
+      "e": 1.9421,
+      "inflow_acft": 2731083,
+      "area_avg_ac": 957573.5,
+      "h_start": 4197.55,
+      "h_end": 4198.46,
+      "bear_missing": false
+    },
+    {
+      "year": 1951,
+      "e": 1.7798,
+      "inflow_acft": 2961052,
+      "area_avg_ac": 1024644.2,
+      "h_start": 4198.45,
+      "h_end": 4199.56,
+      "bear_missing": false
+    },
+    {
+      "year": 1952,
+      "e": 2.2919,
+      "inflow_acft": 1772779,
+      "area_avg_ac": 1041665.6,
+      "h_start": 4199.55,
+      "h_end": 4198.96,
+      "bear_missing": false
+    },
+    {
+      "year": 1953,
+      "e": 2.6332,
+      "inflow_acft": 1010102,
+      "area_avg_ac": 968230.6,
+      "h_start": 4198.95,
+      "h_end": 4197.36,
+      "bear_missing": false
+    },
+    {
+      "year": 1954,
+      "e": 2.0041,
+      "inflow_acft": 1081427,
+      "area_avg_ac": 890701.4,
+      "h_start": 4197.35,
+      "h_end": 4196.56,
+      "bear_missing": false
+    },
+    {
+      "year": 1955,
+      "e": 2.311,
+      "inflow_acft": 1504385,
+      "area_avg_ac": 849459.9,
+      "h_start": 4196.55,
+      "h_end": 4196.01,
+      "bear_missing": false
+    },
+    {
+      "year": 1956,
+      "e": 1.901,
+      "inflow_acft": 1592530,
+      "area_avg_ac": 833351.8,
+      "h_start": 4196.0,
+      "h_end": 4196.01,
+      "bear_missing": false
+    },
+    {
+      "year": 1957,
+      "e": 1.2729,
+      "inflow_acft": 641804,
+      "area_avg_ac": 819752.7,
+      "h_start": 4196.0,
+      "h_end": 4195.51,
+      "bear_missing": true
+    },
+    {
+      "year": 1958,
+      "e": 1.4479,
+      "inflow_acft": 357315,
+      "area_avg_ac": 780363.9,
+      "h_start": 4195.5,
+      "h_end": 4194.51,
+      "bear_missing": true
+    },
+    {
+      "year": 1959,
+      "e": 1.5886,
+      "inflow_acft": 325796,
+      "area_avg_ac": 726204.8,
+      "h_start": 4194.5,
+      "h_end": 4193.36,
+      "bear_missing": true
+    },
+    {
+      "year": 1960,
+      "e": 1.9684,
+      "inflow_acft": 210484,
+      "area_avg_ac": 661076.9,
+      "h_start": 4193.35,
+      "h_end": 4191.7,
+      "bear_missing": true
+    },
+    {
+      "year": 1961,
+      "e": 0.1526,
+      "inflow_acft": 388375,
+      "area_avg_ac": 633940.1,
+      "h_start": 4191.7,
+      "h_end": 4192.16,
+      "bear_missing": true
+    },
+    {
+      "year": 1962,
+      "e": 1.1221,
+      "inflow_acft": 297410,
+      "area_avg_ac": 629909.1,
+      "h_start": 4192.15,
+      "h_end": 4191.5,
+      "bear_missing": true
+    },
+    {
+      "year": 1963,
+      "e": 1.0663,
+      "inflow_acft": 1393700,
+      "area_avg_ac": 640395.2,
+      "h_start": 4191.5,
+      "h_end": 4192.61,
+      "bear_missing": false
+    },
+    {
+      "year": 1964,
+      "e": 1.2982,
+      "inflow_acft": 1688982,
+      "area_avg_ac": 689889.0,
+      "h_start": 4192.6,
+      "h_end": 4193.75,
+      "bear_missing": false
+    },
+    {
+      "year": 1965,
+      "e": 2.4878,
+      "inflow_acft": 1513902,
+      "area_avg_ac": 708165.5,
+      "h_start": 4193.75,
+      "h_end": 4193.4,
+      "bear_missing": false
+    },
+    {
+      "year": 1966,
+      "e": 1.5378,
+      "inflow_acft": 1419958,
+      "area_avg_ac": 710767.8,
+      "h_start": 4193.4,
+      "h_end": 4193.86,
+      "bear_missing": false
+    },
+    {
+      "year": 1967,
+      "e": 1.5643,
+      "inflow_acft": 1491239,
+      "area_avg_ac": 733049.7,
+      "h_start": 4193.85,
+      "h_end": 4194.32,
+      "bear_missing": false
+    },
+    {
+      "year": 1968,
+      "e": 1.6207,
+      "inflow_acft": 1982822,
+      "area_avg_ac": 768332.3,
+      "h_start": 4194.3,
+      "h_end": 4195.26,
+      "bear_missing": false
+    },
+    {
+      "year": 1969,
+      "e": 2.1512,
+      "inflow_acft": 1418554,
+      "area_avg_ac": 783216.5,
+      "h_start": 4195.25,
+      "h_end": 4194.91,
+      "bear_missing": false
+    },
+    {
+      "year": 1970,
+      "e": 1.4851,
+      "inflow_acft": 2856362,
+      "area_avg_ac": 829099.0,
+      "h_start": 4194.9,
+      "h_end": 4196.86,
+      "bear_missing": false
+    },
+    {
+      "year": 1971,
+      "e": 2.0517,
+      "inflow_acft": 2844349,
+      "area_avg_ac": 917033.0,
+      "h_start": 4196.85,
+      "h_end": 4197.9,
+      "bear_missing": false
+    },
+    {
+      "year": 1972,
+      "e": 0.9468,
+      "inflow_acft": 2233145,
+      "area_avg_ac": 993938.8,
+      "h_start": 4197.9,
+      "h_end": 4199.2,
+      "bear_missing": false
+    },
+    {
+      "year": 1973,
+      "e": 2.2238,
+      "inflow_acft": 2374426,
+      "area_avg_ac": 1039702.4,
+      "h_start": 4199.2,
+      "h_end": 4199.26,
+      "bear_missing": false
+    },
+    {
+      "year": 1974,
+      "e": 1.3578,
+      "inflow_acft": 2263135,
+      "area_avg_ac": 1068619.2,
+      "h_start": 4199.25,
+      "h_end": 4200.01,
+      "bear_missing": false
+    },
+    {
+      "year": 1975,
+      "e": 1.6225,
+      "inflow_acft": 2256558,
+      "area_avg_ac": 1110211.8,
+      "h_start": 4200.0,
+      "h_end": 4200.41,
+      "bear_missing": false
+    },
+    {
+      "year": 1976,
+      "e": 2.3977,
+      "inflow_acft": 972049,
+      "area_avg_ac": 1070915.9,
+      "h_start": 4200.4,
+      "h_end": 4198.91,
+      "bear_missing": false
+    },
+    {
+      "year": 1977,
+      "e": 1.8105,
+      "inflow_acft": 1457163,
+      "area_avg_ac": 1004565.7,
+      "h_start": 4198.9,
+      "h_end": 4198.54,
+      "bear_missing": false
+    },
+    {
+      "year": 1978,
+      "e": 2.144,
+      "inflow_acft": 1208943,
+      "area_avg_ac": 964053.4,
+      "h_start": 4198.55,
+      "h_end": 4197.66,
+      "bear_missing": false
+    },
+    {
+      "year": 1979,
+      "e": 0.88,
+      "inflow_acft": 2300076,
+      "area_avg_ac": 982953.6,
+      "h_start": 4197.65,
+      "h_end": 4199.11,
+      "bear_missing": false
+    },
+    {
+      "year": 1980,
+      "e": 2.2748,
+      "inflow_acft": 1343722,
+      "area_avg_ac": 999192.9,
+      "h_start": 4199.1,
+      "h_end": 4198.17,
+      "bear_missing": false
+    },
+    {
+      "year": 1981,
+      "e": 0.2731,
+      "inflow_acft": 2222044,
+      "area_avg_ac": 1031997.3,
+      "h_start": 4198.15,
+      "h_end": 4200.03,
+      "bear_missing": false
+    },
+    {
+      "year": 1982,
+      "e": -0.3786,
+      "inflow_acft": 4917592,
+      "area_avg_ac": 1260482.4,
+      "h_start": 4200.05,
+      "h_end": 4204.33,
+      "bear_missing": false
+    },
+    {
+      "year": 1983,
+      "e": 0.2937,
+      "inflow_acft": 5739193,
+      "area_avg_ac": 1570790.4,
+      "h_start": 4204.35,
+      "h_end": 4207.71,
+      "bear_missing": false
+    },
+    {
+      "year": 1984,
+      "e": 1.5597,
+      "inflow_acft": 3584478,
+      "area_avg_ac": 1740255.2,
+      "h_start": 4207.7,
+      "h_end": 4208.2,
+      "bear_missing": false
+    },
+    {
+      "year": 1985,
+      "e": 0.3094,
+      "inflow_acft": 4688161,
+      "area_avg_ac": 1868225.4,
+      "h_start": 4208.2,
+      "h_end": 4210.4,
+      "bear_missing": false
+    },
+    {
+      "year": 1986,
+      "e": 2.3298,
+      "inflow_acft": 2005871,
+      "area_avg_ac": 1910683.4,
+      "h_start": 4210.4,
+      "h_end": 4209.12,
+      "bear_missing": false
+    },
+    {
+      "year": 1987,
+      "e": 3.3834,
+      "inflow_acft": 846425,
+      "area_avg_ac": 1715439.6,
+      "h_start": 4209.1,
+      "h_end": 4206.21,
+      "bear_missing": false
+    },
+    {
+      "year": 1988,
+      "e": 2.8184,
+      "inflow_acft": 936452,
+      "area_avg_ac": 1490169.5,
+      "h_start": 4206.2,
+      "h_end": 4204.01,
+      "bear_missing": false
+    },
+    {
+      "year": 1989,
+      "e": 2.7683,
+      "inflow_acft": 745230,
+      "area_avg_ac": 1311229.8,
+      "h_start": 4204.0,
+      "h_end": 4201.8,
+      "bear_missing": false
+    },
+    {
+      "year": 1990,
+      "e": 1.8116,
+      "inflow_acft": 844278,
+      "area_avg_ac": 1186470.3,
+      "h_start": 4201.8,
+      "h_end": 4200.7,
+      "bear_missing": false
+    },
+    {
+      "year": 1991,
+      "e": 2.1846,
+      "inflow_acft": 627957,
+      "area_avg_ac": 1074205.7,
+      "h_start": 4200.5,
+      "h_end": 4198.9,
+      "bear_missing": false
+    },
+    {
+      "year": 1992,
+      "e": 0.5239,
+      "inflow_acft": 1374162,
+      "area_avg_ac": 1037969.5,
+      "h_start": 4198.8,
+      "h_end": 4199.6,
+      "bear_missing": false
+    },
+    {
+      "year": 1993,
+      "e": 2.9685,
+      "inflow_acft": 967203,
+      "area_avg_ac": 998678.4,
+      "h_start": 4199.6,
+      "h_end": 4197.6,
+      "bear_missing": false
+    },
+    {
+      "year": 1994,
+      "e": 0.4821,
+      "inflow_acft": 1530296,
+      "area_avg_ac": 967260.1,
+      "h_start": 4197.6,
+      "h_end": 4198.7,
+      "bear_missing": false
+    },
+    {
+      "year": 1995,
+      "e": 1.7494,
+      "inflow_acft": 1637823,
+      "area_avg_ac": 992954.1,
+      "h_start": 4198.6,
+      "h_end": 4198.5,
+      "bear_missing": false
+    },
+    {
+      "year": 1996,
+      "e": 0.8152,
+      "inflow_acft": 2640309,
+      "area_avg_ac": 1049727.5,
+      "h_start": 4198.5,
+      "h_end": 4200.2,
+      "bear_missing": false
+    },
+    {
+      "year": 1997,
+      "e": 0.7201,
+      "inflow_acft": 2963146,
+      "area_avg_ac": 1175810.5,
+      "h_start": 4200.2,
+      "h_end": 4202.0,
+      "bear_missing": false
+    },
+    {
+      "year": 1998,
+      "e": 1.5493,
+      "inflow_acft": 2699916,
+      "area_avg_ac": 1256196.5,
+      "h_start": 4201.9,
+      "h_end": 4202.5,
+      "bear_missing": false
+    },
+    {
+      "year": 1999,
+      "e": 2.5432,
+      "inflow_acft": 1402538,
+      "area_avg_ac": 1226897.9,
+      "h_start": 4202.5,
+      "h_end": 4201.1,
+      "bear_missing": false
+    },
+    {
+      "year": 2000,
+      "e": 2.5761,
+      "inflow_acft": 748221,
+      "area_avg_ac": 1106624.9,
+      "h_start": 4201.1,
+      "h_end": 4199.2,
+      "bear_missing": false
+    },
+    {
+      "year": 2001,
+      "e": 2.3863,
+      "inflow_acft": 759389,
+      "area_avg_ac": 978226.7,
+      "h_start": 4199.11,
+      "h_end": 4197.5,
+      "bear_missing": false
+    },
+    {
+      "year": 2002,
+      "e": 2.7627,
+      "inflow_acft": 642374,
+      "area_avg_ac": 864942.8,
+      "h_start": 4197.5,
+      "h_end": 4195.48,
+      "bear_missing": false
+    },
+    {
+      "year": 2003,
+      "e": 2.146,
+      "inflow_acft": 666011,
+      "area_avg_ac": 769055.2,
+      "h_start": 4195.43,
+      "h_end": 4194.15,
+      "bear_missing": false
+    },
+    {
+      "year": 2004,
+      "e": 0.81,
+      "inflow_acft": 1753227,
+      "area_avg_ac": 772345.7,
+      "h_start": 4194.12,
+      "h_end": 4195.58,
+      "bear_missing": false
+    },
+    {
+      "year": 2005,
+      "e": 1.5125,
+      "inflow_acft": 1924223,
+      "area_avg_ac": 832090.8,
+      "h_start": 4195.57,
+      "h_end": 4196.37,
+      "bear_missing": false
+    },
+    {
+      "year": 2006,
+      "e": 2.4967,
+      "inflow_acft": 1021353,
+      "area_avg_ac": 819242.9,
+      "h_start": 4196.36,
+      "h_end": 4195.11,
+      "bear_missing": false
+    },
+    {
+      "year": 2007,
+      "e": 2.4282,
+      "inflow_acft": 967745,
+      "area_avg_ac": 763079.3,
+      "h_start": 4195.26,
+      "h_end": 4194.1,
+      "bear_missing": false
+    },
+    {
+      "year": 2008,
+      "e": 0.9892,
+      "inflow_acft": 1370468,
+      "area_avg_ac": 753338.3,
+      "h_start": 4194.08,
+      "h_end": 4194.91,
+      "bear_missing": false
+    },
+    {
+      "year": 2009,
+      "e": 2.0803,
+      "inflow_acft": 1038310,
+      "area_avg_ac": 736258.4,
+      "h_start": 4194.48,
+      "h_end": 4193.81,
+      "bear_missing": false
+    },
+    {
+      "year": 2010,
+      "e": 0.0774,
+      "inflow_acft": 3050318,
+      "area_avg_ac": 820548.5,
+      "h_start": 4193.81,
+      "h_end": 4197.45,
+      "bear_missing": false
+    },
+    {
+      "year": 2011,
+      "e": 2.9317,
+      "inflow_acft": 1557927,
+      "area_avg_ac": 884321.8,
+      "h_start": 4197.43,
+      "h_end": 4196.26,
+      "bear_missing": false
+    },
+    {
+      "year": 2012,
+      "e": 2.8918,
+      "inflow_acft": 799253,
+      "area_avg_ac": 797826.0,
+      "h_start": 4196.26,
+      "h_end": 4194.37,
+      "bear_missing": false
+    },
+    {
+      "year": 2013,
+      "e": 2.0486,
+      "inflow_acft": 796740,
+      "area_avg_ac": 725263.4,
+      "h_start": 4194.39,
+      "h_end": 4193.44,
+      "bear_missing": false
+    },
+    {
+      "year": 2014,
+      "e": 2.0198,
+      "inflow_acft": 800394,
+      "area_avg_ac": 684237.8,
+      "h_start": 4193.48,
+      "h_end": 4192.63,
+      "bear_missing": false
+    },
+    {
+      "year": 2015,
+      "e": 1.7169,
+      "inflow_acft": 986950,
+      "area_avg_ac": 659339.2,
+      "h_start": 4192.62,
+      "h_end": 4192.4,
+      "bear_missing": false
+    },
+    {
+      "year": 2016,
+      "e": 2.5987,
+      "inflow_acft": 2501439,
+      "area_avg_ac": 679985.8,
+      "h_start": 4192.42,
+      "h_end": 4193.5,
+      "bear_missing": false
+    },
+    {
+      "year": 2017,
+      "e": 3.5599,
+      "inflow_acft": 1318709,
+      "area_avg_ac": 672853.7,
+      "h_start": 4193.6,
+      "h_end": 4192.0,
+      "bear_missing": false
+    },
+    {
+      "year": 2018,
+      "e": 1.0721,
+      "inflow_acft": 1445774,
+      "area_avg_ac": 665608.3,
+      "h_start": 4192.1,
+      "h_end": 4193.2,
+      "bear_missing": false
+    },
+    {
+      "year": 2019,
+      "e": 2.6728,
+      "inflow_acft": 1268032,
+      "area_avg_ac": 677095.3,
+      "h_start": 4193.3,
+      "h_end": 4192.5,
+      "bear_missing": false
+    },
+    {
+      "year": 2020,
+      "e": 3.0868,
+      "inflow_acft": 671542,
+      "area_avg_ac": 617891.5,
+      "h_start": 4192.5,
+      "h_end": 4190.5,
+      "bear_missing": false
+    },
+    {
+      "year": 2021,
+      "e": 2.5727,
+      "inflow_acft": 696881,
+      "area_avg_ac": 547562.4,
+      "h_start": 4190.4,
+      "h_end": 4189.1,
+      "bear_missing": false
+    },
+    {
+      "year": 2022,
+      "e": 0.3245,
+      "inflow_acft": 1984761,
+      "area_avg_ac": 579578.2,
+      "h_start": 4189.0,
+      "h_end": 4192.1,
+      "bear_missing": false
+    },
+    {
+      "year": 2023,
+      "e": 1.9941,
+      "inflow_acft": 1615261,
+      "area_avg_ac": 647643.5,
+      "h_start": 4192.0,
+      "h_end": 4192.5,
+      "bear_missing": false
+    },
+    {
+      "year": 2024,
+      "e": 2.8547,
+      "inflow_acft": 975879,
+      "area_avg_ac": 627693.3,
+      "h_start": 4192.4,
+      "h_end": 4191.1,
+      "bear_missing": false
+    },
+    {
+      "year": 2025,
+      "e": 2.74,
+      "inflow_acft": 822527,
+      "area_avg_ac": 571193.7,
+      "h_start": 4191.0,
+      "h_end": 4189.7,
+      "bear_missing": false
+    }
+  ],
+  "validation": {
+    "range": "1949-2025",
+    "h0": 4196.7,
+    "rmse_ft": 0.183,
+    "bias_ft": 0.127,
+    "max_abs_err_ft": 0.499,
+    "high_1986": {
+      "observed_ft": 4211.6,
+      "observed_date": "1986-06-03",
+      "modeled_ft": 4210.42,
+      "err_ft": -1.18,
+      "within_2ft": true
+    },
+    "low_2022": {
+      "observed_ft": 4188.5,
+      "observed_date": "2022-11-07",
+      "modeled_ft": 4189.09,
+      "err_ft": 0.59,
+      "within_2ft": true
+    },
+    "final_err_ft": 0.29,
+    "constant_e_comparison": {
+      "e_ft_per_yr": 1.86,
+      "rmse_ft": 1.785,
+      "high_1986_err_ft": -6.04,
+      "low_2022_err_ft": 4.21
+    }
+  }
+}

@@ -1,0 +1,1275 @@
+{
+  "meta": {
+    "title": "Great Salt Lake water-year start/end level",
+    "units": "ft",
+    "water_year": "Oct 1 - Sep 30",
+    "generated_utc": "2026-10-27T19:42:10+00:00",
+    "api": "https://api.waterdata.usgs.gov/ogcapi/v1/collections/daily/items",
+    "data_as_of": "2026-10-26",
+    "record": "1847-2026 (full observed lake level record)",
+    "site": "Great Salt Lake surface elevation, USGS-10010000 (62614, ft)",
+    "method": "start = daily-mean level on Oct 1, end = daily-mean level on Sep 30 (linearly interpolated across gaps <= 366 days; early record is monthly); partial water years report the last observed level as end_ft"
+  },
+  "data": [
+    {
+      "year": 1847,
+      "start_ft": 4199.8,
+      "end_ft": 4199.8,
+      "partial": false,
+      "missing_days": 17
+    },
+    {
+      "year": 1848,
+      "start_ft": 4199.81,
+      "end_ft": 4200.08,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1849,
+      "start_ft": 4200.07,
+      "end_ft": 4200.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1850,
+      "start_ft": 4200.09,
+      "end_ft": 4201.26,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1851,
+      "start_ft": 4201.25,
+      "end_ft": 4202.32,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1852,
+      "start_ft": 4202.32,
+      "end_ft": 4203.62,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1853,
+      "start_ft": 4203.61,
+      "end_ft": 4204.06,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1854,
+      "start_ft": 4204.06,
+      "end_ft": 4203.39,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1855,
+      "start_ft": 4203.38,
+      "end_ft": 4203.58,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1856,
+      "start_ft": 4203.57,
+      "end_ft": 4202.64,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1857,
+      "start_ft": 4202.62,
+      "end_ft": 4201.92,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1858,
+      "start_ft": 4201.9,
+      "end_ft": 4200.37,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1859,
+      "start_ft": 4200.36,
+      "end_ft": 4200.45,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1860,
+      "start_ft": 4200.44,
+      "end_ft": 4200.12,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1861,
+      "start_ft": 4200.11,
+      "end_ft": 4202.28,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1862,
+      "start_ft": 4202.27,
+      "end_ft": 4202.31,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1863,
+      "start_ft": 4202.31,
+      "end_ft": 4203.97,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1864,
+      "start_ft": 4203.96,
+      "end_ft": 4205.0,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1865,
+      "start_ft": 4204.99,
+      "end_ft": 4206.66,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1866,
+      "start_ft": 4206.66,
+      "end_ft": 4207.86,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1867,
+      "start_ft": 4207.85,
+      "end_ft": 4209.37,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1868,
+      "start_ft": 4209.36,
+      "end_ft": 4210.29,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1869,
+      "start_ft": 4210.28,
+      "end_ft": 4209.8,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1870,
+      "start_ft": 4209.79,
+      "end_ft": 4209.76,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1871,
+      "start_ft": 4209.75,
+      "end_ft": 4210.97,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1872,
+      "start_ft": 4210.96,
+      "end_ft": 4211.02,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1873,
+      "start_ft": 4211.01,
+      "end_ft": 4210.34,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1874,
+      "start_ft": 4210.33,
+      "end_ft": 4208.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1875,
+      "start_ft": 4208.7,
+      "end_ft": 4209.9,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1876,
+      "start_ft": 4209.9,
+      "end_ft": 4210.25,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1877,
+      "start_ft": 4210.25,
+      "end_ft": 4208.35,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1878,
+      "start_ft": 4208.34,
+      "end_ft": 4206.72,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1879,
+      "start_ft": 4206.7,
+      "end_ft": 4205.12,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1880,
+      "start_ft": 4205.1,
+      "end_ft": 4205.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1881,
+      "start_ft": 4205.2,
+      "end_ft": 4204.61,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1882,
+      "start_ft": 4204.6,
+      "end_ft": 4204.13,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1883,
+      "start_ft": 4204.1,
+      "end_ft": 4205.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1884,
+      "start_ft": 4205.5,
+      "end_ft": 4206.51,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1885,
+      "start_ft": 4206.5,
+      "end_ft": 4206.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1886,
+      "start_ft": 4206.7,
+      "end_ft": 4205.81,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1887,
+      "start_ft": 4205.8,
+      "end_ft": 4204.41,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1888,
+      "start_ft": 4204.4,
+      "end_ft": 4202.12,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1889,
+      "start_ft": 4202.1,
+      "end_ft": 4202.96,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1890,
+      "start_ft": 4202.95,
+      "end_ft": 4202.41,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1891,
+      "start_ft": 4202.4,
+      "end_ft": 4201.72,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1892,
+      "start_ft": 4201.69,
+      "end_ft": 4201.03,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1893,
+      "start_ft": 4201.0,
+      "end_ft": 4201.92,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1894,
+      "start_ft": 4201.9,
+      "end_ft": 4201.25,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1895,
+      "start_ft": 4201.24,
+      "end_ft": 4200.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1896,
+      "start_ft": 4200.7,
+      "end_ft": 4200.72,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1897,
+      "start_ft": 4200.7,
+      "end_ft": 4200.31,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1898,
+      "start_ft": 4200.3,
+      "end_ft": 4200.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1899,
+      "start_ft": 4200.2,
+      "end_ft": 4199.19,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1900,
+      "start_ft": 4199.19,
+      "end_ft": 4198.78,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1901,
+      "start_ft": 4198.77,
+      "end_ft": 4196.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1902,
+      "start_ft": 4196.9,
+      "end_ft": 4196.22,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1903,
+      "start_ft": 4196.2,
+      "end_ft": 4197.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1904,
+      "start_ft": 4197.2,
+      "end_ft": 4196.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1905,
+      "start_ft": 4196.0,
+      "end_ft": 4197.31,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1906,
+      "start_ft": 4197.3,
+      "end_ft": 4199.81,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1907,
+      "start_ft": 4199.8,
+      "end_ft": 4199.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1908,
+      "start_ft": 4199.9,
+      "end_ft": 4202.0,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1909,
+      "start_ft": 4202.0,
+      "end_ft": 4202.11,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1910,
+      "start_ft": 4202.1,
+      "end_ft": 4201.62,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1911,
+      "start_ft": 4201.6,
+      "end_ft": 4201.81,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1912,
+      "start_ft": 4201.8,
+      "end_ft": 4201.9,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1913,
+      "start_ft": 4201.9,
+      "end_ft": 4202.41,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1914,
+      "start_ft": 4202.4,
+      "end_ft": 4201.61,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1915,
+      "start_ft": 4201.6,
+      "end_ft": 4201.31,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1916,
+      "start_ft": 4201.3,
+      "end_ft": 4202.51,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1917,
+      "start_ft": 4202.5,
+      "end_ft": 4202.11,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1918,
+      "start_ft": 4202.1,
+      "end_ft": 4200.81,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1919,
+      "start_ft": 4200.8,
+      "end_ft": 4200.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1920,
+      "start_ft": 4200.7,
+      "end_ft": 4201.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1921,
+      "start_ft": 4201.9,
+      "end_ft": 4203.12,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1922,
+      "start_ft": 4203.1,
+      "end_ft": 4203.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1923,
+      "start_ft": 4203.7,
+      "end_ft": 4203.11,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1924,
+      "start_ft": 4203.1,
+      "end_ft": 4203.31,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1925,
+      "start_ft": 4203.3,
+      "end_ft": 4202.51,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1926,
+      "start_ft": 4202.5,
+      "end_ft": 4201.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1927,
+      "start_ft": 4201.9,
+      "end_ft": 4200.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1928,
+      "start_ft": 4200.7,
+      "end_ft": 4200.65,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1929,
+      "start_ft": 4200.65,
+      "end_ft": 4199.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1930,
+      "start_ft": 4199.7,
+      "end_ft": 4198.07,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1931,
+      "start_ft": 4198.05,
+      "end_ft": 4198.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1932,
+      "start_ft": 4198.0,
+      "end_ft": 4197.06,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1933,
+      "start_ft": 4197.05,
+      "end_ft": 4195.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1934,
+      "start_ft": 4195.0,
+      "end_ft": 4194.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1935,
+      "start_ft": 4194.2,
+      "end_ft": 4194.37,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1936,
+      "start_ft": 4194.35,
+      "end_ft": 4194.96,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1937,
+      "start_ft": 4194.95,
+      "end_ft": 4194.92,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1938,
+      "start_ft": 4194.9,
+      "end_ft": 4194.76,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1939,
+      "start_ft": 4194.75,
+      "end_ft": 4193.8,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1940,
+      "start_ft": 4193.8,
+      "end_ft": 4194.06,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1941,
+      "start_ft": 4194.05,
+      "end_ft": 4194.86,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1942,
+      "start_ft": 4194.85,
+      "end_ft": 4194.76,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1943,
+      "start_ft": 4194.75,
+      "end_ft": 4194.96,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1944,
+      "start_ft": 4194.95,
+      "end_ft": 4195.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1945,
+      "start_ft": 4195.2,
+      "end_ft": 4195.41,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1946,
+      "start_ft": 4195.4,
+      "end_ft": 4196.25,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1947,
+      "start_ft": 4196.25,
+      "end_ft": 4196.26,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1948,
+      "start_ft": 4196.25,
+      "end_ft": 4196.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1949,
+      "start_ft": 4196.7,
+      "end_ft": 4197.56,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1950,
+      "start_ft": 4197.55,
+      "end_ft": 4198.46,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1951,
+      "start_ft": 4198.45,
+      "end_ft": 4199.56,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1952,
+      "start_ft": 4199.55,
+      "end_ft": 4198.96,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1953,
+      "start_ft": 4198.95,
+      "end_ft": 4197.36,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1954,
+      "start_ft": 4197.35,
+      "end_ft": 4196.56,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1955,
+      "start_ft": 4196.55,
+      "end_ft": 4196.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1956,
+      "start_ft": 4196.0,
+      "end_ft": 4196.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1957,
+      "start_ft": 4196.0,
+      "end_ft": 4195.51,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1958,
+      "start_ft": 4195.5,
+      "end_ft": 4194.51,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1959,
+      "start_ft": 4194.5,
+      "end_ft": 4193.36,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1960,
+      "start_ft": 4193.35,
+      "end_ft": 4191.7,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1961,
+      "start_ft": 4191.7,
+      "end_ft": 4192.16,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1962,
+      "start_ft": 4192.15,
+      "end_ft": 4191.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1963,
+      "start_ft": 4191.5,
+      "end_ft": 4192.61,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1964,
+      "start_ft": 4192.6,
+      "end_ft": 4193.75,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1965,
+      "start_ft": 4193.75,
+      "end_ft": 4193.4,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1966,
+      "start_ft": 4193.4,
+      "end_ft": 4193.86,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1967,
+      "start_ft": 4193.85,
+      "end_ft": 4194.32,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1968,
+      "start_ft": 4194.3,
+      "end_ft": 4195.26,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1969,
+      "start_ft": 4195.25,
+      "end_ft": 4194.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1970,
+      "start_ft": 4194.9,
+      "end_ft": 4196.86,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1971,
+      "start_ft": 4196.85,
+      "end_ft": 4197.9,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1972,
+      "start_ft": 4197.9,
+      "end_ft": 4199.2,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1973,
+      "start_ft": 4199.2,
+      "end_ft": 4199.26,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1974,
+      "start_ft": 4199.25,
+      "end_ft": 4200.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1975,
+      "start_ft": 4200.0,
+      "end_ft": 4200.41,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1976,
+      "start_ft": 4200.4,
+      "end_ft": 4198.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1977,
+      "start_ft": 4198.9,
+      "end_ft": 4198.54,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1978,
+      "start_ft": 4198.55,
+      "end_ft": 4197.66,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1979,
+      "start_ft": 4197.65,
+      "end_ft": 4199.11,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1980,
+      "start_ft": 4199.1,
+      "end_ft": 4198.17,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1981,
+      "start_ft": 4198.15,
+      "end_ft": 4200.03,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1982,
+      "start_ft": 4200.05,
+      "end_ft": 4204.33,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1983,
+      "start_ft": 4204.35,
+      "end_ft": 4207.71,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1984,
+      "start_ft": 4207.7,
+      "end_ft": 4208.2,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1985,
+      "start_ft": 4208.2,
+      "end_ft": 4210.4,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1986,
+      "start_ft": 4210.4,
+      "end_ft": 4209.12,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1987,
+      "start_ft": 4209.1,
+      "end_ft": 4206.21,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1988,
+      "start_ft": 4206.2,
+      "end_ft": 4204.01,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1989,
+      "start_ft": 4204.0,
+      "end_ft": 4201.8,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1990,
+      "start_ft": 4201.8,
+      "end_ft": 4200.7,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1991,
+      "start_ft": 4200.5,
+      "end_ft": 4198.9,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1992,
+      "start_ft": 4198.8,
+      "end_ft": 4199.6,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1993,
+      "start_ft": 4199.6,
+      "end_ft": 4197.6,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1994,
+      "start_ft": 4197.6,
+      "end_ft": 4198.7,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1995,
+      "start_ft": 4198.6,
+      "end_ft": 4198.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1996,
+      "start_ft": 4198.5,
+      "end_ft": 4200.2,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1997,
+      "start_ft": 4200.2,
+      "end_ft": 4202.0,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1998,
+      "start_ft": 4201.9,
+      "end_ft": 4202.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 1999,
+      "start_ft": 4202.5,
+      "end_ft": 4201.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2000,
+      "start_ft": 4201.1,
+      "end_ft": 4199.2,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2001,
+      "start_ft": 4199.11,
+      "end_ft": 4197.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2002,
+      "start_ft": 4197.5,
+      "end_ft": 4195.48,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2003,
+      "start_ft": 4195.43,
+      "end_ft": 4194.15,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2004,
+      "start_ft": 4194.12,
+      "end_ft": 4195.58,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2005,
+      "start_ft": 4195.57,
+      "end_ft": 4196.37,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2006,
+      "start_ft": 4196.36,
+      "end_ft": 4195.11,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2007,
+      "start_ft": 4195.26,
+      "end_ft": 4194.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2008,
+      "start_ft": 4194.08,
+      "end_ft": 4194.91,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2009,
+      "start_ft": 4194.48,
+      "end_ft": 4193.81,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2010,
+      "start_ft": 4193.81,
+      "end_ft": 4197.45,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2011,
+      "start_ft": 4197.43,
+      "end_ft": 4196.26,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2012,
+      "start_ft": 4196.26,
+      "end_ft": 4194.37,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2013,
+      "start_ft": 4194.39,
+      "end_ft": 4193.44,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2014,
+      "start_ft": 4193.48,
+      "end_ft": 4192.63,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2015,
+      "start_ft": 4192.62,
+      "end_ft": 4192.4,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2016,
+      "start_ft": 4192.42,
+      "end_ft": 4193.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2017,
+      "start_ft": 4193.6,
+      "end_ft": 4192.0,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2018,
+      "start_ft": 4192.1,
+      "end_ft": 4193.2,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2019,
+      "start_ft": 4193.3,
+      "end_ft": 4192.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2020,
+      "start_ft": 4192.5,
+      "end_ft": 4190.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2021,
+      "start_ft": 4190.4,
+      "end_ft": 4189.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2022,
+      "start_ft": 4189.0,
+      "end_ft": 4192.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2023,
+      "start_ft": 4192.0,
+      "end_ft": 4192.5,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2024,
+      "start_ft": 4192.4,
+      "end_ft": 4191.1,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2025,
+      "start_ft": 4191.0,
+      "end_ft": 4189.7,
+      "partial": false,
+      "missing_days": 0
+    },
+    {
+      "year": 2026,
+      "start_ft": 4189.7,
+      "end_ft": 4189.8,
+      "partial": true,
+      "missing_days": 339
+    }
+  ]
+}
