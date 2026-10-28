@@ -153,16 +153,21 @@ src/
 - **Accept**: `/water` and `/water/gsl` build and render in the site design;
   `/gsl` redirects; full site suite green.
 
-### T5 — Docs, retirement, deploy
+### T5 — Docs, retirement, deploy ✅
 - Delete the old iframe `gsl` page + `content/gsl.md` reference from the old
-  route (content file moves to the /water/gsl intro)
+  route (content file moves to the /water/gsl intro) — done in T4
 - Site README + PLAN: water-platform section + "how to add a lake" recipe
   (4 JSON files + registry entry)
 - utahwater dashboard README: note the public version now lives at
-  jakejacobson.info/water/gsl
-- Retire the `gsl-dashboard` Pages project (`wrangler pages project delete`)
+  jakejacobson.info/water/gsl; horizon 5/10/15/20 wording; removed the
+  wrangler.jsonc (no separate Pages project anymore)
+- Retire the `gsl-dashboard` Pages project (`wrangler pages project delete`) ✅
 - Full suite + lint + build; deploy; verify live (curl + browser, light + dark)
-- **Accept**: all green, deployed, live-verified, Pages project deleted.
+- **Accept**: all green, deployed, live-verified, Pages project deleted. ✅
+  Deployment 0f87f70f: /water/gsl 200 (full dashboard in static HTML: 4 chart
+  series, what-if + projection cards, 4 sliders, 3 selects), /gsl → 301 →
+  /water/gsl, /water index, home "5 doors"; no iframes / no local host /
+  no gsl-dashboard.pages.dev refs in the built output.
 
 ## Baseline facts (verified 2026-10-28)
 
