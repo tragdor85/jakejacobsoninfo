@@ -12,7 +12,8 @@ import Lab from "./lab/page";
 import Water from "./water/page";
 import { generateMetadata as waterLakeMetadata, generateStaticParams as waterLakeParams } from "./water/[slug]/page";
 import { WaterLakeView } from "@/components/water/water-lake-view";
-import { getLake } from "@/lib/water";
+import { WaterRiverView } from "@/components/water/water-river-view";
+import { getLake, getRiver } from "@/lib/water";
 import NotFound from "./not-found";
 
 // Banned strings — PLAN.md sanitization rules, checked against the rendered
@@ -167,14 +168,15 @@ describe("lab", () => {
 describe("water", () => {
   const gsl = getLake("gsl")!;
 
-  it("lists the registered lakes", () => {
+  it("lists the registered lakes and rivers", () => {
     render(<Water />);
     expect(screen.getByText("What-if water dashboards")).toBeTruthy();
     expect(screen.getByText("Great Salt Lake")).toBeTruthy();
+    expect(screen.getByText("Bear River")).toBeTruthy();
   });
 
-  it("generates static params for every registered lake", () => {
-    expect(waterLakeParams()).toEqual([{ slug: "gsl" }]);
+  it("generates static params for every registered water body", () => {
+    expect(waterLakeParams()).toEqual([{ slug: "gsl" }, { slug: "bear-river" }]);
   });
 
   it("generates metadata from the lake config", async () => {
@@ -194,6 +196,20 @@ describe("water", () => {
 
   it("passes sanitization rules (lake page)", () => {
     assertClean(htmlOf(<WaterLakeView lake={gsl} />), "water/gsl");
+  });
+
+  it("renders the Bear River dashboard for /water/bear-river", () => {
+    const bear = getRiver("bear-river")!;
+    render(<WaterRiverView river={bear} />);
+    expect(screen.getAllByText(/bear river/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/what reaches the lake in \d{4}/i)).toBeTruthy();
+    expect(screen.getByText("Scenario inflows")).toBeTruthy();
+    expect(screen.getByText("Box Elder Valley diversions")).toBeTruthy();
+  });
+
+  it("passes sanitization rules (river page)", () => {
+    const bear = getRiver("bear-river")!;
+    assertClean(htmlOf(<WaterRiverView river={bear} />), "water/bear-river");
   });
 });
 

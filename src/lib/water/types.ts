@@ -134,6 +134,7 @@ export interface ChartMarker {
 
 /** Everything a water dashboard needs for one lake. */
 export interface LakeConfig {
+  kind: "lake";
   slug: string;
   name: string;
   shortName: string;
@@ -151,3 +152,99 @@ export interface LakeConfig {
   lowMarker?: ChartMarker;
   data: LakeData;
 }
+
+// ---------------------------------------------------------------------------
+// River (conduit) water bodies — the Bear River, which flows INTO a lake.
+//
+// A river is modeled as a flow budget, not a level: the response variable is
+// the flow that reaches the receiving lake (acre-ft / water year), and the
+// what-if sliders sit on the inflow components (in) and the diversions (out).
+// The budget is  flow_to_lake = inflow − diversions − residual  where the
+// residual covers river ET, seepage, storage change, and the gauge→mouth gap.
+
+/** A named diversion (the "Out" side of the budget) with a display label. */
+export interface DiversionSource {
+  key: string;
+  name: string;
+  short?: string;
+  /** Average annual diversion in acre-ft — the slider's 100% value. */
+  avg_af: number;
+  kind?: string;
+  source?: string;
+  /** Whether this diversion gets a what-if slider. */
+  slider: boolean;
+}
+
+/** A named inflow component (the "In" side, decomposed from the source total). */
+export interface InflowComponent {
+  key: string;
+  label: string;
+  note?: string;
+}
+
+/** A named what-if scenario (e.g. a proposed new diversion). */
+export interface RiverScenario {
+  name: string;
+  /** Additional diversion added by the scenario (acre-ft/yr). */
+  new_diversion_af: number;
+  /** Portion of the new diversion fully depleted (acre-ft/yr). */
+  depleted_af: number;
+  /** Implied lake-level drop (inches), if known. */
+  lake_level_drop_inch?: number;
+  source?: string;
+}
+
+/** One water year of measured river inflow (source-gauge total + split). */
+export interface RiverInflowRow {
+  year: number;
+  /** Measured total inflow at the source gauge (acre-ft). */
+  total: number | null;
+  /** Mainstem share of the total (acre-ft). */
+  mainstem: number | null;
+  /** Tributary share of the total (acre-ft). */
+  tributaries: number | null;
+  /** Measured flow below the last diversion reach (acre-ft), if gauged. */
+  below_oline: number | null;
+  /** True when the source-gauge record is a full year. */
+  complete: boolean;
+}
+
+/** The diversion + model-config block (shape of diversions.json). */
+export interface RiverDiversionConfig {
+  note?: string;
+  units?: string;
+  /** Diversions scale with available flow up to this fraction of inflow. */
+  dry_take_cap: number;
+  /** Residual losses as a fraction of inflow. */
+  residual_frac: number;
+  diversions: DiversionSource[];
+  scenarios: Record<string, RiverScenario>;
+  provenance?: string[];
+}
+
+/** The committed data files for one river. */
+export interface RiverData {
+  inflows: RiverInflowRow[];
+  diversions: RiverDiversionConfig;
+}
+
+/** Everything a water dashboard needs for one river. */
+export interface RiverConfig {
+  kind: "river";
+  slug: string;
+  name: string;
+  shortName: string;
+  location: string;
+  /** One-line description for the /water index card. */
+  description: string;
+  /** The source gauge that provides the measured inflow. */
+  source: RiverSource;
+  /** The inflow components (the "In" what-if sliders). */
+  inflowComponents: InflowComponent[];
+  /** [first, last] water years with source-gauge data. */
+  yearRange: [number, number];
+  data: RiverData;
+}
+
+/** Any registered water body (lake or river). */
+export type WaterConfig = LakeConfig | RiverConfig;

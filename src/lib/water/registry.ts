@@ -1,18 +1,27 @@
-// The water dashboard registry: one entry per lake.
+// The water dashboard registry: one entry per lake and one per river.
 //
 // Adding a lake = four JSON data files under src/data/water/<slug>/
 // (levels, inflows, elev_area, calibration — see the GSL set for the
-// schemas) plus a LakeConfig entry here. The /water index and the
-// /water/[slug] routes are generated from this table.
+// schemas) plus a LakeConfig entry here.
+//
+// Adding a river = two JSON data files under src/data/water/<slug>/
+// (inflows, diversions — see the bear-river set for the schemas) plus a
+// RiverConfig entry here.
+//
+// The /water index and the /water/[slug] routes are generated from the
+// combined `water` table (lakes + rivers), dispatched on `kind`.
 
-import type { LakeConfig } from "./types";
+import type { LakeConfig, RiverConfig, WaterConfig } from "./types";
 import { dateToYear } from "./format";
 import calibration from "@/data/water/gsl/calibration.json";
 import elevArea from "@/data/water/gsl/elev_area.json";
 import inflows from "@/data/water/gsl/inflows.json";
 import levels from "@/data/water/gsl/levels.json";
+import bearInflows from "@/data/water/bear-river/inflows.json";
+import bearDiversions from "@/data/water/bear-river/diversions.json";
 
 const gsl: LakeConfig = {
+  kind: "lake",
   slug: "gsl",
   name: "Great Salt Lake",
   shortName: "GSL",
@@ -36,15 +45,58 @@ const gsl: LakeConfig = {
   data: { levels, inflows, elevArea, calibration },
 };
 
+const bearRiver: RiverConfig = {
+  kind: "river",
+  slug: "bear-river",
+  name: "Bear River",
+  shortName: "Bear",
+  location: "Utah, USA",
+  description:
+    "The largest tributary of the Great Salt Lake. Its flow is diverted in the Box Elder Valley before reaching the lake — drag the diversions to see what actually arrives.",
+  source: { key: "corinne", label: "Bear River at Corinne", note: "USGS 10126000" },
+  inflowComponents: [
+    { key: "mainstem", label: "Main stem", note: "the river's own flow" },
+    { key: "tributaries", label: "Tributaries", note: "Malad, Little Bear, …" },
+  ],
+  yearRange: [1949, 2026],
+  data: { inflows: bearInflows, diversions: bearDiversions },
+};
+
 /** All registered lakes, keyed by slug. */
 export const lakes: Record<string, LakeConfig> = { gsl };
+
+/** All registered rivers, keyed by slug. */
+export const rivers: Record<string, RiverConfig> = { [bearRiver.slug]: bearRiver };
+
+/** All registered water bodies (lakes + rivers), keyed by slug. */
+export const water: Record<string, WaterConfig> = { ...lakes, ...rivers };
 
 /** Slugs of all registered lakes, in display order. */
 export function lakeSlugs(): string[] {
   return Object.keys(lakes);
 }
 
+/** Slugs of all registered rivers, in display order. */
+export function riverSlugs(): string[] {
+  return Object.keys(rivers);
+}
+
+/** Slugs of all registered water bodies (lakes + rivers), in display order. */
+export function waterSlugs(): string[] {
+  return Object.keys(water);
+}
+
 /** A lake by slug, or null. */
 export function getLake(slug: string): LakeConfig | null {
   return lakes[slug] ?? null;
+}
+
+/** A river by slug, or null. */
+export function getRiver(slug: string): RiverConfig | null {
+  return rivers[slug] ?? null;
+}
+
+/** Any water body (lake or river) by slug, or null. */
+export function getWater(slug: string): WaterConfig | null {
+  return water[slug] ?? null;
 }

@@ -26,6 +26,7 @@ import inflows from "@/data/water/gsl/inflows.json";
 import levels from "@/data/water/gsl/levels.json";
 
 const lake: LakeConfig = {
+  kind: "lake",
   slug: "gsl",
   name: "Great Salt Lake",
   shortName: "GSL",

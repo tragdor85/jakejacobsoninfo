@@ -15,6 +15,16 @@ export function fmtFt(v: number): string {
 }
 
 /**
+ * Signed flow delta in MAF, 2 decimals. Avoids a negative sign on values
+ * that round to zero (−0.00 MAF reads as a loss).
+ */
+export function fmtDeltaMaf(acft: number): string {
+  const v = acft / MAF;
+  const sign = v < 0 && Math.abs(v) >= 0.005 ? "−" : "+";
+  return sign + Math.abs(v).toFixed(2) + " MAF";
+}
+
+/**
  * Signed level delta, 2 decimals. Avoids a negative sign on values that
  * round to zero (−0.00 ft reads as a drop).
  */

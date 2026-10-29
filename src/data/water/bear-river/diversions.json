@@ -1,0 +1,59 @@
+{
+  "note": "Bear River diversions in the Box Elder Valley (between the Corinne gauge and the Great Salt Lake mouth). These are the 'Out' side of the flow balance and become the dashboard sliders. VOLUMES ARE ESTIMATES (see provenance) - the precise year-by-year diversion data lives in the Utah DWR's diversion database (dwre-utahdnr.opendata.arcgis.com), a JavaScript app not accessible to the pipeline. The estimates are grounded in the measured flow loss from the Corinne gauge to the below-O-Line gauge (USGS-10126050) for recent years and the published Bear River basin diversion figures.",
+  "units": "acre-ft per water year",
+  "dry_take_cap": 0.90,
+  "residual_frac": 0.05,
+  "diversions": [
+    {
+      "key": "canals",
+      "name": "Bear River Dam canals",
+      "short": "Canals",
+      "avg_af": 280000,
+      "kind": "irrigation",
+      "source": "Estimate. The canal system (Bear River Canal Co. + East Branch, West Side, Central, etc.) is the largest diversion, irrigating the Box Elder Valley. Sized so the canals+BRMD reach matches the measured Corinne->below-O-Line flow loss (~200k-630k AF in 2024-2025).",
+      "slider": true
+    },
+    {
+      "key": "brmd",
+      "name": "Bear River Municipal District (BRMD)",
+      "short": "BRMD",
+      "avg_af": 120000,
+      "kind": "municipal",
+      "source": "Estimate. Brigham City municipal supply from the Bear River.",
+      "slider": true
+    },
+    {
+      "key": "brid",
+      "name": "Box Elder Irrigation District (BRID)",
+      "short": "BRID",
+      "avg_af": 110000,
+      "kind": "irrigation",
+      "source": "Estimate. Box Elder Valley irrigation district.",
+      "slider": true
+    },
+    {
+      "key": "bcid",
+      "name": "Brigham City Irrigation District (BCID)",
+      "short": "BCID",
+      "avg_af": 70000,
+      "kind": "irrigation",
+      "source": "Estimate. Brigham City irrigation district.",
+      "slider": true
+    }
+  ],
+  "scenarios": {
+    "brd": {
+      "name": "Bear River Development (proposed)",
+      "new_diversion_af": 220000,
+      "depleted_af": 85600,
+      "lake_level_drop_inch": 8.5,
+      "source": "DWR Bear River Development page (water.utah.gov/bear-river-dev)"
+    }
+  },
+  "provenance": [
+    "Flow loss Corinne (USGS-10126000) -> below-O-Line (USGS-10126050): 2024 = 630,097 AF (95% of 659,829 inflow); 2025 = 203,214 AF (35% of 579,427). This reach contains the canals + BRMD plus natural losses.",
+    "Regional Economic Values of the Bear River (water.utah.gov, 2024): total Bear River BASIN diversion 1.3-2.6 MAF/yr (mostly Idaho/upper basin); the Utah Box Elder Valley diversions are a subset.",
+    "Bear River Development (water.utah.gov/bear-river-dev): the PROPOSED BRD is 220,000 AF/yr (85,600 AF/yr fully depleted) - shown as a scenario toggle, not a live slider.",
+    "Caveat: diversion take is governed by water-right priorities, not a fixed flow fraction (a wetter year can show a higher take fraction), so per-year volumes are modeled as min(entitlement, available flow) rather than a fixed percentage."
+  ]
+}
