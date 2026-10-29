@@ -87,6 +87,37 @@ describe("river: flow budget (RiverModel)", () => {
   });
 });
 
+describe("river: breakdown (where the water goes)", () => {
+  it("decomposes the balance so the parts sum to the inflow", () => {
+    const row = riverInflowRow(river, 1983)!;
+    const base = baselineMults(river);
+    const b = model.breakdown(row, base, base, 0);
+    // The balance closes: diversions + residual + flow-to-lake = inflow.
+    expect(b.diversions + b.residual + b.flowToLake).toBeCloseTo(b.inflow, 3);
+    expect(b.inflow).toBeGreaterThan(0);
+    expect(b.diversions).toBeGreaterThan(0);
+    expect(b.residual).toBeGreaterThan(0);
+  });
+
+  it("shows diversions dominating a dry year (2025)", () => {
+    const row = riverInflowRow(river, 2025)!;
+    const base = baselineMults(river);
+    const b = model.breakdown(row, base, base, 0);
+    // 2025 was dry: the diversions take most of the inflow, little reaches the lake.
+    expect(b.diversions).toBeGreaterThan(b.inflow * 0.8);
+    expect(b.flowToLake / 1e6).toBeCloseTo(0.03, 1);
+  });
+
+  it("shows most flow reaching the lake in a wet year (1983)", () => {
+    const row = riverInflowRow(river, 1983)!;
+    const base = baselineMults(river);
+    const b = model.breakdown(row, base, base, 0);
+    // Wet year: the fixed diversions take a small fraction, most reaches the lake.
+    expect(b.flowToLake).toBeGreaterThan(b.diversions);
+    expect(b.flowToLake / 1e6).toBeCloseTo(2.9, 1);
+  });
+});
+
 describe("river: what-if", () => {
   it("lowering the largest diversion frees water for the lake", () => {
     const year = 1983;

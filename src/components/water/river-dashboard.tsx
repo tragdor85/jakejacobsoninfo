@@ -84,8 +84,26 @@ export function RiverDashboard({ river }: { river: RiverConfig }) {
     const baseline = model.flowToLake(row, base, base, 0);
     const extra = brdOn && brd ? brd.new_diversion_af : 0;
     const what = model.flowToLake(row, inflowMults, diversionMults, extra);
-    return { year, baseline, whatIf: what, delta: what - baseline };
+    const breakdown = model.breakdown(row, inflowMults, diversionMults, extra);
+    return { year, baseline, whatIf: what, delta: what - baseline, breakdown };
   }, [row, river, year, actualInflow, inflowAcft, diversionAcft, brdOn, brd, model, diversions]);
+
+  // Long-term mean inflow over complete years, used to flag a dry year.
+  const meanInflowAcft = useMemo(() => {
+    const rows = river.data.inflows.filter((r) => r.complete);
+    if (!rows.length) return 0;
+    return rows.reduce((s, r) => s + (r.total ?? 0), 0) / rows.length;
+  }, [river]);
+  const inflowTotal = row?.total ?? 0;
+  const isDry = inflowTotal > 0 && inflowTotal < meanInflowAcft * 0.8;
+  // The default year is the last COMPLETE water year. A partial (in-progress)
+  // year is labeled so its low total is not mistaken for a full-year value.
+  const yearNote = !row?.complete
+    ? `${year} is in progress — a partial year, not a full total.`
+    : `${year} is the last complete year.` +
+      (isDry
+        ? ` It was dry (${fmtMaf(inflowTotal)} MAF vs ${fmtMaf(meanInflowAcft)} MAF mean), so the diversions took most of the flow.`
+        : "");
 
   function handleYear(y: number) {
     setYear(y);
@@ -109,6 +127,7 @@ export function RiverDashboard({ river }: { river: RiverConfig }) {
           {row?.total != null ? (
             <>
               Inflow (Corinne): {fmtMaf(row.total)} MAF
+              {row.complete ? "" : " · in progress"}
             </>
           ) : (
             "no inflow gauge data"
@@ -166,6 +185,30 @@ export function RiverDashboard({ river }: { river: RiverConfig }) {
             <Delta value={whatIf ? whatIf.delta : null} />
           </div>
         </div>
+        <p className="mt-3 text-xs text-muted">{yearNote}</p>
+        {whatIf?.breakdown ? (
+          <div className="mt-3 rounded-md border border-line p-3">
+            <p className="font-mono text-xs uppercase tracking-widest text-muted">Where the water goes</p>
+            <dl className="mt-2 space-y-1 text-sm tabular-nums">
+              <div className="flex justify-between">
+                <dt className="text-muted">Inflow (Corinne)</dt>
+                <dd className="font-mono">{fmtMaf(whatIf.breakdown.inflow)} MAF</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-muted">− Diversions</dt>
+                <dd className="font-mono">{fmtMaf(whatIf.breakdown.diversions)} MAF</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-muted">− Residual</dt>
+                <dd className="font-mono">{fmtMaf(whatIf.breakdown.residual)} MAF</dd>
+              </div>
+              <div className="flex justify-between border-t border-line pt-1">
+                <dt className="font-medium text-fg">= To the lake</dt>
+                <dd className="font-mono font-semibold">{fmtMaf(whatIf.breakdown.flowToLake)} MAF</dd>
+              </div>
+            </dl>
+          </div>
+        ) : null}
         {brd ? (
           <label className="mt-4 flex items-center gap-2 text-sm text-muted">
             <input

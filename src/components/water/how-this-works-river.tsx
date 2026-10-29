@@ -44,15 +44,22 @@ export function HowThisWorksRiver({ river }: { river: RiverConfig }) {
           change, and the gap between the last gauge and the lake (there is no gauge at the mouth).
         </p>
         <p>
-          Because diversions are governed by water-right priority, not a fixed share of flow, a dry year takes
-          less than a wet one: the model scales the takes with available flow up to{" "}
-          {Math.round(div.dry_take_cap * 100)}% of inflow. Lower a diversion and the flow reaching the lake rises;
-          raise an inflow and it falls.
+          Because diversions are governed by water-right priority, not a fixed share of flow, the take scales
+          with available flow up to {Math.round(div.dry_take_cap * 100)}% of inflow. In a wet year the river
+          carries plenty of water, so the fixed diversions take a small fraction and most of the flow reaches the
+          lake. In a dry year the same diversions take a much larger fraction — up to that cap — so far less
+          reaches the lake. The &ldquo;Where the water goes&rdquo; breakdown in the what-if card shows exactly
+          where each year&rsquo;s inflow ends up.
         </p>
       </Section>
 
       <Section kicker="Limitations" title="Limitations">
         <ul className="list-disc space-y-2 pl-5">
+          <li>
+            <strong className="font-medium text-fg">The selected year is labeled.</strong> The default is the
+            last complete water year. The in-progress year is available in the year picker but flagged as partial
+            — its low total reflects only the months recorded so far, not a full year.
+          </li>
           <li>
             <strong className="font-medium text-fg">No gauge at the mouth.</strong> The flow to the lake is a
             computed residual (inflow minus diversions minus residual losses), not a direct measurement.

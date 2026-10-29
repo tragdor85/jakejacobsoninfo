@@ -21,6 +21,18 @@
 
 import type { RiverDiversionConfig, RiverInflowRow } from "./types";
 
+/** The annual flow balance, decomposed so the dashboard can show where the water goes. */
+export interface RiverBreakdown {
+  /** Effective inflow after the inflow sliders (acre-ft). */
+  inflow: number;
+  /** Total diverted by all diversions plus any extra (acre-ft). */
+  diversions: number;
+  /** Residual loss — river ET, seepage, storage change, gauge→mouth gap (acre-ft). */
+  residual: number;
+  /** What reaches the lake (acre-ft). */
+  flowToLake: number;
+}
+
 export class RiverModel {
   constructor(private readonly config: RiverDiversionConfig) {}
 
@@ -30,29 +42,40 @@ export class RiverModel {
   }
 
   /**
-   * Flow reaching the lake (acre-ft) for a given inflow and adjustments.
+   * Decompose the annual flow balance for a given inflow and adjustments.
    *
    * @param row the measured inflow for the water year (total + split)
    * @param inflowMults per-inflow-component multiplier (1 = unchanged)
    * @param diversionMults per-diversion multiplier (1 = unchanged)
    * @param extraDiversion an additional diversion (e.g. a proposed project), acre-ft
    */
+  breakdown(
+    row: RiverInflowRow,
+    inflowMults: Record<string, number>,
+    diversionMults: Record<string, number>,
+    extraDiversion = 0,
+  ): RiverBreakdown {
+    const inflow =
+      (row.mainstem ?? 0) * (inflowMults["mainstem"] ?? 1) +
+      (row.tributaries ?? 0) * (inflowMults["tributaries"] ?? 1);
+    const dryScale = Math.min(1, (inflow * this.config.dry_take_cap) / this.totalAvgDiversion);
+    const diversions =
+      this.config.diversions.reduce(
+        (s, d) => s + d.avg_af * (diversionMults[d.key] ?? 1) * dryScale,
+        0,
+      ) + extraDiversion * dryScale;
+    const residual = inflow * this.config.residual_frac;
+    const flowToLake = Math.max(0, inflow - diversions - residual);
+    return { inflow, diversions, residual, flowToLake };
+  }
+
+  /** Flow reaching the lake (acre-ft) for a given inflow and adjustments. */
   flowToLake(
     row: RiverInflowRow,
     inflowMults: Record<string, number>,
     diversionMults: Record<string, number>,
     extraDiversion = 0,
   ): number {
-    const effInflow =
-      (row.mainstem ?? 0) * (inflowMults["mainstem"] ?? 1) +
-      (row.tributaries ?? 0) * (inflowMults["tributaries"] ?? 1);
-    const dryScale = Math.min(1, (effInflow * this.config.dry_take_cap) / this.totalAvgDiversion);
-    const diverted =
-      this.config.diversions.reduce(
-        (s, d) => s + d.avg_af * (diversionMults[d.key] ?? 1) * dryScale,
-        0,
-      ) + extraDiversion * dryScale;
-    const residual = effInflow * this.config.residual_frac;
-    return Math.max(0, effInflow - diverted - residual);
+    return this.breakdown(row, inflowMults, diversionMults, extraDiversion).flowToLake;
   }
 }
