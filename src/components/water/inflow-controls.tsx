@@ -3,6 +3,7 @@
 // the total, and a reset-to-actuals button. The sliders are the single
 // source of truth for the what-if and projection scenarios.
 
+import Link from "next/link";
 import { MAF, fmtMaf } from "@/lib/water";
 import type { RiverSource } from "@/lib/water";
 
@@ -27,7 +28,13 @@ export function InflowControls({ rivers, valuesAcft, actualAcft, maxAcft, onSlid
         return (
           <div key={s.key} className="grid grid-cols-[7rem_1fr_auto] items-center gap-3">
             <label htmlFor={`inflow-${s.key}`} className="text-sm">
-              {s.label}
+              {s.href ? (
+                <Link href={s.href} prefetch={false} className="text-accent hover:underline">
+                  {s.label}
+                </Link>
+              ) : (
+                s.label
+              )}
             </label>
             <input
               id={`inflow-${s.key}`}

@@ -34,10 +34,10 @@ const gsl: LakeConfig = {
   location: "Utah, USA",
   description: "The largest salt lake in North America, and the last stop on the Colorado River's journey west.",
   rivers: [
-    { key: "bear", label: "Bear River", note: "USGS 10126000" },
-    { key: "sevier", label: "Sevier River", note: "USGS 10219000" },
-    { key: "jordan", label: "Jordan River", note: "USGS 10171000" },
-    { key: "weber", label: "Weber River", note: "USGS 10141000" },
+    { key: "bear", label: "Bear River", note: "USGS 10126000", href: "/water/bear-river" },
+    { key: "sevier", label: "Sevier River", note: "USGS 10219000", href: "/water/sevier-river" },
+    { key: "jordan", label: "Jordan River", note: "USGS 10171000", href: "/water/jordan-river" },
+    { key: "weber", label: "Weber River", note: "USGS 10141000", href: "/water/weber-river" },
   ],
   yearRange: [1949, 2026],
   // The "magic number": historic average lake level.

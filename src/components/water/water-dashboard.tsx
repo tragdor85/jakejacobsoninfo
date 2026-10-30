@@ -11,11 +11,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   ElevAreaCurve,
   WaterModel,
+  RiverModel,
   actualAcftFor,
   allYears,
+  baselineMults,
   computeLongTermMeans,
   computeProjection,
   computeWhatIf,
@@ -25,11 +28,15 @@ import {
   fmtAreaSqMi,
   fmtDeltaFt,
   fmtFt,
+  fmtMaf,
+  getRiver,
   initialValues,
   inflowSeries,
   lowMarker,
   observedSeries,
   projectionYears,
+  riverDefaultYear,
+  riverInflowRow,
   sliderMaxAcft,
   yearNote,
 } from "@/lib/water";
@@ -58,6 +65,53 @@ function Delta({ value }: { value: number | null }) {
     <span className={`text-2xl font-semibold tabular-nums ${value >= 0 ? "text-accent" : "text-muted"}`}>
       {fmtDeltaFt(value)}
     </span>
+  );
+}
+
+/**
+ * Caveat under the inflow sliders: the MAF values are each river's total at
+ * the last recorded gauge, not a true representation of what makes it to the
+ * lake. The example figures come from the Bear River's committed data, run
+ * through its dashboard's flow model, so the prose can't drift from the
+ * river page.
+ */
+function InflowCaveat({ lake }: { lake: LakeConfig }) {
+  const bearSource = lake.rivers.find((r) => r.key === "bear");
+  const bear = bearSource?.href ? getRiver(bearSource.href.slice("/water/".length)) : null;
+  const example = useMemo(() => {
+    if (!bear) return null;
+    const model = new RiverModel(bear.data.diversions);
+    const row = riverInflowRow(bear, riverDefaultYear(bear));
+    if (!row || row.total == null) return null;
+    const base = baselineMults(bear);
+    return {
+      year: row.year,
+      gauge: fmtMaf(row.total),
+      lake: fmtMaf(model.flowToLake(row, base, base, 0)),
+    };
+  }, [bear]);
+
+  return (
+    <p className="mt-3 text-xs text-muted">
+      These MAF values are the total flow per river at the last recorded gauge, not a true
+      representation of what actually makes it to the lake — diversions take water out along
+      the way.
+      {example && bear ? (
+        <>
+          {" "}For example, in {example.year} {bear.source.label} recorded {example.gauge} MAF, but
+          only {example.lake} MAF made it to the lake after diversions.
+        </>
+      ) : null}
+      {bearSource?.href ? (
+        <>
+          {" "}
+          <Link href={bearSource.href} prefetch={false} className="text-accent hover:underline">
+            See the {bear?.name} dashboard
+          </Link>{" "}
+          to see where the water goes.
+        </>
+      ) : null}
+    </p>
   );
 }
 
@@ -139,6 +193,7 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
           onSlider={handleSlider}
           onReset={() => setValuesAcft(initialValues(lake, year))}
         />
+        <InflowCaveat lake={lake} />
       </Card>
 
       <Card kicker="What-if" title={`What if ${year} ran on these inflows?`}>

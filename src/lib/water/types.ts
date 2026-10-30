@@ -100,6 +100,8 @@ export interface RiverSource {
   label: string;
   /** Shown under the slider; e.g. "USGS 09331000". */
   note?: string;
+  /** Link to this river's own dashboard (e.g. "/water/bear-river"), if registered. */
+  href?: string;
 }
 
 /** The four committed data files for one lake. */

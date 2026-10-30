@@ -105,6 +105,38 @@ describe("WaterDashboard", () => {
     expect(mainSvg.textContent).toContain("MAF");
     expect(mainSvg.textContent).toContain("Inflow, est.");
   });
+
+  it("links each river label to its river dashboard", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const links = Array.from(container.querySelectorAll("a[href^='/water/']"))
+      .map((a) => ({ href: a.getAttribute("href"), text: a.textContent }))
+      .filter((l) => l.href !== "/water/gsl");
+    // The four scenario-inflow labels link to the four river dashboards.
+    expect(links).toContainEqual({ href: "/water/bear-river", text: "Bear River" });
+    expect(links).toContainEqual({ href: "/water/sevier-river", text: "Sevier River" });
+    expect(links).toContainEqual({ href: "/water/jordan-river", text: "Jordan River" });
+    expect(links).toContainEqual({ href: "/water/weber-river", text: "Weber River" });
+    // The linked label still labels its slider.
+    expect(screen.getByLabelText("Bear River")).toBeTruthy();
+  });
+
+  it("notes under the inflows card that gauge MAF overstates what reaches the lake", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    expect(text).toContain("last recorded gauge");
+    expect(text).toContain("not a true representation");
+    // The Bear River example, computed from the river's committed data:
+    // 2025 carried 0.58 MAF at Corinne, only 0.03 MAF reached the lake.
+    expect(text).toContain("0.58");
+    expect(text).toContain("0.03");
+    expect(text).toContain("2025");
+    // And it links to the Bear River dashboard to see where the water goes.
+    const link = Array.from(container.querySelectorAll("a"))
+      .map((a) => a.getAttribute("href"))
+      .filter((h): h is string => Boolean(h))
+      .find((h) => h === "/water/bear-river");
+    expect(link).toBe("/water/bear-river");
+  });
 });
 
 describe("WaterDashboard — How this works + About the data", () => {
