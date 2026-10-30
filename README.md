@@ -22,10 +22,25 @@ npm run dev      # http://localhost:3000
 
 ## Build & deploy
 
+Deployment is **automatic** — you do **not** need `wrangler login` or to run
+`wrangler` locally. A GitHub Actions workflow (`.github/workflows/deploy.yml`)
+rebuilds and deploys to Cloudflare Pages on **every push to `main`**:
+
 ```bash
-npm run build    # static output in ./out
-npx wrangler pages deploy out --project-name jakejacobsoninfo
+npm run build    # local static output in ./out (for preview / testing only)
+git push         # this is the deploy — the workflow picks it up
 ```
+
+- **On-demand deploy** (no push): the **Run workflow** button on the repo's
+  **Actions** tab.
+- **CI auth**: the workflow sets `CLOUDFLARE_API_TOKEN` (a GitHub Actions
+  secret) + `CLOUDFLARE_ACCOUNT_ID`, so it never touches your local `wrangler`
+  OAuth login. To (re)create that token: Cloudflare dashboard → **API Tokens**
+  → *Create Custom Token* with **Cloudflare Pages → Edit** + **Account Settings
+  → Read**, **no IP restriction** (Actions runners have rotating IPs), no
+  expiration; store it as the `CLOUDFLARE_API_TOKEN` repo secret.
+- **Manual fallback** (only if CI is ever unavailable): `wrangler login` once,
+  then `npm run deploy`.
 
 **wrangler 4.151+ gotcha**: the new `pages project create`/`deploy` delegates
 to the Workers-based Pages and auto-detects Next.js → tries an OpenNext build.

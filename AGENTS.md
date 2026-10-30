@@ -13,7 +13,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 Static personal website (see PLAN.md for IA, content sources, and sanitization
 rules). Everything is a client-rendered-free static export:
 
-- `next build` outputs to `./out`; deploy with `wrangler pages deploy out`.
+- `next build` outputs to `./out`. **Deployment is automatic** — the GitHub
+  Actions workflow (`.github/workflows/deploy.yml`) deploys to Cloudflare Pages
+  on every push to `main`. Do **not** run `wrangler login` or `npm run deploy`
+  to publish; just push. (`npm run deploy` is a manual fallback only, and needs
+  a one-time `wrangler login`.)
 - No server features: no `next start`, no server actions, no route handlers
   doing I/O. If a change needs one, it needs a design decision first.
 - Content for the depth pages (`/local-ai`, `/printer`, `/lab`) lives in
