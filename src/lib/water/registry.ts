@@ -23,6 +23,8 @@ import sevierInflows from "@/data/water/sevier-river/inflows.json";
 import sevierDiversions from "@/data/water/sevier-river/diversions.json";
 import jordanInflows from "@/data/water/jordan-river/inflows.json";
 import jordanDiversions from "@/data/water/jordan-river/diversions.json";
+import weberInflows from "@/data/water/weber-river/inflows.json";
+import weberDiversions from "@/data/water/weber-river/diversions.json";
 
 const gsl: LakeConfig = {
   kind: "lake",
@@ -100,6 +102,23 @@ const jordanRiver: RiverConfig = {
   data: { inflows: jordanInflows, diversions: jordanDiversions },
 };
 
+const weberRiver: RiverConfig = {
+  kind: "river",
+  slug: "weber-river",
+  name: "Weber River",
+  shortName: "Weber",
+  location: "Utah, USA",
+  description:
+    "A Wasatch Range river that irrigates the Weber Valley and joins the Bear River near Brigham City — so its flow feeds the lake indirectly. Drag the lower-reach diversions to see what it delivers to the Bear River.",
+  source: { key: "plain_city", label: "Weber River near Plain City", note: "USGS 10141000" },
+  inflowComponents: [
+    { key: "mainstem", label: "Main stem", note: "the river's own flow" },
+    { key: "tributaries", label: "Tributaries", note: "Silver, Chalk, and other valley creeks" },
+  ],
+  yearRange: [1949, 2026],
+  data: { inflows: weberInflows, diversions: weberDiversions },
+};
+
 /** All registered lakes, keyed by slug. */
 export const lakes: Record<string, LakeConfig> = { gsl };
 
@@ -108,6 +127,7 @@ export const rivers: Record<string, RiverConfig> = {
   [bearRiver.slug]: bearRiver,
   [sevierRiver.slug]: sevierRiver,
   [jordanRiver.slug]: jordanRiver,
+  [weberRiver.slug]: weberRiver,
 };
 
 /** All registered water bodies (lakes + rivers), keyed by slug. */

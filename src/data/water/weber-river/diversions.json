@@ -1,0 +1,35 @@
+{
+  "note": "Weber River diversions in the lower reach (between the Plain City anchor gauge and the Bear River confluence near Brigham City). These are the 'Out' side of the flow balance and become the dashboard sliders. VOLUMES ARE ESTIMATES - the precise year-by-year diversion data lives in the Utah DWR's diversion database, a JavaScript app not accessible to the pipeline. The Plain City anchor already reflects the large upstream diversions (Ogden municipal supply and the Weber Valley irrigation districts in the Ogden area, part of the Bureau of Reclamation Weber Basin Project); only the lower-reach takes are modeled here.",
+  "units": "acre-ft per water year",
+  "dry_take_cap": 0.90,
+  "residual_frac": 0.05,
+  "diversions": [
+    {
+      "key": "weber_valley",
+      "name": "Lower Weber Valley irrigation",
+      "short": "Weber Valley",
+      "avg_af": 50000,
+      "kind": "irrigation",
+      "source": "Estimate. Irrigation canals and ditches along the lower Weber Valley between Plain City and the Bear River confluence. The Weber has 'long been used for irrigation and is part of the United States Bureau of Reclamation's Weber Basin Project' (Wikipedia).",
+      "slider": true
+    },
+    {
+      "key": "lower_municipal",
+      "name": "Lower-reach municipal / industrial",
+      "short": "Lower municipal",
+      "avg_af": 10000,
+      "kind": "municipal",
+      "source": "Estimate. Smaller municipal and industrial takes along the lower reach between Plain City and the confluence.",
+      "slider": true
+    }
+  ],
+  "scenarios": {},
+  "provenance": [
+    "Wikipedia 'Weber River (Utah)': the Weber 'has long been used for irrigation and is part of the United States Bureau of Reclamation's Weber Basin Project.' Among the dams on the Weber are Wanship Dam on Rockport Reservoir (completed 1957) and Echo Dam. The river passes by Oakley, fills Rockport Lake, then turns north, receiving major tributaries Silver Creek at Wanship and Chalk Creek.",
+    "Wikipedia 'Weber River (Utah)' infobox: average discharge at Ogden ~341 cu ft/s (~225,000 AF/yr).",
+    "The Weber River is a TRIBUTARY of the Bear River (it joins the Bear near Brigham City), so its 'flow_to_lake' is really the flow delivered to the Bear River - NOT a direct Great Salt Lake outflow. The Weber's contribution is already included in the Bear River's Corinne anchor, so the two dashboards are not meant to be summed.",
+    "Anchor: USGS 10141000 (Weber River near Plain City), WY mean ~313,000 AF (1949-2026). The anchor sits in the Weber Valley, so it captures the headwater flow (from the Wasatch Range) plus the major tributary inflow that joins between the upper canyon and Plain City (the flow grows from ~180,000 AF at Echo to ~225,000 AF at Ogden to ~313,000 AF at Plain City).",
+    "The anchor sits mid-river, so the tributaries that join between Plain City and the Bear confluence add flow downstream of the anchor (the model slightly under-counts the true confluence inflow).",
+    "Caveat: diversion take is governed by water-right priorities, not a fixed flow fraction, so per-year volumes are modeled as min(entitlement, available flow) rather than a fixed percentage."
+  ]
+}
