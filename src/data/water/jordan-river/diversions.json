@@ -1,0 +1,35 @@
+{
+  "note": "Jordan River diversions in the lower reach (between the 1700 S, SLC anchor gauge and the Great Salt Lake). These are the 'Out' side of the flow balance and become the dashboard sliders. VOLUMES ARE ESTIMATES - the precise year-by-year diversion data lives in the Utah DWR's diversion database, a JavaScript app not accessible to the pipeline. The anchor (1700 S) already reflects the large upstream diversions (Utah Lake outflow management, the Turner Dam, and the canals between Utah Lake and SLC); only the lower-reach takes are modeled here.",
+  "units": "acre-ft per water year",
+  "dry_take_cap": 0.90,
+  "residual_frac": 0.05,
+  "diversions": [
+    {
+      "key": "slc_municipal",
+      "name": "Salt Lake City municipal supply",
+      "short": "SLC municipal",
+      "avg_af": 40000,
+      "kind": "municipal",
+      "source": "Estimate. The City of SLC draws culinary water from the Jordan River (part of the Bureau of Reclamation Bonneville Unit M&I system, which delivers ~90,000 AF/yr from the Provo, Jordan, and Bear rivers combined; the Orem-Provo share of ~20,000 AF is Provo-sourced, and the Bear River share is modeled in the separate Bear River dashboard). The Jordan River share of the SLC metro supply is estimated at ~40,000 AF/yr.",
+      "slider": true
+    },
+    {
+      "key": "lower_irrigation",
+      "name": "Lower-reach irrigation canals",
+      "short": "Lower irrigation",
+      "avg_af": 10000,
+      "kind": "irrigation",
+      "source": "Estimate. Smaller irrigation canals and ditches along the ~10-12 mile lower reach between 1700 S and the Great Salt Lake.",
+      "slider": true
+    }
+  ],
+  "scenarios": {},
+  "provenance": [
+    "Wikipedia 'Jordan River (Utah)': 'Regulated by pumps at its headwaters at Utah Lake, it flows northward through the Salt Lake Valley and empties into the Great Salt Lake.' The river is 'highly regulated' - settlers 'dug ditches and canals, built dams, and installed pumps.'",
+    "Wikipedia 'Jordan River (Utah)' discharge section: the USGS stream gauge in Salt Lake City shows annual runoff 1980-2003 of just over 150,000 AF/yr; the Surplus Canal carries almost 60% of the water into the Great Salt Lake, with various irrigation canals responsible for the rest; the amount entering the Jordan River from Utah Lake is just over 400,000 AF/yr, with the 11 largest streams + sewage treatment plants the remainder (total ~800,000 AF/yr from all sources).",
+    "Bureau of Reclamation, Bonneville Unit M&I System: develops and delivers ~90,000 AF/yr to Salt Lake and Utah counties (~70,000 AF in the SLC metro, ~20,000 AF in Orem-Provo), drawing from the Provo, Jordan, and Bear rivers.",
+    "Anchor: USGS 10171000 (Jordan River at 1700 S, SLC), WY mean ~99,000 AF (1949-2026). The anchor sits mid-river, so the tributaries that join between 1700 S and the lake add flow downstream of the anchor (the model slightly under-counts the true lake inflow).",
+    "The Jordan empties directly into the Great Salt Lake (no terminal lake), so flow_to_lake is a real river outflow, unlike the Sevier.",
+    "Caveat: diversion take is governed by water-right priorities, not a fixed flow fraction, so per-year volumes are modeled as min(entitlement, available flow) rather than a fixed percentage."
+  ]
+}

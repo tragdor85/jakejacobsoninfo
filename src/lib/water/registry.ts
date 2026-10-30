@@ -21,6 +21,8 @@ import bearInflows from "@/data/water/bear-river/inflows.json";
 import bearDiversions from "@/data/water/bear-river/diversions.json";
 import sevierInflows from "@/data/water/sevier-river/inflows.json";
 import sevierDiversions from "@/data/water/sevier-river/diversions.json";
+import jordanInflows from "@/data/water/jordan-river/inflows.json";
+import jordanDiversions from "@/data/water/jordan-river/diversions.json";
 
 const gsl: LakeConfig = {
   kind: "lake",
@@ -81,6 +83,23 @@ const sevierRiver: RiverConfig = {
   data: { inflows: sevierInflows, diversions: sevierDiversions },
 };
 
+const jordanRiver: RiverConfig = {
+  kind: "river",
+  slug: "jordan-river",
+  name: "Jordan River",
+  shortName: "Jordan",
+  location: "Utah, USA",
+  description:
+    "A highly regulated river that flows from Utah Lake through the Salt Lake Valley and empties directly into the Great Salt Lake. Drag the SLC supply and lower-reach diversions to see what arrives at the lake.",
+  source: { key: "s1700", label: "Jordan River at 1700 S, SLC", note: "USGS 10171000" },
+  inflowComponents: [
+    { key: "mainstem", label: "Main stem", note: "the river's own flow" },
+    { key: "tributaries", label: "Tributaries", note: "creeks joining below 1700 S" },
+  ],
+  yearRange: [1949, 2026],
+  data: { inflows: jordanInflows, diversions: jordanDiversions },
+};
+
 /** All registered lakes, keyed by slug. */
 export const lakes: Record<string, LakeConfig> = { gsl };
 
@@ -88,6 +107,7 @@ export const lakes: Record<string, LakeConfig> = { gsl };
 export const rivers: Record<string, RiverConfig> = {
   [bearRiver.slug]: bearRiver,
   [sevierRiver.slug]: sevierRiver,
+  [jordanRiver.slug]: jordanRiver,
 };
 
 /** All registered water bodies (lakes + rivers), keyed by slug. */

@@ -1,0 +1,626 @@
+[
+  {
+    "year": 1949,
+    "total": 108599,
+    "mainstem": 97739,
+    "tributaries": 10860,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1950,
+    "total": 103488,
+    "mainstem": 93139,
+    "tributaries": 10349,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1951,
+    "total": 118934,
+    "mainstem": 107041,
+    "tributaries": 11893,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1952,
+    "total": 102467,
+    "mainstem": 92220,
+    "tributaries": 10247,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1953,
+    "total": 122340,
+    "mainstem": 110106,
+    "tributaries": 12234,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1954,
+    "total": 104721,
+    "mainstem": 94249,
+    "tributaries": 10472,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1955,
+    "total": 122263,
+    "mainstem": 110037,
+    "tributaries": 12226,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1956,
+    "total": 107552,
+    "mainstem": 96797,
+    "tributaries": 10755,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1957,
+    "total": 98721,
+    "mainstem": 88849,
+    "tributaries": 9872,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1958,
+    "total": 121577,
+    "mainstem": 109419,
+    "tributaries": 12158,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1959,
+    "total": 105283,
+    "mainstem": 94754,
+    "tributaries": 10528,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1960,
+    "total": 81652,
+    "mainstem": 73486,
+    "tributaries": 8165,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1961,
+    "total": 68565,
+    "mainstem": 61708,
+    "tributaries": 6856,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1962,
+    "total": 73650,
+    "mainstem": 66285,
+    "tributaries": 7365,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1963,
+    "total": 67025,
+    "mainstem": 60323,
+    "tributaries": 6703,
+    "below_oline": 89825,
+    "complete": true
+  },
+  {
+    "year": 1964,
+    "total": 78890,
+    "mainstem": 71001,
+    "tributaries": 7889,
+    "below_oline": 122705,
+    "complete": true
+  },
+  {
+    "year": 1965,
+    "total": 104535,
+    "mainstem": 94081,
+    "tributaries": 10453,
+    "below_oline": 116386,
+    "complete": true
+  },
+  {
+    "year": 1966,
+    "total": 96097,
+    "mainstem": 86487,
+    "tributaries": 9610,
+    "below_oline": 109874,
+    "complete": true
+  },
+  {
+    "year": 1967,
+    "total": 98364,
+    "mainstem": 88528,
+    "tributaries": 9836,
+    "below_oline": 117271,
+    "complete": true
+  },
+  {
+    "year": 1968,
+    "total": 109492,
+    "mainstem": 98542,
+    "tributaries": 10949,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1969,
+    "total": 112455,
+    "mainstem": 101209,
+    "tributaries": 11245,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1970,
+    "total": 107480,
+    "mainstem": 96732,
+    "tributaries": 10748,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1971,
+    "total": 106243,
+    "mainstem": 95618,
+    "tributaries": 10624,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1972,
+    "total": 112469,
+    "mainstem": 101222,
+    "tributaries": 11247,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1973,
+    "total": 110404,
+    "mainstem": 99364,
+    "tributaries": 11040,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1974,
+    "total": 89593,
+    "mainstem": 80634,
+    "tributaries": 8959,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1975,
+    "total": 124197,
+    "mainstem": 111777,
+    "tributaries": 12420,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1976,
+    "total": 99277,
+    "mainstem": 89349,
+    "tributaries": 9928,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1977,
+    "total": 83322,
+    "mainstem": 74989,
+    "tributaries": 8332,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1978,
+    "total": 91384,
+    "mainstem": 82246,
+    "tributaries": 9138,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1979,
+    "total": 109704,
+    "mainstem": 98733,
+    "tributaries": 10970,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1980,
+    "total": 118233,
+    "mainstem": 106409,
+    "tributaries": 11823,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1981,
+    "total": 116118,
+    "mainstem": 104507,
+    "tributaries": 11612,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1982,
+    "total": 133795,
+    "mainstem": 120416,
+    "tributaries": 13380,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1983,
+    "total": 129804,
+    "mainstem": 116824,
+    "tributaries": 12980,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1984,
+    "total": 161667,
+    "mainstem": 145500,
+    "tributaries": 16167,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1985,
+    "total": 129061,
+    "mainstem": 116155,
+    "tributaries": 12906,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1986,
+    "total": 107982,
+    "mainstem": 97184,
+    "tributaries": 10798,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1987,
+    "total": 89540,
+    "mainstem": 80586,
+    "tributaries": 8954,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1988,
+    "total": 122717,
+    "mainstem": 110446,
+    "tributaries": 12272,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1989,
+    "total": 107562,
+    "mainstem": 96805,
+    "tributaries": 10756,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1990,
+    "total": 112282,
+    "mainstem": 101054,
+    "tributaries": 11228,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1991,
+    "total": 102395,
+    "mainstem": 92155,
+    "tributaries": 10239,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1992,
+    "total": 75513,
+    "mainstem": 67962,
+    "tributaries": 7551,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1993,
+    "total": 95403,
+    "mainstem": 85863,
+    "tributaries": 9540,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1994,
+    "total": 79083,
+    "mainstem": 71175,
+    "tributaries": 7908,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1995,
+    "total": 89264,
+    "mainstem": 80338,
+    "tributaries": 8926,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1996,
+    "total": 98325,
+    "mainstem": 88492,
+    "tributaries": 9832,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1997,
+    "total": 111102,
+    "mainstem": 99992,
+    "tributaries": 11110,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1998,
+    "total": 108964,
+    "mainstem": 98068,
+    "tributaries": 10896,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 1999,
+    "total": 90182,
+    "mainstem": 81164,
+    "tributaries": 9018,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2000,
+    "total": 91591,
+    "mainstem": 82432,
+    "tributaries": 9159,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2001,
+    "total": 75772,
+    "mainstem": 68195,
+    "tributaries": 7577,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2002,
+    "total": 90811,
+    "mainstem": 81730,
+    "tributaries": 9081,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2003,
+    "total": 75236,
+    "mainstem": 67712,
+    "tributaries": 7524,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2004,
+    "total": 78838,
+    "mainstem": 70954,
+    "tributaries": 7884,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2005,
+    "total": 79635,
+    "mainstem": 71672,
+    "tributaries": 7964,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2006,
+    "total": 90688,
+    "mainstem": 81620,
+    "tributaries": 9069,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2007,
+    "total": 76189,
+    "mainstem": 68570,
+    "tributaries": 7619,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2008,
+    "total": 69421,
+    "mainstem": 62479,
+    "tributaries": 6942,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2009,
+    "total": 89747,
+    "mainstem": 80772,
+    "tributaries": 8975,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2010,
+    "total": 94379,
+    "mainstem": 84941,
+    "tributaries": 9438,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2011,
+    "total": 139843,
+    "mainstem": 125858,
+    "tributaries": 13984,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2012,
+    "total": 99245,
+    "mainstem": 89320,
+    "tributaries": 9924,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2013,
+    "total": 102560,
+    "mainstem": 92304,
+    "tributaries": 10256,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2014,
+    "total": 88894,
+    "mainstem": 80005,
+    "tributaries": 8889,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2015,
+    "total": 97576,
+    "mainstem": 87818,
+    "tributaries": 9758,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2016,
+    "total": 87839,
+    "mainstem": 79055,
+    "tributaries": 8784,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2017,
+    "total": 83989,
+    "mainstem": 75591,
+    "tributaries": 8399,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2018,
+    "total": 80837,
+    "mainstem": 72754,
+    "tributaries": 8084,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2019,
+    "total": 103861,
+    "mainstem": 93475,
+    "tributaries": 10386,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2020,
+    "total": 84387,
+    "mainstem": 75948,
+    "tributaries": 8439,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2021,
+    "total": 88699,
+    "mainstem": 79829,
+    "tributaries": 8870,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2022,
+    "total": 82341,
+    "mainstem": 74107,
+    "tributaries": 8234,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2023,
+    "total": 80901,
+    "mainstem": 72811,
+    "tributaries": 8090,
+    "below_oline": null,
+    "complete": true
+  },
+  {
+    "year": 2024,
+    "total": 101707,
+    "mainstem": 91536,
+    "tributaries": 10171,
+    "below_oline": 70469,
+    "complete": true
+  },
+  {
+    "year": 2025,
+    "total": 95105,
+    "mainstem": 85594,
+    "tributaries": 9510,
+    "below_oline": 113614,
+    "complete": true
+  },
+  {
+    "year": 2026,
+    "total": 9592,
+    "mainstem": 8633,
+    "tributaries": 959,
+    "below_oline": 11165,
+    "complete": false
+  }
+]
