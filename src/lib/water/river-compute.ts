@@ -3,6 +3,7 @@
 // through these tested functions (mirrors the lake's compute.ts).
 
 import { RiverModel } from "./river-model";
+import { MAF } from "./format";
 import type { InflowPoint, RiverConfig, RiverInflowRow } from "./types";
 
 /** All water years in the river's inflow data, sorted ascending. */
@@ -51,6 +52,11 @@ export function initialDiversionValues(river: RiverConfig): Record<string, numbe
   const out: Record<string, number> = {};
   for (const d of river.data.diversions.diversions) out[d.key] = d.avg_af;
   return out;
+}
+
+/** Total average annual diversion (MAF/yr) across all of the river's diversions. */
+export function avgDiversionMaf(river: RiverConfig): number {
+  return river.data.diversions.diversions.reduce((s, d) => s + d.avg_af, 0) / MAF;
 }
 
 /** All inflow-component multipliers at 1 (100%). */

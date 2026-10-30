@@ -18,6 +18,7 @@ import {
   RiverModel,
   actualAcftFor,
   allYears,
+  avgDiversionMaf,
   baselineMults,
   computeLongTermMeans,
   computeProjection,
@@ -33,6 +34,7 @@ import {
   initialValues,
   inflowSeries,
   lowMarker,
+  MAF,
   observedSeries,
   projectionYears,
   riverDefaultYear,
@@ -71,9 +73,11 @@ function Delta({ value }: { value: number | null }) {
 /**
  * Caveat under the inflow sliders: the MAF values are each river's total at
  * the last recorded gauge, not a true representation of what makes it to the
- * lake. The example figures come from the Bear River's committed data, run
- * through its dashboard's flow model, so the prose can't drift from the
- * river page.
+ * lake. Diversions take a fixed amount each year (a fixed entitlement, not a
+ * fixed share of flow), so a dry year — inflow about the size of the take —
+ * leaves almost nothing for the lake. The example figures come from the Bear
+ * River's committed data, run through its dashboard's flow model, so the
+ * prose can't drift from the river page.
  */
 function InflowCaveat({ lake }: { lake: LakeConfig }) {
   const bearSource = lake.rivers.find((r) => r.key === "bear");
@@ -88,18 +92,22 @@ function InflowCaveat({ lake }: { lake: LakeConfig }) {
       year: row.year,
       gauge: fmtMaf(row.total),
       lake: fmtMaf(model.flowToLake(row, base, base, 0)),
+      // True when the year's inflow is about the size of the average take.
+      nearTake: Math.abs(row.total - model.totalAvgDiversion) <= 0.15 * model.totalAvgDiversion,
     };
   }, [bear]);
 
   return (
     <p className="mt-3 text-xs text-muted">
       These MAF values are the total flow per river at the last recorded gauge, not a true
-      representation of what actually makes it to the lake — diversions take water out along
-      the way.
+      representation of what actually makes it to the lake. The diversions take a fixed amount
+      each year, not a fixed share of the flow — they shrink only when the inflow falls below
+      the take — so in a dry year almost nothing is left for the lake.
       {example && bear ? (
         <>
-          {" "}For example, in {example.year} {bear.source.label} recorded {example.gauge} MAF, but
-          only {example.lake} MAF made it to the lake after diversions.
+          {" "}In {example.year}, {bear.source.label} recorded {example.gauge} MAF
+          {example.nearTake ? " — about the same as its average take — " : ", "}but only{" "}
+          {example.lake} MAF made it to the lake.
         </>
       ) : null}
       {bearSource?.href ? (
@@ -124,6 +132,18 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
     [lake],
   );
   const years = useMemo(() => allYears(lake), [lake]);
+  // Each river's average annual diversion (acre-ft), from its own dashboard's
+  // committed data — shown under the slider in the inflow card.
+  const diversionAcft = useMemo(
+    () =>
+      Object.fromEntries(
+        lake.rivers.flatMap((s) => {
+          const river = s.href ? getRiver(s.href.slice("/water/".length)) : null;
+          return river ? [[s.key, avgDiversionMaf(river) * MAF]] : [];
+        }),
+      ),
+    [lake],
+  );
   const projYears = useMemo(() => projectionYears(lake), [lake]);
   const observed = useMemo(() => observedSeries(lake), [lake]);
   const inflow = useMemo(() => inflowSeries(lake), [lake]);
@@ -190,6 +210,7 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
           valuesAcft={valuesAcft}
           actualAcft={actuals}
           maxAcft={maxes}
+          diversionAcft={diversionAcft}
           onSlider={handleSlider}
           onReset={() => setValuesAcft(initialValues(lake, year))}
         />

@@ -12,11 +12,21 @@ interface InflowControlsProps {
   valuesAcft: Record<string, number>;
   actualAcft: Record<string, number>;
   maxAcft: Record<string, number>;
+  /** Average annual diversion per river (acre-ft) — shown under the slider. */
+  diversionAcft?: Record<string, number>;
   onSlider: (key: string, valueAcft: number) => void;
   onReset: () => void;
 }
 
-export function InflowControls({ rivers, valuesAcft, actualAcft, maxAcft, onSlider, onReset }: InflowControlsProps) {
+export function InflowControls({
+  rivers,
+  valuesAcft,
+  actualAcft,
+  maxAcft,
+  diversionAcft,
+  onSlider,
+  onReset,
+}: InflowControlsProps) {
   const total = rivers.reduce((t, s) => t + (valuesAcft[s.key] || 0), 0);
   const actualTotal = rivers.reduce((t, s) => t + (actualAcft[s.key] || 0), 0);
   return (
@@ -36,16 +46,26 @@ export function InflowControls({ rivers, valuesAcft, actualAcft, maxAcft, onSlid
                 s.label
               )}
             </label>
-            <input
-              id={`inflow-${s.key}`}
-              type="range"
-              min={0}
-              max={maxAcft[s.key] / MAF}
-              step="any"
-              value={v / MAF}
-              onChange={(e) => onSlider(s.key, parseFloat(e.target.value) * MAF)}
-              className="w-full accent-accent"
-            />
+            <div className="space-y-1">
+              <input
+                id={`inflow-${s.key}`}
+                type="range"
+                min={0}
+                max={maxAcft[s.key] / MAF}
+                step="any"
+                value={v / MAF}
+                onChange={(e) => onSlider(s.key, parseFloat(e.target.value) * MAF)}
+                className="w-full accent-accent"
+              />
+              {s.note || diversionAcft?.[s.key] != null ? (
+                <p className="text-xs text-muted">
+                  {s.note}
+                  {diversionAcft?.[s.key] != null
+                    ? ` · avg ${fmtMaf(diversionAcft[s.key]!)} MAF/yr diverted`
+                    : ""}
+                </p>
+              ) : null}
+            </div>
             <span className="w-36 text-right font-mono text-sm tabular-nums">
               {fmtMaf(v)} MAF
               <span className="text-muted"> · {pct === null ? "no gauge" : `${pct}%`}</span>

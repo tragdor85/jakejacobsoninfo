@@ -5,6 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { RiverModel } from "./river-model";
 import {
+  avgDiversionMaf,
   baselineMults,
   computeRiverWhatIf,
   flowToLakeSeries,
@@ -84,6 +85,13 @@ describe("river: flow budget (RiverModel)", () => {
     const zeroInflow = { mainstem: 0, tributaries: 0 };
     const doubleDiv = Object.fromEntries(river.data.diversions.diversions.map((d) => [d.key, 2]));
     expect(model.flowToLake(row, zeroInflow, doubleDiv, 0)).toBe(0);
+  });
+});
+
+describe("river: average diversion", () => {
+  it("sums all diversions' average takes in MAF/yr", () => {
+    // 280k + 120k + 110k + 70k AF = 580k AF = 0.58 MAF.
+    expect(avgDiversionMaf(river)).toBeCloseTo(0.58, 3);
   });
 });
 

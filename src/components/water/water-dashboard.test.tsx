@@ -120,11 +120,24 @@ describe("WaterDashboard", () => {
     expect(screen.getByLabelText("Bear River")).toBeTruthy();
   });
 
+  it("shows each river's average annual diversion under its slider", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    // The committed average takes: Bear 580k, Sevier 89k, Jordan 50k, Weber 60k AF.
+    expect(text).toContain("avg 0.58 MAF/yr diverted");
+    expect(text).toContain("avg 0.09 MAF/yr diverted");
+    expect(text).toContain("avg 0.05 MAF/yr diverted");
+    expect(text).toContain("avg 0.06 MAF/yr diverted");
+  });
+
   it("notes under the inflows card that gauge MAF overstates what reaches the lake", () => {
     const { container } = render(<WaterDashboard lake={lake} />);
     const text = container.textContent ?? "";
     expect(text).toContain("last recorded gauge");
     expect(text).toContain("not a true representation");
+    // The fixed-take mechanism: diversions don't shrink with a dry inflow.
+    expect(text).toContain("fixed amount");
+    expect(text).toContain("dry year");
     // The Bear River example, computed from the river's committed data:
     // 2025 carried 0.58 MAF at Corinne, only 0.03 MAF reached the lake.
     expect(text).toContain("0.58");
