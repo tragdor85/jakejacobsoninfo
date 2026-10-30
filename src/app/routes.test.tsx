@@ -13,7 +13,7 @@ import Water from "./water/page";
 import { generateMetadata as waterLakeMetadata, generateStaticParams as waterLakeParams } from "./water/[slug]/page";
 import { WaterLakeView } from "@/components/water/water-lake-view";
 import { WaterRiverView } from "@/components/water/water-river-view";
-import { getLake, getRiver } from "@/lib/water";
+import { getLake, getRiver, waterSlugs } from "@/lib/water";
 import NotFound from "./not-found";
 
 // Banned strings — PLAN.md sanitization rules, checked against the rendered
@@ -176,7 +176,7 @@ describe("water", () => {
   });
 
   it("generates static params for every registered water body", () => {
-    expect(waterLakeParams()).toEqual([{ slug: "gsl" }, { slug: "bear-river" }]);
+    expect(waterLakeParams()).toEqual(waterSlugs().map((slug) => ({ slug })));
   });
 
   it("generates metadata from the lake config", async () => {

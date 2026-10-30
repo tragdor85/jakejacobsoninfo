@@ -1,0 +1,33 @@
+{
+  "note": "Sevier River diversions in the Sevier Valley (between the Juab gauge and Sevier Lake). These are the 'Out' side of the flow balance and become the dashboard sliders. VOLUMES ARE ESTIMATES - the precise year-by-year diversion data lives in the Utah DWR's diversion database, a JavaScript app not accessible to the pipeline. The estimates are calibrated to the published figure (Wikipedia, citing 1999 basin data) that of ~823,000 AF of annual basin runoff only ~32,900 AF reached Sevier Lake - i.e. most is diverted for irrigation or lost to evaporation in the Sevier Desert.",
+  "units": "acre-ft per water year",
+  "dry_take_cap": 0.90,
+  "residual_frac": 0.30,
+  "diversions": [
+    {
+      "key": "sevier_valley",
+      "name": "Sevier Valley irrigation",
+      "short": "Sevier Valley",
+      "avg_af": 70000,
+      "kind": "irrigation",
+      "source": "Estimate. The Sevier Valley irrigation districts (Richfield, Circleville, etc.; the Richfield Irrigation Canal dates to 1860) are the largest diversion. Sized so the total diversion + residual matches the published figure that only ~32,900 AF of the ~823,000 AF basin runoff reaches Sevier Lake.",
+      "slider": true
+    },
+    {
+      "key": "upper_forks",
+      "name": "East Fork / Sanpete Valley ditches",
+      "short": "Upper forks",
+      "avg_af": 19000,
+      "kind": "irrigation",
+      "source": "Estimate. Smaller ditches and canals on the East Fork and Sanpete Valley stretch (e.g. the Tropic Ditch, which diverts 15 miles from the East Fork to Tropic).",
+      "slider": true
+    }
+  ],
+  "scenarios": {},
+  "provenance": [
+    "Wikipedia 'Sevier River' (citing 1999 basin data): estimated annual runoff 823,000 AF in the Sevier River basin, but only ~32,900 AF reached Sevier Lake, and mostly in wet years; 'even before irrigation, not all of this water reached Sevier Lake due to large evaporation losses in the Sevier Desert.'",
+    "Anchor: USGS 10219000 (Sevier River near Juab), WY mean ~174,000 AF. The anchor is upstream of the full basin (~5,165 sq mi of ~9,950 at the lake), so it does not capture the tributaries that join between Juab and the lake.",
+    "The Sevier River flows into Sevier Lake (a terminal lake); in wet years the lake overflows and the overflow reaches the Great Salt Lake. The residual (30% of inflow) represents evaporation losses in the Sevier Desert plus Sevier Lake storage. In dry years the lake does not overflow, so flow_to_lake is 0.",
+    "Caveat: diversion take is governed by water-right priorities, not a fixed flow fraction, so per-year volumes are modeled as min(entitlement, available flow) rather than a fixed percentage."
+  ]
+}

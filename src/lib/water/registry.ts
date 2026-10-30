@@ -19,6 +19,8 @@ import inflows from "@/data/water/gsl/inflows.json";
 import levels from "@/data/water/gsl/levels.json";
 import bearInflows from "@/data/water/bear-river/inflows.json";
 import bearDiversions from "@/data/water/bear-river/diversions.json";
+import sevierInflows from "@/data/water/sevier-river/inflows.json";
+import sevierDiversions from "@/data/water/sevier-river/diversions.json";
 
 const gsl: LakeConfig = {
   kind: "lake",
@@ -62,11 +64,31 @@ const bearRiver: RiverConfig = {
   data: { inflows: bearInflows, diversions: bearDiversions },
 };
 
+const sevierRiver: RiverConfig = {
+  kind: "river",
+  slug: "sevier-river",
+  name: "Sevier River",
+  shortName: "Sevier",
+  location: "Utah, USA",
+  description:
+    "Flows into Sevier Lake, a terminal lake that mostly evaporates; only in wet years does it overflow to the Great Salt Lake. Drag the Sevier Valley diversions to see what reaches the lake.",
+  source: { key: "juab", label: "Sevier River near Juab", note: "USGS 10219000" },
+  inflowComponents: [
+    { key: "mainstem", label: "Main stem", note: "the river's own flow" },
+    { key: "tributaries", label: "Tributaries", note: "creeks joining below Juab" },
+  ],
+  yearRange: [1949, 2026],
+  data: { inflows: sevierInflows, diversions: sevierDiversions },
+};
+
 /** All registered lakes, keyed by slug. */
 export const lakes: Record<string, LakeConfig> = { gsl };
 
 /** All registered rivers, keyed by slug. */
-export const rivers: Record<string, RiverConfig> = { [bearRiver.slug]: bearRiver };
+export const rivers: Record<string, RiverConfig> = {
+  [bearRiver.slug]: bearRiver,
+  [sevierRiver.slug]: sevierRiver,
+};
 
 /** All registered water bodies (lakes + rivers), keyed by slug. */
 export const water: Record<string, WaterConfig> = { ...lakes, ...rivers };
