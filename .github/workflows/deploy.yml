@@ -1,0 +1,44 @@
+# Deploys the static site to Cloudflare Pages on every push to main.
+#
+# This is the "pushes deploy automatically" wiring: the site is a Cloudflare Pages
+# project (jakejacobson.info) that was previously deployed by hand with
+# `npm run deploy`. Now every push to main rebuilds and redeploys it.
+#
+# One-time setup (in the GitHub repo): add a `CLOUDFLARE_API_TOKEN` secret — a
+# Cloudflare API token with Pages (edit) + Account (read) permissions. The token
+# is created in the Cloudflare dashboard (My Profile -> API Tokens -> Create
+# token -> "Edit Cloudflare Pages" template). The Cloudflare account id is not a
+# secret, so it is set here directly.
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          # Next 16 requires node >=20.9.0; 22 is a stable LTS that satisfies it.
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (static export to out/)
+        run: npm run build:clean
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy out --commit-dirty
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 7b49133228de84e10e230e56174db939
