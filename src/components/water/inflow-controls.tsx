@@ -14,6 +14,8 @@ interface InflowControlsProps {
   maxAcft: Record<string, number>;
   /** Average annual diversion per river (acre-ft) — shown under the slider. */
   diversionAcft?: Record<string, number>;
+  /** Modeled total flow to the lake (acre-ft) — shown in the total row. */
+  toLakeAcft?: number | null;
   onSlider: (key: string, valueAcft: number) => void;
   onReset: () => void;
 }
@@ -24,6 +26,7 @@ export function InflowControls({
   actualAcft,
   maxAcft,
   diversionAcft,
+  toLakeAcft,
   onSlider,
   onReset,
 }: InflowControlsProps) {
@@ -74,9 +77,13 @@ export function InflowControls({
         );
       })}
       <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
-        <span className="text-sm text-muted">
+        <span
+          className="text-sm text-muted"
+          title="To-lake total: each river's inflow minus diversions (dry-year capped) minus natural losses"
+        >
           Total <span className="font-mono text-fg">{fmtMaf(total)} MAF</span>
           {actualTotal > 0 ? ` vs ${fmtMaf(actualTotal)} MAF actual` : ""}
+          {toLakeAcft != null ? ` · ≈ ${fmtMaf(toLakeAcft)} MAF to lake` : ""}
         </span>
         <button
           type="button"

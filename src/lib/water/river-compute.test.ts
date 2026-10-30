@@ -5,7 +5,6 @@
 import { describe, expect, it } from "vitest";
 import { RiverModel } from "./river-model";
 import {
-  avgDiversionMaf,
   baselineMults,
   computeRiverWhatIf,
   flowToLakeSeries,
@@ -88,10 +87,34 @@ describe("river: flow budget (RiverModel)", () => {
   });
 });
 
-describe("river: average diversion", () => {
-  it("sums all diversions' average takes in MAF/yr", () => {
-    // 280k + 120k + 110k + 70k AF = 580k AF = 0.58 MAF.
-    expect(avgDiversionMaf(river)).toBeCloseTo(0.58, 3);
+describe("river: average diversion + raw-inflow budget", () => {
+  it("totalAvgDiversion sums all diversions' average takes", () => {
+    // 280k + 120k + 110k + 70k AF = 580k AF = 0.58 MAF/yr.
+    expect(model.totalAvgDiversion).toBeCloseTo(580_000, 0);
+  });
+
+  it("takes the full entitlement plus residual in a wet year", () => {
+    // 1.8 MAF inflow: take = full 580k, residual = 5% = 90k → 1.13 MAF to the lake.
+    expect(model.flowToLakeForInflow(1_800_000)).toBeCloseTo(1_130_000, 0);
+  });
+
+  it("applies the dry-year cap when inflow is about the size of the take", () => {
+    // 580k inflow = the average take: take scales to 90% of inflow, residual 5% → 5% left.
+    expect(model.flowToLakeForInflow(580_000)).toBeCloseTo(29_000, 0);
+  });
+
+  it("returns 0 for zero inflow", () => {
+    expect(model.flowToLakeForInflow(0)).toBe(0);
+  });
+
+  it("matches the row-based breakdown at 100% multipliers", () => {
+    const row = riverInflowRow(river, 2025)!;
+    const base = baselineMults(river);
+    // mainstem + tributaries rounds to the total within 1 AF.
+    expect(model.flowToLakeForInflow(row.total!, base)).toBeCloseTo(
+      model.flowToLake(row, base, base, 0),
+      -1,
+    );
   });
 });
 

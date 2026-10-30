@@ -130,6 +130,23 @@ describe("WaterDashboard", () => {
     expect(text).toContain("avg 0.06 MAF/yr diverted");
   });
 
+  it("shows the modeled flow to the lake in the total row", () => {
+    const { container } = render(<WaterDashboard lake={lake} />);
+    const text = container.textContent ?? "";
+    // 2025 actuals (acft): Bear 580,494, Sevier 85,791, Jordan 95,105, Weber 61,137.
+    // Modeled to-lake: Bear 29,025 (dry-year cap) + Sevier 0 + Jordan 40,350 + Weber 3,057
+    // = 72,432 AF ≈ 0.07 MAF.
+    expect(text).toContain("≈ 0.07 MAF to lake");
+  });
+
+  it("moving a slider updates the to-lake total", () => {
+    render(<WaterDashboard lake={lake} />);
+    const before = screen.getByText(/^Total /).textContent ?? "";
+    fireEvent.change(screen.getByLabelText("Bear River"), { target: { value: "0" } });
+    const after = screen.getByText(/^Total /).textContent ?? "";
+    expect(after).not.toBe(before);
+  });
+
   it("notes under the inflows card that gauge MAF overstates what reaches the lake", () => {
     const { container } = render(<WaterDashboard lake={lake} />);
     const text = container.textContent ?? "";
@@ -138,6 +155,8 @@ describe("WaterDashboard", () => {
     // The fixed-take mechanism: diversions don't shrink with a dry inflow.
     expect(text).toContain("fixed amount");
     expect(text).toContain("dry year");
+    // The to-lake total is a model estimate, not a measurement.
+    expect(text).toContain("not a measurement");
     // The Bear River example, computed from the river's committed data:
     // 2025 carried 0.58 MAF at Corinne, only 0.03 MAF reached the lake.
     expect(text).toContain("0.58");

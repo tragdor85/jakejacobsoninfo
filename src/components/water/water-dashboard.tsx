@@ -18,7 +18,6 @@ import {
   RiverModel,
   actualAcftFor,
   allYears,
-  avgDiversionMaf,
   baselineMults,
   computeLongTermMeans,
   computeProjection,
@@ -34,7 +33,6 @@ import {
   initialValues,
   inflowSeries,
   lowMarker,
-  MAF,
   observedSeries,
   projectionYears,
   riverDefaultYear,
@@ -100,9 +98,11 @@ function InflowCaveat({ lake }: { lake: LakeConfig }) {
   return (
     <p className="mt-3 text-xs text-muted">
       These MAF values are the total flow per river at the last recorded gauge, not a true
-      representation of what actually makes it to the lake. The diversions take a fixed amount
-      each year, not a fixed share of the flow — they shrink only when the inflow falls below
-      the take — so in a dry year almost nothing is left for the lake.
+      representation of what actually makes it to the lake. The “to lake” total above is the
+      flow model&rsquo;s estimate of what survives diversions and natural losses, not a
+      measurement. The diversions take a fixed amount each year, not a fixed share of the
+      flow — they shrink only when the inflow falls below the take — so in a dry year almost
+      nothing is left for the lake.
       {example && bear ? (
         <>
           {" "}In {example.year}, {bear.source.label} recorded {example.gauge} MAF
@@ -132,17 +132,19 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
     [lake],
   );
   const years = useMemo(() => allYears(lake), [lake]);
-  // Each river's average annual diversion (acre-ft), from its own dashboard's
-  // committed data — shown under the slider in the inflow card.
+  // Each river's flow-budget model (from its own dashboard's committed data) —
+  // drives the per-river average diversion and the modeled "to lake" total.
+  const riverModels = useMemo(() => {
+    const out: Record<string, RiverModel> = {};
+    for (const s of lake.rivers) {
+      const river = s.href ? getRiver(s.href.slice("/water/".length)) : null;
+      if (river) out[s.key] = new RiverModel(river.data.diversions);
+    }
+    return out;
+  }, [lake]);
   const diversionAcft = useMemo(
-    () =>
-      Object.fromEntries(
-        lake.rivers.flatMap((s) => {
-          const river = s.href ? getRiver(s.href.slice("/water/".length)) : null;
-          return river ? [[s.key, avgDiversionMaf(river) * MAF]] : [];
-        }),
-      ),
-    [lake],
+    () => Object.fromEntries(Object.entries(riverModels).map(([key, m]) => [key, m.totalAvgDiversion])),
+    [riverModels],
   );
   const projYears = useMemo(() => projectionYears(lake), [lake]);
   const observed = useMemo(() => observedSeries(lake), [lake]);
@@ -154,6 +156,16 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
   const [projYear, setProjYear] = useState<number | null>(() => defaultYear(lake));
   const [horizon, setHorizon] = useState(lake.horizonOptions?.[0] ?? 5);
   const horizons = lake.horizonOptions ?? [5, 10, 15, 20];
+
+  // Modeled flow to the lake: each river's current inflow minus its diversions
+  // (dry-year capped) minus natural losses. Null if no river has a model.
+  const toLakeAcft = useMemo(() => {
+    if (!Object.keys(riverModels).length) return null;
+    return lake.rivers.reduce(
+      (sum, s) => sum + (riverModels[s.key]?.flowToLakeForInflow(valuesAcft[s.key] || 0) ?? 0),
+      0,
+    );
+  }, [lake, riverModels, valuesAcft]);
 
   const levelRow = findLevelRow(lake, year);
   const actuals = useMemo(() => actualAcftFor(lake, year), [lake, year]);
@@ -211,6 +223,7 @@ export function WaterDashboard({ lake }: { lake: LakeConfig }) {
           actualAcft={actuals}
           maxAcft={maxes}
           diversionAcft={diversionAcft}
+          toLakeAcft={toLakeAcft}
           onSlider={handleSlider}
           onReset={() => setValuesAcft(initialValues(lake, year))}
         />
