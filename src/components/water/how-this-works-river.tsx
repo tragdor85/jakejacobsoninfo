@@ -6,6 +6,7 @@
 
 import type { RiverConfig } from "@/lib/water";
 import { fmtMaf } from "@/lib/water";
+import Link from "next/link";
 import { Section } from "./how-this-works";
 
 /** Build a USGS monitoring-location URL from a site string such as "USGS 10126000". */
@@ -107,7 +108,17 @@ export function HowThisWorksRiver({ river }: { river: RiverConfig }) {
           </li>
           {div.diversions.map((d) => (
             <li key={d.key}>
-              <strong className="font-medium text-fg">{d.name}:</strong> {d.source}
+              <strong className="font-medium text-fg">
+                {d.href ? (
+                  <Link href={d.href} className="text-accent hover:underline">
+                    {d.name}
+                  </Link>
+                ) : (
+                  d.name
+                )}
+                :
+              </strong>{" "}
+              {d.source}
             </li>
           ))}
           {div.scenarios["brd"] ? (

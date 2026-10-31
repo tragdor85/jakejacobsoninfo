@@ -11,7 +11,8 @@
       "avg_af": 280000,
       "kind": "irrigation",
       "source": "Estimate. The canal system (Bear River Canal Co. + East Branch, West Side, Central, etc.) is the largest diversion, irrigating the Box Elder Valley. Sized so the canals+BRMD reach matches the measured Corinne->below-O-Line flow loss (~200k-630k AF in 2024-2025).",
-      "slider": true
+      "slider": true,
+      "href": "/water/bear-river/diversions/canals"
     },
     {
       "key": "brmd",
@@ -20,7 +21,8 @@
       "avg_af": 120000,
       "kind": "municipal",
       "source": "Estimate. Brigham City municipal supply from the Bear River.",
-      "slider": true
+      "slider": true,
+      "href": "/water/bear-river/diversions/brmd"
     },
     {
       "key": "brid",
@@ -29,7 +31,8 @@
       "avg_af": 110000,
       "kind": "irrigation",
       "source": "Estimate. Box Elder Valley irrigation district.",
-      "slider": true
+      "slider": true,
+      "href": "/water/bear-river/diversions/brid"
     },
     {
       "key": "bcid",
@@ -38,7 +41,8 @@
       "avg_af": 70000,
       "kind": "irrigation",
       "source": "Estimate. Brigham City irrigation district.",
-      "slider": true
+      "slider": true,
+      "href": "/water/bear-river/diversions/bcid"
     }
   ],
   "scenarios": {

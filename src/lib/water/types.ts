@@ -175,6 +175,8 @@ export interface DiversionSource {
   source?: string;
   /** Whether this diversion gets a what-if slider. */
   slider: boolean;
+  /** Link to this diversion's info page (e.g. "/water/bear-river/diversions/canals"), if any. */
+  href?: string;
 }
 
 /** A named inflow component (the "In" side, decomposed from the source total). */

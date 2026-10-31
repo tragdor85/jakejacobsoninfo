@@ -4,6 +4,7 @@
 // the lake — the sliders are the single source of truth for the what-if.
 
 import { fmtMaf } from "@/lib/water";
+import Link from "next/link";
 import type { DiversionSource } from "@/lib/water";
 
 interface DiversionControlsProps {
@@ -34,7 +35,13 @@ export function DiversionControls({
         return (
           <div key={d.key} className="grid grid-cols-[8rem_1fr_auto] items-center gap-3">
             <label htmlFor={`div-${d.key}`} className="text-sm">
-              {d.short ?? d.name}
+              {d.href ? (
+                <Link href={d.href} className="text-accent hover:underline" title={`About ${d.name}`}>
+                  {d.short ?? d.name}
+                </Link>
+              ) : (
+                d.short ?? d.name
+              )}
             </label>
             <input
               id={`div-${d.key}`}
