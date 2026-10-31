@@ -25,3 +25,32 @@ export function getContentTitle(slug: ContentSlug): string {
   const match = raw.match(/^# (.+)\n/);
   return match ? match[1] : slug;
 }
+
+// ---------------------------------------------------------------------------
+// Water diversion info pages (content/water/bear-river/<slug>.md).
+//
+// These are self-authored research pages for the Bear River dashboard's four
+// diversions, rendered at /water/bear-river/diversions/<slug>. They live in a
+// nested content path (not the flat top-level depth pages above) and are
+// loaded by slug.
+
+/** Slugs of the Bear River diversion info pages, in dashboard order. */
+export const bearRiverDiversionSlugs = ["canals", "brmd", "brid", "bcid"] as const;
+export type BearRiverDiversionSlug = (typeof bearRiverDiversionSlugs)[number];
+
+function readContentFile(relPath: string): string {
+  return fs.readFileSync(path.join(process.cwd(), "content", relPath), "utf8");
+}
+
+/** Body of a Bear River diversion page, with the leading `# Title` stripped. */
+export function getBearRiverDiversion(slug: BearRiverDiversionSlug): string {
+  const raw = readContentFile(`water/bear-river/${slug}.md`);
+  return raw.replace(/^# [^\n]+\n+/, "");
+}
+
+/** The `# ...` title of a Bear River diversion page. */
+export function getBearRiverDiversionTitle(slug: BearRiverDiversionSlug): string {
+  const raw = readContentFile(`water/bear-river/${slug}.md`);
+  const match = raw.match(/^# (.+)\n/);
+  return match ? match[1] : slug;
+}

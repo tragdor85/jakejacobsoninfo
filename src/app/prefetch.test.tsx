@@ -19,6 +19,7 @@ const FILES = [
   "src/app/lab/page.tsx",
   "src/app/water/page.tsx",
   "src/app/water/[slug]/page.tsx",
+  "src/app/water/bear-river/diversions/[slug]/page.tsx",
   "src/app/not-found.tsx",
   "src/components/site-header.tsx",
   "src/components/site-footer.tsx",
